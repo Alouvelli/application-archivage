@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rubriqueProfil">
+            <h2><span jhiTranslate="gestionEcoleApp.rubriqueProfil.detail.title">Rubrique Profil</span> {{rubriqueProfil.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.encours">Encours</span></dt>
+                <dd>
+                    <span>{{rubriqueProfil.encours}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profil">Profil</span></dt>
+                <dd>
+                    <div *ngIf="rubriqueProfil.profil">
+                        <a [routerLink]="['/profil', rubriqueProfil.profil?.id, 'view']">{{rubriqueProfil.profil?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.rubrique">Rubrique</span></dt>
+                <dd>
+                    <div *ngIf="rubriqueProfil.rubrique">
+                        <a [routerLink]="['/rubrique', rubriqueProfil.rubrique?.id, 'view']">{{rubriqueProfil.rubrique?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profilModule">Profil Module</span></dt>
+                <dd>
+                    <div *ngIf="rubriqueProfil.profilModule">
+                        <a [routerLink]="['/profil-module', rubriqueProfil.profilModule?.id, 'view']">{{rubriqueProfil.profilModule?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rubrique-profil', rubriqueProfil.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

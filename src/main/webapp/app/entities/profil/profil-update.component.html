@@ -1,0 +1,256 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier</span>
+                        </div>
+                        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+                                    <!--<div class="form-group col-md-4" [hidden]="!profil.id">
+                                        <label for="id" jhiTranslate="global.field.id">ID</label>
+                                        <input type="text" class="form-control" id="id" name="id"
+                                               [(ngModel)]="profil.id" readonly />
+                                    </div>-->
+
+
+                                    <div class="form-group col-md-6 center-block"">
+                                    <label class="form-control-label" >Libelle </label>
+                                    <div class="section">
+                                        <label class="field prepend-icon">
+                                            <input type="text" class="gui-input"   name="libelleMenu" id="field_libelleMenu"
+                                                   required="required" #libelle="ngModel"  [class.invalid]="!libelle.valid && libelle.touched"
+                                                   [(ngModel)]="profil.libelleProfil" placeholder="Rang"  />
+                                            <label for="field_libelleMenu" class="field-icon">
+                                                <i class="fa fa-user"></i>
+                                            </label>
+                                            <small class="form-text text-danger"
+                                                   [class.hidden]="libelle.valid ||libelle.untouched ">
+                                                Ce champ est obligatoire
+                                            </small>
+
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 center-block"">
+                                <label class="form-control-label" >Etat</label>
+                                <div class="section">
+                                    <label class="switch block mt15">
+                                        <input type="checkbox"  (change)="changeEtat()" [checked]="profil.etatProfil==1" name="tools" id="t2" value="reports">
+                                        <label for="t2" data-on="Oui" data-off="Non"></label>
+
+                                    </label>
+                                </div>
+                            </div>
+                    </div>
+                    <!--  <div class="form-group">
+                          <label class="form-control-label" jhiTranslate="gestionEcoleApp.profil.ecole" for="field_ecole">Ecole</label>
+                          <select class="form-control" id="field_ecole" name="ecole" [(ngModel)]="profil.ecole" >
+                              <option [ngValue]="null"></option>
+                              <option [ngValue]="ecoleOption.id === profil.ecole?.id ? profil.ecole : ecoleOption" *ngFor="let ecoleOption of ecoles; trackBy: trackEcoleById">{{ecoleOption.id}}</option>
+                          </select>
+                      </div>-->
+                    <!--
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.profil.site" for="field_site">Site</label>
+                        <select class="form-control" id="field_site" name="site" [(ngModel)]="profil.site" >
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="siteOption.id === profil.site?.id ? profil.site : siteOption" *ngFor="let siteOption of sites; trackBy: trackSiteById">{{siteOption.id}}</option>
+                        </select>
+                    </div>-->
+                    <div class="row">
+                        <div class="form-group col-md-6 center-block">
+                            <div class="col-sm-3">
+                                <label class="form-control-label"  >Choix</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="option">
+                                    <input type="radio" [checked]="this.profil.ecole" name="payment" (change)="typeCheckbox()">
+                                    <span class="radio"></span>Ecole</label>
+                                <label class="option">
+                                    <input type="radio" [checked]="this.profil.site"  name="payment" (change)="typeRadio()">
+                                    <span class="radio"></span>Site(A)</label>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-12">
+
+                            <div class="dd mb35" id="nestable"  [hidden]="!this.typedeChanmp">
+                                <ol class="dd-list">
+
+
+
+
+
+                                    <li class="dd-item dd-collapsed " data-id="{{q}}"  *ngFor="let site of this.sites; let q=index;">
+                                        <div class="section-divider " id="spy1" style="margin: 0px; padding: 0px">
+                                            <span>{{this.site.codeSite}}</span>
+                                        </div>
+
+                                        <div class="dd-handle">{{this.site.codeSite}}
+                                        </div>
+                                        <label class="option">
+                                            <input   name="dane98{{q}}" type="{{this.typedeChanmp}}" [checked]="this.site.selectedSite==true"   value="option1" (change)="changeEtatSite(site,this.typedeChanmp)"">
+                                            <span class="checkbox"></span>Cocher</label>
+                                        <label class="option">
+                                            <input   name="dane1" type="radio" value="option1" [checked]="this.site.encours1==1" (change)="changeEncoursSite(site)">
+                                            <span class="radio"></span>Encours</label>
+                                        <ol class="dd-list">
+                                            <li class="dd-item dd-collapsed" data-id=i *ngFor="let mod  of site.modules;let z=index"  >
+                                                <div class="dd-handle">{{mod.libelleModule}}</div>
+                                                <label class="option">
+                                                    <input  name="dane{{q}}{{z}}"   type="checkbox"  value="option1" [checked]="this.mod.selectedSite==true" (change)="changeEtatModule(mod)">
+                                                    <span class="checkbox"></span>Cocher</label>
+                                                <label class="option">
+                                                    <input  name="dane4{{q}}" type="radio" value="option1" [checked]="this.mod.encours1==1" (change)="changeEncoursModule(site,mod)">
+                                                    <span class="radio"></span>Encours</label>
+                                                <ol class="dd-list">
+                                                    <li class="dd-item dd-collapsed" data-id=i *ngFor="let rub  of mod.rubriques; let i=index;">
+                                                        <div class="dd-handle">{{rub.libelleRubrique}}</div>
+                                                        <label class="option">
+                                                            <input name="dane{{q}}{{z}}{{i}}" type="checkbox"  value="option1" [checked]="this.rub.selectedSite==true" (change)="changeEtatRubrique(rub)">
+                                                            <span class="checkbox"></span>Cocher</label>
+                                                        <label class="option">
+                                                            <input   name="dane11{{q}}{{z}}" type="radio" value="option1" [checked]="this.rub.encours1==1" (change)="changeEncoursRubrique(mod,rub)">
+                                                            <span class="radio"></span>Encours</label>
+
+                                                        <ol class="dd-list">
+                                                            <li class="dd-item dd-collapsed" data-id=i *ngFor="let men  of rub.menus; let x=index;">
+                                                                <div class="dd-handle">{{men.libelleMenu}}</div>
+                                                                <label class="option">
+                                                                    <input type="checkbox" [checked]="this.men.voir==1"  value="option1{{x}}" (change)="changeEtatMenu(men,1)">
+                                                                    <span class="checkbox"></span>Voir</label>
+                                                                <label class="option">
+                                                                    <input  type="checkbox" [checked]="this.men.ajouter==1" value="option1{{x}}" (change)="changeEtatMenu(men,2)">
+                                                                    <span class="checkbox"></span>Ajouter</label>
+                                                                <label class="option">
+                                                                    <input type="checkbox" [checked]="this.men.modifier==1" value="option1{{x}}" (change)="changeEtatMenu(men,3)">
+                                                                    <span class="checkbox"></span>Modifier</label>
+                                                                <label class="option">
+                                                                    <input type="checkbox"  [checked]="this.men.supprimer==1" value="option1{{x}}" (change)="changeEtatMenu(men,4)">
+                                                                    <span class="checkbox"></span>Supprimer</label> <label class="option">
+                                                                <input type="checkbox" [checked]="this.men.imprimer==1" value="option1{{x}}" (change)="changeEtatMenu(men,5)">
+                                                                <span class="checkbox"></span>Imprimer</label>
+
+
+
+
+
+                                                            </li>
+
+                                                        </ol>
+                                                    </li>
+
+                                                </ol>
+                                            </li>
+
+                                        </ol>
+                                        </td>
+
+
+                                    </li>
+
+
+                                </ol>
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+
+
+
+
+
+
+
+
+                    <!--  <div class="row" [hidden]="!this.typedeChanmp">
+                          <div *ngFor="let site of this.sites">
+                              <label>{{this.site.codeSite}}</label>
+                              <input name="dane" type="{{this.typedeChanmp}}"  value="option1" (change)="changeEtatSite(site)">
+                              <input name="dane1" type="radio" value="option1" (change)="changeEncoursSite(site)">
+                          </div>
+                      </div>-->
+                    <div class="row">
+                        <div style="float: right;">
+                            <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                            </button>
+                            <button type="button" id="cancel-save" class="btn btn-danger"  (click)="previousState()">
+                                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

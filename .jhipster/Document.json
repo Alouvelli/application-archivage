@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "typeDocument",
+            "otherEntityName": "typeDocument",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "document",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "document1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "document2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "ref",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20190624161433",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "document",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

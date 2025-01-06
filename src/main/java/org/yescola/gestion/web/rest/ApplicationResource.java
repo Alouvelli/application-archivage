@@ -1,0 +1,146 @@
+package org.yescola.gestion.web.rest;
+import org.yescola.gestion.domain.Application;
+import org.yescola.gestion.domain.Ecole;
+import org.yescola.gestion.repository.ApplicationRepository;
+import org.yescola.gestion.repository.EcoleRepository;
+import org.yescola.gestion.web.rest.errors.BadRequestAlertException;
+import org.yescola.gestion.web.rest.util.HeaderUtil;
+import org.yescola.gestion.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+/**
+ * REST controller for managing Application.
+ */
+@RestController
+@RequestMapping("/api")
+public class ApplicationResource {
+
+    private final Logger log = LoggerFactory.getLogger(ApplicationResource.class);
+
+    private static final String ENTITY_NAME = "application";
+
+    private final ApplicationRepository applicationRepository;
+    private final EcoleRepository ecoleRepository;
+
+    public ApplicationResource(ApplicationRepository applicationRepository,EcoleRepository ecoleRepository) {
+        this.applicationRepository = applicationRepository;
+        this.ecoleRepository = ecoleRepository;
+    }
+
+    /**
+     * POST  /applications : Create a new application.
+     *
+     * @param application the application to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new application, or with status 400 (Bad Request) if the application has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/applications")
+    public ResponseEntity<Application> createApplication(@RequestBody Application application) throws URISyntaxException {
+        log.debug("REST request to save Application : {}", application);
+        if (application.getId() != null) {
+            throw new BadRequestAlertException("A new application cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        Application result = applicationRepository.save(application);
+        return ResponseEntity.created(new URI("/api/applications/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * PUT  /applications : Updates an existing application.
+     *
+     * @param application the application to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated application,
+     * or with status 400 (Bad Request) if the application is not valid,
+     * or with status 500 (Internal Server Error) if the application couldn't be updated
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PutMapping("/applications")
+    public ResponseEntity<Application> updateApplication(@RequestBody Application application) throws URISyntaxException {
+        log.debug("REST request to update Application : {}", application);
+        if (application.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Application result = applicationRepository.save(application);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, application.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * GET  /applications : get all the applications.
+     *
+     * @param pageable the pagination information
+     * @param filter the filter of the request
+     * @return the ResponseEntity with status 200 (OK) and the list of applications in body
+     */
+    @GetMapping("/applications")
+    public ResponseEntity<List<Application>> getAllApplications(Pageable pageable, @RequestParam(required = false) String filter) {
+        if ("ecole-is-null".equals(filter)) {
+            log.debug("REST request to get all Applications where ecole is null");
+            return new ResponseEntity<>(StreamSupport
+                .stream(applicationRepository.findAll().spliterator(), false)
+                .filter(application -> application.getEcole() == null)
+                .collect(Collectors.toList()), HttpStatus.OK);
+        }
+        log.debug("REST request to get a page of Applications");
+        Page<Application> page = applicationRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/applications");
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * GET  /applications/:id : get the "id" application.
+     *
+     * @param id the id of the application to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the application, or with status 404 (Not Found)
+     */
+    @GetMapping("/applications/{id}")
+    public ResponseEntity<Application> getApplication(@PathVariable Long id) {
+        log.debug("REST request to get Application : {}", id);
+        Optional<Application> application = applicationRepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(application);
+    }
+
+    /**
+     * DELETE  /applications/:id : delete the "id" application.
+     *
+     * @param id the id of the application to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @DeleteMapping("/applications/{id}")
+    public ResponseEntity<Void> deleteApplication(@PathVariable Long id) {
+        log.debug("REST request to delete Application : {}", id);
+        applicationRepository.deleteById(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    @GetMapping("/allApplication")
+    public List<Application> allApplication() {
+
+        List<Application> applications = applicationRepository.findAll();
+        return applications;
+    }
+    @GetMapping("/allEcole")
+    public List<Ecole> allEcole() {
+
+        List<Ecole> ecoles = ecoleRepository.findAll();
+        return ecoles;
+    }
+
+}

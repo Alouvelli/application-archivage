@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="documentclasse">
+            <h2><span jhiTranslate="gestionEcoleApp.documentclasse.detail.title">Documentclasse</span> {{documentclasse.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.documentclasse.document1">Document 1</span></dt>
+                <dd>
+                    <div *ngIf="documentclasse.document1">
+                        <a (click)="openFile(documentclasse.document1ContentType, documentclasse.document1)">
+                            <img [src]="'data:' + documentclasse.document1ContentType + ';base64,' + documentclasse.document1" style="max-width: 100%;" alt="documentclasse image"/>
+                        </a>
+                        {{documentclasse.document1ContentType}}, {{byteSize(documentclasse.document1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.documentclasse.ref">Ref</span></dt>
+                <dd>
+                    <span>{{documentclasse.ref}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.documentclasse.nomdocument">Nomdocument</span></dt>
+                <dd>
+                    <span>{{documentclasse.nomdocument}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.documentclasse.classe">Classe</span></dt>
+                <dd>
+                    <div *ngIf="documentclasse.classe">
+                        <a [routerLink]="['/classe', documentclasse.classe?.id, 'view']">{{documentclasse.classe?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/documentclasse', documentclasse.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

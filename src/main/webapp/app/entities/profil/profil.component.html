@@ -1,0 +1,108 @@
+<div>
+    <h2 id="page-heading">
+
+        <button style="float: right;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profil" [routerLink]="['/profil/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.profil.home.createLabel">
+            Create new Profil
+            </span>
+        </button>
+    </h2>
+    <br/> <br/>
+    <jhi-alert></jhi-alert>
+    <section id="content" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Profils</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="profils">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <th jhiSortBy="libelleProfil"><span >Libelle </span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="ecole.id"><span jhiTranslate="gestionEcoleApp.profil.ecole">Ecole</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="site.id"><span jhiTranslate="gestionEcoleApp.profil.site">Site</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let profil of profils ;trackBy: trackId">
+                                        <!--<td><a [routerLink]="['/profil', profil.id, 'view' ]">{{profil.id}}</a></td>-->
+                                        <!--<td>{{profil.etatProfil}}</td>-->
+                                        <td>{{profil.libelleProfil}}</td>
+                                        <td>
+                                            <div *ngIf="!profil.ecole">
+                                                <a  >Non</a>
+                                            </div>
+                                            <div *ngIf="profil.ecole">
+                                                <a  >{{profil.ecole?.sigleEcole}}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="!profil.site">
+                                                <a  >Non</a>
+                                            </div>
+                                            <div *ngIf="profil.site">
+                                                <a  >{{profil.site?.sigleSite}}</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['/profil', profil.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"  [routerLink]="['/profil', profil.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(profil.id)">Supprimer</span>
+
+
+                                                <!--   <button type="submit"
+                                                           [routerLink]="['/', 'profil', { outlets: { popup: profil.id + '/delete'} }]"
+                                                           replaceUrl="true"
+                                                           queryParamsHandling="merge"
+                                                           class="btn btn-danger btn-sm">
+                                                       <fa-icon [icon]="'times'"></fa-icon>
+                                                       <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                   </button>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div style="float: right;margin-right: 20px" *ngIf="profils && profils.length">
+       <!-- <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>-->
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

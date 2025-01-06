@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "classe",
+            "otherEntityName": "classe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "documentclasse"
+        },
+        {
+            "relationshipName": "semestre",
+            "otherEntityName": "semestre",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "documentclasse",
+            "otherEntityRelationshipNameUndefined": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "document1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "ref",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nomdocument",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190806122115",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "documentclasse",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

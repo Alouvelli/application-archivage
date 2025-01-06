@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+
+        <button style="float: right;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-type-document" [routerLink]="['/type-document/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.typeDocument.home.createLabel">
+            Create new Type Document
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <section id="content" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Documents</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="typeDocuments">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="libelle"><span jhiTranslate="gestionEcoleApp.typeDocument.libelle">Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="description"><span jhiTranslate="gestionEcoleApp.typeDocument.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                       <!-- <th jhiSortBy="etat"><span jhiTranslate="gestionEcoleApp.typeDocument.etat">Etat</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let typeDocument of typeDocuments ;trackBy: trackId">
+                                        <td><a [routerLink]="['/type-document', typeDocument.id, 'view' ]">{{typeDocument.id}}</a></td>
+                                        <td>{{typeDocument.libelle}}</td>
+                                        <td>{{typeDocument.description}}</td>
+                                        <!--<td>{{typeDocument.etat}}</td>-->
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                               <!-- <button type="submit"
+                                                        [routerLink]="['/type-document', typeDocument.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/type-document', typeDocument.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', 'type-document', { outlets: { popup: typeDocument.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                </button>-->
+                                                <span style="margin-right: 10px" type="button"              [routerLink]="['/type-document', typeDocument.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"    [routerLink]="['/type-document', typeDocument.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(typeDocument.id)">Supprimer</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="float: right;margin-right: 20px"  *ngIf="typeDocuments && typeDocuments.length">
+        <!--<div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>-->
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

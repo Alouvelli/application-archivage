@@ -1,0 +1,175 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Module</span>
+                        </div>
+                        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+                                    <!--<div class="form-group col-md-4" [hidden]="!module.id">
+                                        <label for="id" jhiTranslate="global.field.id">ID</label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input"   name="nineaSite" id="id" name="id"
+                                                       [(ngModel)]="module.id"  placeholder="Ninea de L'ecole" />
+                                                <label for="id" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label"  for="field_libelleModule">Libelle </label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input" name="libelleModule" id="field_libelleModule"  required="required" #libelle="ngModel"  [class.invalid]="!libelle.valid && libelle.touched"
+                                                       [(ngModel)]="module.libelleModule"  placeholder="Ninea de L'ecole" />
+                                                <label for="field_libelleModule" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                                <small class="form-text text-danger"
+                                                       [class.hidden]="libelle.valid ||libelle.untouched ">
+                                                    Ce champ est obligatoire
+                                                </small>
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-6 center-block">
+                                        <label class="form-control-label"  for="field_logoModule">Logo </label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input" name="logoModule" id="field_logoModule"  required="required" #logo="ngModel"  [class.invalid]="!logo.valid && logo.touched"
+                                                       [(ngModel)]="module.logoModule"   placeholder="Ninea de L'ecole" />
+                                                <label for="field_logoModule" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                            <small class="form-text text-danger"
+                                                   [class.hidden]="logo.valid ||logo.untouched ">
+                                                Ce champ est obligatoire
+                                            </small>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.module.rang" for="field_rang">Rang</label>
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="number" class="gui-input" name="rang" id="field_rang"
+                                                       [(ngModel)]="module.rang"   placeholder="Ninea de L'ecole" />
+                                                <label for="field_rang" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+
+                                        <!--<div *ngFor="let site of this.sites">
+                                            <label class="option">
+                                                <input type="checkbox" (change)="changeEtatSite(site)" name="checked" [checked]="this.site.selectedSite" value="checked" checked>
+                                                <span class="checkbox"></span>{{this.site.codeSite}}</label>
+
+                                        </div>-->
+                                        <label class="form-control-label"  for="field_rang">Site</label>
+                                        <div class="section">
+                                            <select id="multiselect6" multiple="multiple" name="typedocument"  >
+                                                <!--<option  [selected]="getSelected(document.typedocuments, typedocumentOption)=='select'"      *ngFor="let typedocumentOption of typedocuments" >{{typedocumentOption.libelle}}</option>-->
+                                                <option [selected]="this.site.selectedSite" *ngFor="let site of this.sites">{{this.site.codeSite}}</option>
+
+                                            </select>
+                                            <small class="form-text text-danger"
+                                                   [class.hidden]="this.invalid==true ">
+                                                Ce champ est obligatoire
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label"  for="field_rang">Etat</label>
+                                        <label class="switch block mt15">
+                                            <input type="checkbox"  (change)="changeEtat()" [checked]="module.etatModule==1" name="tools" id="t2" value="reports">
+                                            <label for="t2" data-on="Oui" data-off="Non"></label>
+
+                                        </label>
+
+                                    </div>
+                                </div>
+
+
+                                <!--
+                                <div class="form-group">
+                                    <label jhiTranslate="gestionEcoleApp.module.site" for="field_site">Site</label>
+                                    <select class="form-control" id="field_site" multiple name="site" [(ngModel)]="module.sites">
+                                        <option [ngValue]="getSelected(module.sites, siteOption)" *ngFor="let siteOption of sites; trackBy: trackSiteById">{{siteOption.id}}</option>
+                                    </select>
+                                </div>-->
+                            </div>
+                            <div class="row">
+                                <div style="float: right;">
+                                    <button  type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                    </button>
+                                    <button type="button" id="cancel-save" class="btn btn-danger"   (click)="previousState()">
+                                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+{
+    "name": "Application",
+    "fields": [
+        {
+            "fieldName": "nomApplication",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "versionApplication",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "logoApplication",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coutApplication",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateVente",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "maintenance",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "contratMaintenance",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateDebut",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateFin",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "etatApplication",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "ecole",
+            "otherEntityRelationshipName": "application",
+            "relationshipName": "ecole",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190603220331",
+    "entityTableName": "application",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

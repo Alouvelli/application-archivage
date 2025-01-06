@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-etudiant-heading" jhiTranslate="gestionEcoleApp.etudiant.home.createOrEditLabel">Create or edit a Etudiant</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!etudiant.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="etudiant.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                        [(ngModel)]="etudiant.nom" required/>
+                    <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.prenom" for="field_prenom">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                        [(ngModel)]="etudiant.prenom" required/>
+                    <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+                    <input type="text" class="form-control" name="dateNaissance" id="field_dateNaissance"
+                        [(ngModel)]="etudiant.dateNaissance" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.tel" for="field_tel">Tel</label>
+                    <input type="text" class="form-control" name="tel" id="field_tel"
+                        [(ngModel)]="etudiant.tel" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="etudiant.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.adresse" for="field_adresse">Adresse</label>
+                    <input type="text" class="form-control" name="adresse" id="field_adresse"
+                        [(ngModel)]="etudiant.adresse" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.etat" for="field_etat">Etat</label>
+                    <input type="checkbox" class="form-control" name="etat" id="field_etat"
+                        [(ngModel)]="etudiant.etat" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.etudiant.matricule" for="field_matricule">Matricule</label>
+                    <input type="text" class="form-control" name="matricule" id="field_matricule"
+                        [(ngModel)]="etudiant.matricule" required/>
+                    <div [hidden]="!(editForm.controls.matricule?.dirty && editForm.controls.matricule?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.matricule?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

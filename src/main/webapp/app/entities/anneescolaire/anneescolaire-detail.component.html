@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="anneescolaire">
+            <h2><span jhiTranslate="gestionEcoleApp.anneescolaire.detail.title">Anneescolaire</span> {{anneescolaire.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{anneescolaire.libelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.encours">Encours</span></dt>
+                <dd>
+                    <span>{{anneescolaire.encours}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.etat">Etat</span></dt>
+                <dd>
+                    <span>{{anneescolaire.etat}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/anneescolaire', anneescolaire.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

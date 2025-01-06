@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "modelecontrat",
+            "otherEntityName": "modelecontrat",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "contrat",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "employe",
+            "otherEntityName": "employe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "contrat",
+            "otherEntityRelationshipNameUndefined": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "encours",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190627154444",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "contrat",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

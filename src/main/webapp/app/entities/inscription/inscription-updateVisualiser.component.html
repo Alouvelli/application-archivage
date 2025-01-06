@@ -1,0 +1,136 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Inscription</span>
+                        </div>
+
+
+
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <!--<div class="form-group" [hidden]="!inscription.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                [(ngModel)]="inscription.id" readonly />
+                                        </div>-->
+                                        <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group col-md-12" *ngFor="let document of this.document1;let q=index">
+                                                <label class="badge badge-primary"  for="field_document1">Document:{{document.typeDocument.libelle}}</label>
+                                               <br>
+                                                <br>
+                                                <div>
+                                                    <div class="col-md-6">
+                                                        <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                                            <div class="fileupload-preview thumbnail mb15">
+                                                                <img [src]="'data:' + document.document1ContentType + ';base64,' + document.document1" *ngIf="document.document1" alt="document image" (click)="openSide(document)"/>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <input type="file" id="file_document1" (change)="setFileData($event, document, 'document1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>-->
+                                                </div>
+                                                <input type="hidden" class="form-control" name="document1{{q}}" id="field_document1"
+                                                       [(ngModel)]="document.document1" />
+                                                <input type="hidden" class="form-control" name="document1ContentType{{q}}" id="field_document1ContentType"
+                                                       [(ngModel)]="document.document1ContentType" />
+                                            </div>
+                                        </div>
+                                            <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-md-8" *ngFor="let a of this.alert">
+                                                        <div class="alert alert-primary" role="alert">
+                                                            Le Document {{a}} est manquant.
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-8">
+
+                                                        <div class="fileupload fileupload-new admin-form" style="width: 700px; height: 500px" data-provides="fileupload">
+                                                            <div class="fileupload-preview thumbnail mb15">
+                                                                <img [src]="'data:' + this.document.document1ContentType + ';base64,' + this.document.document1" *ngIf="this.document.document1" alt="document image" (click)="openFile(this.document.document1ContentType, this.document.document1) " style="height: 500px"/>
+                                                            </div>
+                                                            <span class="button btn-system btn-file btn-block ph5">
+                          <span (click)="download( this.document.document1) "class="fileupload-new">Imprimer</span>
+
+                        </span>
+                                                        </div>
+
+
+
+
+
+                                                </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    <div>
+                                        <button type="button" id="cancel-save" class="btn btn-danger"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Retour</span>
+                                        </button>
+                                       <!-- <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

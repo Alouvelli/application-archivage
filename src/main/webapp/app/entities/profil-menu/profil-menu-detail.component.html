@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profilMenu">
+            <h2><span jhiTranslate="gestionEcoleApp.profilMenu.detail.title">Profil Menu</span> {{profilMenu.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.voir">Voir</span></dt>
+                <dd>
+                    <span>{{profilMenu.voir}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.ajouter">Ajouter</span></dt>
+                <dd>
+                    <span>{{profilMenu.ajouter}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.supprimer">Supprimer</span></dt>
+                <dd>
+                    <span>{{profilMenu.supprimer}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.modifier">Modifier</span></dt>
+                <dd>
+                    <span>{{profilMenu.modifier}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.imprimer">Imprimer</span></dt>
+                <dd>
+                    <span>{{profilMenu.imprimer}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.profil">Profil</span></dt>
+                <dd>
+                    <div *ngIf="profilMenu.profil">
+                        <a [routerLink]="['/profil', profilMenu.profil?.id, 'view']">{{profilMenu.profil?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.menu">Menu</span></dt>
+                <dd>
+                    <div *ngIf="profilMenu.menu">
+                        <a [routerLink]="['/menu', profilMenu.menu?.id, 'view']">{{profilMenu.menu?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.profilMenu.rubriqueProfil">Rubrique Profil</span></dt>
+                <dd>
+                    <div *ngIf="profilMenu.rubriqueProfil">
+                        <a [routerLink]="['/rubrique-profil', profilMenu.rubriqueProfil?.id, 'view']">{{profilMenu.rubriqueProfil?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/profil-menu', profilMenu.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+    "gestionEcoleApp": {
+        "typebatitment": {
+            "home": {
+                "title": "Typebatitments",
+                "createLabel": "Create a new Typebatitment",
+                "createOrEditLabel": "Create or edit a Typebatitment"
+            },
+            "created": "A new Typebatitment is created with identifier {{ param }}",
+            "updated": "A Typebatitment is updated with identifier {{ param }}",
+            "deleted": "A Typebatitment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Typebatitment {{ id }}?"
+            },
+            "detail": {
+                "title": "Typebatitment"
+            },
+            "libelle": "Libelle",
+            "etat": "Etat"
+        }
+    }
+}

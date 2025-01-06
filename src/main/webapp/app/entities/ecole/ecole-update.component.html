@@ -1,0 +1,298 @@
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+    <div class="section-divider mb40" id="spy1">
+        <span>Donnés Ecole</span>
+
+        <div>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="row">
+                <!--<div class="form-group col-md-4" hidden >
+                    <div class="col-sm-3">
+                        <label for="id" jhiTranslate="global.field.id">ID</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="id" name="id"
+                               [(ngModel)]="ecole.id" readonly />
+                    </div>
+                </div>-->
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.codeEcole" for="field_codeEcole">Nom Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" class="gui-input" name="codeEcole" id="field_codeEcole"
+                                       [(ngModel)]="ecole.codeEcole" placeholder="Nom de L'ecole" />
+                                <label for="field_codeEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.adresseEcole" for="field_adresseEcole">Adresse Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text"  name="adresseEcole" id="field_adresseEcole"
+                                       [(ngModel)]="ecole.adresseEcole" class="gui-input" placeholder="Adresse Application"  >
+                                <label for="field_adresseEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.enteteEcole" for="field_enteteEcole">Entete Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon append-button file">
+                                <span class="button" style="background-color: #3399FF;color: white">Choose File</span>
+                                <input type="file" class="gui-file" name="file1" id="file1"  onChange="document.getElementById('field_enteteEcole').value = this.value;">
+                                <input type="text" class="gui-input" name="enteteEcole" id="field_enteteEcole"
+                                       [(ngModel)]="ecole.enteteEcole" />
+                                <label class="field-icon">
+                                    <i class="fa fa-upload"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.sigleEcole" for="field_sigleEcole">Sigle Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" name="sigleEcole" id="field_sigleEcole"
+                                       [(ngModel)]="ecole.sigleEcole" class="gui-input" placeholder="Nom Application"  >
+                                <label for="field_sigleEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.telephoneEcole" for="field_telephoneEcole">Telephone Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" name="telephoneEcole" id="field_telephoneEcole"
+                                       [(ngModel)]="ecole.telephoneEcole" class="gui-input" placeholder="Nom Application"  >
+                                <label for="field_telephoneEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.basPageEcole" for="field_basPageEcole">Bas Page Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon append-button file">
+                                <span class="button" style="background-color: #3399FF;color: white">Choose File</span>
+                                <input type="file" class="gui-file" name="file1" id="file1"  onChange="document.getElementById('field_basPageEcole').value = this.value;">
+                                <input type="text" class="gui-input"  name="basPageEcole" id="field_basPageEcole"
+                                       [(ngModel)]="ecole.basPageEcole" />
+                                <label class="field-icon">
+                                    <i class="fa fa-upload"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.nineaEcole" for="field_nineaEcole">Ninea Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" class="gui-input" name="nineaEcole" id="field_nineaEcole"
+                                       [(ngModel)]="ecole.nineaEcole" placeholder="Ninea de L'ecole" />
+                                <label for="field_nineaEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.emailEcole" for="field_emailEcole">Email Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" name="emailEcole" id="field_emailEcole"
+                                       [(ngModel)]="ecole.emailEcole" class="gui-input" placeholder="Nom Application"  >
+                                <label for="field_emailEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.logoEcole" for="field_logoEcole">Logo Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon append-button file">
+                                <span class="button " style="background-color: #3399FF;color: white" >Choose File</span>
+                                <input type="file" class="gui-file" name="file1" id="file1"  onChange="document.getElementById('field_logoEcole').value = this.value;">
+                                <input type="text" class="gui-input" name="logoEcole" id="field_logoEcole"
+                                       [(ngModel)]="ecole.logoEcole" />
+                                <label class="field-icon">
+                                    <i class="fa fa-upload"></i>
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+
+                <!--<div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.etatEcole" for="field_etatEcole">Etat Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="etatEcole" id="field_etatEcole"
+                               [(ngModel)]="ecole.etatEcole" />
+                    </div>
+                </div>-->
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.rang" for="field_rang">Rang</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="number" name="rang" id="field_rang"
+                                       [(ngModel)]="ecole.rang" class="gui-input" placeholder="Rang de l'application"  >
+                                <label for="field_rang" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.faxEcole" for="field_faxEcole">Fax Ecole</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                                <input type="text" name="faxEcole" id="field_faxEcole"
+                                       [(ngModel)]="ecole.faxEcole" class="gui-input" placeholder="Nom Application"  >
+                                <label for="field_faxEcole" class="field-icon">
+                                    <i class="fa fa-user"></i>
+                                </label>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.application" for="field_application">Application</label>
+                    </div>
+                    <div class="col-sm-9">
+
+                        <div class="section">
+                            <label class="field select">
+                                <select id="selectID" name="selectID"  id="field_application" name="application" [(ngModel)]="ecole.application">
+                                    <option [ngValue]="null">Select with double arrows</option>
+                                    <option [ngValue]="applicationOption.id === ecole.application?.id ? ecole.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.nomApplication}}</option>
+                                </select>
+                                <i class="arrow double"></i>
+                            </label>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!--
+                <div class="form-group col-md-4">
+                    <div class="col-sm-3">
+                        <label class="form-control-label" jhiTranslate="gestionEcoleApp.ecole.encours" for="field_encours">Encours</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="encours" id="field_encours"
+                               [(ngModel)]="ecole.encours" />
+                    </div>
+                </div>-->
+
+
+
+                <div class="form-group col-md-4">
+
+                    <div class="col-sm-9">
+                        <label class="switch block mt15">
+                            <input type="checkbox" (change)="updateEtat()" [checked]="this.ecole.selectedSite==true" name="features" id="f1" value="javascript">
+                            <label for="f1" data-on="Oui" data-off="Non"></label>
+                            <span>Site</span>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!--
+                    <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                    </button>-->
+                    <!--<button  type="submit" id="save-entity" *ngIf="this.ecole.id!=null?'hidden':''"    class="btn btn-primary">
+                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span style="color: white; background-color: #00a2cf" >Update</span>
+                    </button>-->
+
+
+                    <button style="width: 100px;" type="submit" class="btn btn-hover btn-primary btn-block ">
+
+                        <fa-icon [icon]="'save'"></fa-icon> Update</button>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,310 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Inscription</span>
+                        </div>
+
+
+
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <!--<div class="form-group" [hidden]="!inscription.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                [(ngModel)]="inscription.id" readonly />
+                                        </div>-->
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Matricule</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="matricule" id="field_codeEcole"
+                                                               [(ngModel)]="etudiantRight.matricule" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Nom</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="nom"
+                                                               [(ngModel)]="etudiantRight.nom" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Prenom</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="prenom"
+                                                               [(ngModel)]="etudiantRight.prenom" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Date de Naissance</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="datenaiss"
+                                                               [(ngModel)]="etudiantRight.dateNaissance" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Email</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="email"
+                                                               [(ngModel)]="etudiantRight.email" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      <!--  <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Etat</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="etat" id="field_codeEcole"
+                                                               [(ngModel)]="etudiantRight.etat" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                            </div>
+                                            <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Telephone</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="tel"
+                                                               [(ngModel)]="etudiantRight.tel" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col-sm-3">
+                                                <label class="form-control-label" >Adresse</label>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="section">
+                                                    <label class="field prepend-icon">
+                                                        <input disabled type="text" class="gui-input" name="adresse"
+                                                               [(ngModel)]="etudiantRight.adresse" placeholder="Nom de L'ecole" />
+                                                        <label for="field_codeEcole" class="field-icon">
+                                                            <i class="fa fa-user"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>
+                                           <!-- <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.inscription.date" for="field_date">Date</label>
+                                            <div class="input-group">
+                                                <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="inscription.date"
+                                                />
+                                                <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.inscription.manquant" for="field_manquant">Manquant</label>
+                                            <input type="checkbox" class="form-control" name="manquant" id="field_manquant"
+                                                   [(ngModel)]="inscription.manquant" />
+                                        </div>
+                                            </div>-->
+                                         <!--   <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.inscription.etudiant" for="field_etudiant">Etudiant</label>
+                                            <select class="form-control" id="field_etudiant" name="etudiant" [(ngModel)]="inscription.etudiant" >
+                                                <option [ngValue]="null"></option>
+                                                <option [ngValue]="etudiantOption.id === inscription.etudiant?.id ? inscription.etudiant : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackEtudiantById">{{etudiantOption.id}}</option>
+                                            </select>
+                                        </div>
+
+                                            </div>-->
+                                            <div class="form-group col-md-6">
+                                                <label class="form-control-label" jhiTranslate="gestionEcoleApp.inscription.anneescolaire" for="field_anneescolaire">Anneescolaire</label>
+                                                <select disabled class="form-control" id="field_anneescolaire" name="anneescolaire" [(ngModel)]="inscription.anneescolaire" >
+                                                    <option [ngValue]="null"></option>
+                                                    <option [ngValue]="anneescolaireOption.id === inscription.anneescolaire?.id ? inscription.anneescolaire : anneescolaireOption" *ngFor="let anneescolaireOption of anneescolaires; trackBy: trackAnneescolaireById">{{anneescolaireOption.libelle}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="form-control-label" jhiTranslate="gestionEcoleApp.inscription.classe" for="field_classe">Classe</label>
+                                                <select disabled class="form-control" id="field_classe" name="classe" [(ngModel)]="inscription.classe"  (change)="clickClasse()" >
+                                                    <option [ngValue]="null"></option>
+                                                    <option [ngValue]="classeOption.id === inscription.classe?.id ? inscription.classe : classeOption" *ngFor="let classeOption of classes; trackBy: trackClasseById">{{classeOption.libelle}}</option>
+                                                </select>
+                                            </div>
+                                          <!--  <div class="row">
+
+                                        <div class="form-group col-md-6">
+                                            <label jhiTranslate="gestionEcoleApp.inscription.document" for="field_document">Document</label>
+                                            <select class="form-control" id="field_document" multiple name="document" [(ngModel)]="inscription.documents">
+                                                <option [ngValue]="getSelected(inscription.documents, documentOption)" *ngFor="let documentOption of documents; trackBy: trackDocumentById">{{documentOption.id}}</option>
+                                            </select>
+                                        </div>
+
+                                        </div>-->
+
+
+
+                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group col-md-12" *ngFor="let document of this.document1;let q=index">
+                                                <label class="form-control-label"  for="field_document1">Document:{{document.typeDocument.libelle}}</label>
+                                                <div>
+                                                    <div class="col-md-6">
+                                                        <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                                            <div class="fileupload-preview thumbnail mb15">
+                                                                <img [src]="'data:' + document.document1ContentType + ';base64,' + document.document1" *ngIf="document.document1" alt="document image" (click)="openFile(document.document1ContentType, document.document1)"/>
+                                                            </div>
+                                                            <span class="button btn-system btn-file btn-block ph5">
+                          <span class="fileupload-new">Change</span>
+                          <span class="fileupload-exists">Change</span>
+                           <input type="file" id="file_document1" (change)="setFileData($event, document, 'document1', true)" accept="image/*" />
+                        </span>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="document.document1" class="form-text text-danger clearfix">
+                                                        <span class="pull-left">{{document.document1ContentType}}, {{byteSize(document.document1)}}</span>
+                                                        <button type="button" (click)="clearInputImage(document,'document1', 'document1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                                            <fa-icon [icon]="'times'"></fa-icon>
+                                                        </button>
+                                                    </div>
+                                                    <!-- <input type="file" id="file_document1" (change)="setFileData($event, document, 'document1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>-->
+                                                </div>
+                                                <input type="hidden" class="form-control" name="document1{{q}}" id="field_document1"
+                                                       [(ngModel)]="document.document1" />
+                                                <input type="hidden" class="form-control" name="document1ContentType{{q}}" id="field_document1ContentType"
+                                                       [(ngModel)]="document.document1ContentType" />
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="col-md-6" *ngFor="let a of this.alert">
+                                            <div class="alert alert-primary" role="alert">
+                                               Le Document {{a}} est manquant.
+                                            </div>
+                                        </div>
+                                    <div>
+                                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

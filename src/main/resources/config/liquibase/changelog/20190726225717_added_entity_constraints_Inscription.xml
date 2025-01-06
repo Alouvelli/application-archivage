@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Inscription.
+    -->
+    <changeSet id="20190726225717-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="etudiant_id"
+                                 baseTableName="inscription"
+                                 constraintName="fk_inscription_etudiant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etudiant"/>
+
+        <addForeignKeyConstraint baseColumnNames="classe_id"
+                                 baseTableName="inscription"
+                                 constraintName="fk_inscription_classe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="classe"/>
+
+        <addForeignKeyConstraint baseColumnNames="anneescolaire_id"
+                                 baseTableName="inscription"
+                                 constraintName="fk_inscription_anneescolaire_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="anneescolaire"/>
+
+        <addForeignKeyConstraint baseColumnNames="inscription_id"
+                                 baseTableName="inscription_document"
+                                 constraintName="fk_inscription_document_inscription_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inscription"/>
+        <addForeignKeyConstraint baseColumnNames="document_id"
+                                 baseTableName="inscription_document"
+                                 constraintName="fk_inscription_document_document_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="document"/>
+        
+    </changeSet>
+</databaseChangeLog>

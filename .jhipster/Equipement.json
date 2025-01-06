@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190623194431",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "equipement",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

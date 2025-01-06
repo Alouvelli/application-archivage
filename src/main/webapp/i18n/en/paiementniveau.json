@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "paiementniveau": {
+            "home": {
+                "title": "Paiementniveaus",
+                "createLabel": "Create a new Paiementniveau",
+                "createOrEditLabel": "Create or edit a Paiementniveau"
+            },
+            "created": "A new Paiementniveau is created with identifier {{ param }}",
+            "updated": "A Paiementniveau is updated with identifier {{ param }}",
+            "deleted": "A Paiementniveau is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Paiementniveau {{ id }}?"
+            },
+            "detail": {
+                "title": "Paiementniveau"
+            },
+            "encours": "Encours",
+            "niveau": "Niveau",
+            "paiement": "Paiement"
+        }
+    }
+}

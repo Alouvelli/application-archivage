@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="menu">
+            <h2><span jhiTranslate="gestionEcoleApp.menu.detail.title">Menu</span> {{menu.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.menu.codeMenu">Code Menu</span></dt>
+                <dd>
+                    <span>{{menu.codeMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.libelleMenu">Libelle Menu</span></dt>
+                <dd>
+                    <span>{{menu.libelleMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.rangMenu">Rang Menu</span></dt>
+                <dd>
+                    <span>{{menu.rangMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.urlMenu">Url Menu</span></dt>
+                <dd>
+                    <span>{{menu.urlMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.iconeMenu">Icone Menu</span></dt>
+                <dd>
+                    <span>{{menu.iconeMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.etatMenu">Etat Menu</span></dt>
+                <dd>
+                    <span>{{menu.etatMenu}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.menu.rubrique">Rubrique</span></dt>
+                <dd>
+                    <div *ngIf="menu.rubrique">
+                        <a [routerLink]="['/rubrique', menu.rubrique?.id, 'view']">{{menu.rubrique?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/menu', menu.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

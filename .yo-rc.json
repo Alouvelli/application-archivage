@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "org.yescola.gestion",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "monolith",
+    "baseName": "gestionEcole",
+    "packageName": "org.yescola.gestion",
+    "packageFolder": "org/yescola/gestion",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "N2JmOWZjYzFmYWE2ZGY5NDYzYTExNTBlYWQ4ZTBkNmJkZTc1NDBmYzFjOTcxMDAxZjBjNGQxZjBkM2NjODdiZTdhOGQxOTZkYmVkNmEwNjY5ZGZiOGEzNzQ0MDFlYTkzYmI2YTAyMmU1OWI3ZjRlN2M1ZjY1ZjQ1ZWU3NDY1MWY=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": [
+      "fr",
+      "en"
+    ]
+  }
+}

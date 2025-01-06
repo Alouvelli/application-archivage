@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="inscription">
+            <h2><span jhiTranslate="gestionEcoleApp.inscription.detail.title">Inscription</span> {{inscription.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.date">Date</span></dt>
+                <dd>
+                    <span>{{inscription.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.manquant">Manquant</span></dt>
+                <dd>
+                    <span>{{inscription.manquant}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.etudiant">Etudiant</span></dt>
+                <dd>
+                    <div *ngIf="inscription.etudiant">
+                        <a [routerLink]="['/etudiant', inscription.etudiant?.id, 'view']">{{inscription.etudiant?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.classe">Classe</span></dt>
+                <dd>
+                    <div *ngIf="inscription.classe">
+                        <a [routerLink]="['/classe', inscription.classe?.id, 'view']">{{inscription.classe?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.anneescolaire">Anneescolaire</span></dt>
+                <dd>
+                    <div *ngIf="inscription.anneescolaire">
+                        <a [routerLink]="['/anneescolaire', inscription.anneescolaire?.id, 'view']">{{inscription.anneescolaire?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.inscription.document">Document</span></dt>
+                <dd>
+                    <span *ngFor="let document of inscription.documents; let last = last">
+                        <a [routerLink]="['/document', document?.id, 'view' ]">{{document.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/inscription', inscription.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "inscription"
+        },
+        {
+            "relationshipName": "classe",
+            "otherEntityName": "classe",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "inscription"
+        },
+        {
+            "relationshipName": "anneescolaire",
+            "otherEntityName": "anneescolaire",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "inscription"
+        },
+        {
+            "relationshipName": "document",
+            "otherEntityName": "document",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "inscription",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "manquant",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190726225717",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "inscription",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

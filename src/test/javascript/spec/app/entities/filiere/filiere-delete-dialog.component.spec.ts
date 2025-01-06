@@ -1,0 +1,52 @@
+/* tslint:disable max-line-length */
+import { ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, of } from 'rxjs';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { GestionEcoleTestModule } from '../../../test.module';
+import { FiliereDeleteDialogComponent } from 'app/entities/filiere/filiere-delete-dialog.component';
+import { FiliereService } from 'app/entities/filiere/filiere.service';
+
+describe('Component Tests', () => {
+    describe('Filiere Management Delete Component', () => {
+        let comp: FiliereDeleteDialogComponent;
+        let fixture: ComponentFixture<FiliereDeleteDialogComponent>;
+        let service: FiliereService;
+        let mockEventManager: any;
+        let mockActiveModal: any;
+
+        beforeEach(() => {
+            TestBed.configureTestingModule({
+                imports: [GestionEcoleTestModule],
+                declarations: [FiliereDeleteDialogComponent]
+            })
+                .overrideTemplate(FiliereDeleteDialogComponent, '')
+                .compileComponents();
+            fixture = TestBed.createComponent(FiliereDeleteDialogComponent);
+            comp = fixture.componentInstance;
+            service = fixture.debugElement.injector.get(FiliereService);
+            mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
+            mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
+        });
+
+        describe('confirmDelete', () => {
+            it('Should call delete service on confirmDelete', inject(
+                [],
+                fakeAsync(() => {
+                    // GIVEN
+                    spyOn(service, 'delete').and.returnValue(of({}));
+
+                    // WHEN
+                    comp.confirmDelete(123);
+                    tick();
+
+                    // THEN
+                    expect(service.delete).toHaveBeenCalledWith(123);
+                    expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
+                    expect(mockEventManager.broadcastSpy).toHaveBeenCalled();
+                })
+            ));
+        });
+    });
+});

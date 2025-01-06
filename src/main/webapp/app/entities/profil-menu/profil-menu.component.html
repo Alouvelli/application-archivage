@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestionEcoleApp.profilMenu.home.title">Profil Menus</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-profil-menu" [routerLink]="['/profil-menu/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.profilMenu.home.createLabel">
+            Create new Profil Menu
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="profilMenus">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="voir"><span jhiTranslate="gestionEcoleApp.profilMenu.voir">Voir</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ajouter"><span jhiTranslate="gestionEcoleApp.profilMenu.ajouter">Ajouter</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="supprimer"><span jhiTranslate="gestionEcoleApp.profilMenu.supprimer">Supprimer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="modifier"><span jhiTranslate="gestionEcoleApp.profilMenu.modifier">Modifier</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imprimer"><span jhiTranslate="gestionEcoleApp.profilMenu.imprimer">Imprimer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="profil.id"><span jhiTranslate="gestionEcoleApp.profilMenu.profil">Profil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="menu.id"><span jhiTranslate="gestionEcoleApp.profilMenu.menu">Menu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rubriqueProfil.id"><span jhiTranslate="gestionEcoleApp.profilMenu.rubriqueProfil">Rubrique Profil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let profilMenu of profilMenus ;trackBy: trackId">
+                <td><a [routerLink]="['/profil-menu', profilMenu.id, 'view' ]">{{profilMenu.id}}</a></td>
+                <td>{{profilMenu.voir}}</td>
+                <td>{{profilMenu.ajouter}}</td>
+                <td>{{profilMenu.supprimer}}</td>
+                <td>{{profilMenu.modifier}}</td>
+                <td>{{profilMenu.imprimer}}</td>
+                <td>
+                    <div *ngIf="profilMenu.profil">
+                        <a [routerLink]="['../profil', profilMenu.profil?.id, 'view' ]" >{{profilMenu.profil?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="profilMenu.menu">
+                        <a [routerLink]="['../menu', profilMenu.menu?.id, 'view' ]" >{{profilMenu.menu?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="profilMenu.rubriqueProfil">
+                        <a [routerLink]="['../rubrique-profil', profilMenu.rubriqueProfil?.id, 'view' ]" >{{profilMenu.rubriqueProfil?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/profil-menu', profilMenu.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/profil-menu', profilMenu.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'profil-menu', { outlets: { popup: profilMenu.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="profilMenus && profilMenus.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+
+<div>
+    <h2 id="page-heading">
+     <!--   <button  style="float: right;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-inscription" [routerLink]="['/inscription/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.inscription.home.createLabel">
+            Create new Inscription
+            </span>
+        </button>-->
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+
+
+    <section id="content" class="table-layout animated fadeIn" style="margin-top: -100px"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Barre de Recherche</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-sm-12">
+                                            <label class="form-control-label" >Matricule</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" class="gui-input" name="matricule" id="field_codeEcole"
+                                                           [(ngModel)]="motmatricule" placeholder="Matricule" />
+                                                    <label for="field_codeEcole" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                             <!--   <div class="col-md-3">
+
+                                    <div class="form-group col-md-12 center-block">
+                                        <label class="form-control-label" >Classe</label>
+                                        <div class="section">
+                                            <select id="dane" class="select2-default form-control">
+                                                <option [ngValue]=""></option>
+                                                <option   *ngFor="let classe of this.classes">{{classe.libelle}}</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>-->
+                                <div class="col-md-3">
+                                    <div class="form-group col-md-12 center-block">
+                                        <label class="form-control-label" >Niveau</label>
+                                        <div class="section">
+                                            <select id="dane1" class="select2-default form-control">
+                                                <option [ngValue]=""></option>
+                                                <option   *ngFor="let niveau of this.niveaux">{{niveau.libelle}}</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group col-md-12 center-block">
+                                        <label class="form-control-label" >Annee Scolaire</label>
+                                        <div class="section">
+                                            <select id="dane2" class="select2-default form-control">
+                                                <option [ngValue]=""></option>
+                                                <option   *ngFor="let annee of this.anneeScolaire">{{annee.libelle}}</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-3">
+                                     <label >Annee Scolaire</label>
+                                     <select [(ngModel)]="motSecteurSecteur" class="form-control" (change)="allsecteur()">
+                                         <option value="">Selectionner </option>
+                                         <option value="{{secteur}}" *ngFor="let secteur of this.secteurt">{{secteur}}</option>
+
+                                     </select>
+                                 </div>-->
+
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="content" style="margin-top: -150px" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Etudiants</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="inscriptions">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <th>Matricule</th>
+                                        <th>Lieu de Naissance</th>
+                                        <th>Prenom-Nom</th>
+                                        <th>Date Naissance</th>
+                                      <!--  <th>Adresse</th>
+                                        <th>Téléphone
+                                        <th jhiSortBy="date"><span jhiTranslate="gestionEcoleApp.inscription.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                                        <th>Classe</th>
+                                        <th>Niveau</th>
+                                        <th>Annee Scolaire</th>
+                                        <th >Manquant</th>
+                                        <th>Visualiser</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let inscription of inscriptions|etudiant:motniveau:motclasse:motmatricule:motanneScolaire">
+                                        <td>{{inscription.etudiant.matricule}}</td>
+                                        <td>{{inscription.etudiant.nom}}</td>
+                                        <td>{{inscription.etudiant.prenom}}</td>
+                                        <td>{{inscription.etudiant.dateNaissance}}</td>
+                                       <!-- <td>{{inscription.etudiant.adresse}}</td>
+                                        <td>{{inscription.etudiant.tel}}</td>
+                                        <td>{{inscription.date | date:'mediumDate'}}</td>-->
+
+                                        <td>{{inscription.classe.libelle}}</td>
+                                        <td>{{inscription.classe.niveau.libelle}}</td>
+                                        <td>{{inscription.anneescolaire.libelle}}</td>
+                                        <td>
+                                            <span style="margin-right: 10px" type="button" *ngIf="inscription.manquant==true"  [routerLink]="['/inscription', inscription.id, 'edit1']" class="label label-rounded label-primary">Oui</span>
+                                            <span style="margin-right: 10px" type="button" *ngIf="inscription.manquant==false"  class="label label-rounded label-success">Non</span>
+
+                                        </td>
+                                        <td><button class="btn btn-default" [routerLink]="['/inscription', inscription.id, 'edit2']"><span class="fa fa-eye"></span></button></td>
+
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <!--
+                                                <button type="submit"
+                                                        [routerLink]="['/inscription', inscription.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/inscription', inscription.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', 'inscription', { outlets: { popup: inscription.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                </button>-->
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['/inscription', inscription.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"  [routerLink]="['/inscription', inscription.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(inscription.id)">Supprimer</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!--   <div style="float: right;margin-right: 20px" *ngIf="inscriptions && inscriptions.length">
+        <!--<div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>-->
+       <!-- <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>-->
+</div>

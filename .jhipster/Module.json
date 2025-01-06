@@ -1,0 +1,52 @@
+{
+    "name": "Module",
+    "fields": [
+        {
+            "fieldName": "libelleModule",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "logoModule",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etatModule",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rang",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "rubrique",
+            "otherEntityRelationshipName": "module",
+            "relationshipName": "rubrique"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "profilModule",
+            "otherEntityRelationshipName": "module",
+            "relationshipName": "profilModule"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "site",
+            "otherEntityRelationshipName": "module",
+            "relationshipName": "site",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190603220333",
+    "entityTableName": "module",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

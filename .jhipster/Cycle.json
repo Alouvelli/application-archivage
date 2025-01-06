@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "periode",
+            "otherEntityName": "periode",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cycle"
+        },
+        {
+            "relationshipName": "niveau",
+            "otherEntityName": "niveau",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cycle"
+        },
+        {
+            "relationshipName": "document",
+            "otherEntityName": "document",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cycle"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190624165953",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "cycle",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "batiment",
+            "otherEntityName": "batiment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "salle",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "typesalle",
+            "otherEntityName": "typesalle",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "salle",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "capacite",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190623193745",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "salle",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

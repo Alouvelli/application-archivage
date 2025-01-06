@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="siteProfil">
+            <h2><span jhiTranslate="gestionEcoleApp.siteProfil.detail.title">Site Profil</span> {{siteProfil.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.siteProfil.encours">Encours</span></dt>
+                <dd>
+                    <span>{{siteProfil.encours}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.siteProfil.site">Site</span></dt>
+                <dd>
+                    <div *ngIf="siteProfil.site">
+                        <a [routerLink]="['/site', siteProfil.site?.id, 'view']">{{siteProfil.site?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.siteProfil.profil">Profil</span></dt>
+                <dd>
+                    <div *ngIf="siteProfil.profil">
+                        <a [routerLink]="['/profil', siteProfil.profil?.id, 'view']">{{siteProfil.profil?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/site-profil', siteProfil.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

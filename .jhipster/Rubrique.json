@@ -1,0 +1,55 @@
+{
+    "name": "Rubrique",
+    "fields": [
+        {
+            "fieldName": "libelleRubrique",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rangRubrique",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "iconeRubrique",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etatRubrique",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rang",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "menu",
+            "otherEntityRelationshipName": "rubrique",
+            "relationshipName": "menu"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "rubriqueProfil",
+            "otherEntityRelationshipName": "rubrique",
+            "relationshipName": "rubriqueProfil"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "module",
+            "otherEntityRelationshipName": "rubrique",
+            "relationshipName": "module",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190603220327",
+    "entityTableName": "rubrique",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

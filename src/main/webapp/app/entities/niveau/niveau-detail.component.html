@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="niveau">
+            <h2><span jhiTranslate="gestionEcoleApp.niveau.detail.title">Niveau</span> {{niveau.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.niveau.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{niveau.libelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.niveau.description">Description</span></dt>
+                <dd>
+                    <span>{{niveau.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.niveau.etat">Etat</span></dt>
+                <dd>
+                    <span>{{niveau.etat}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.niveau.encours">Encours</span></dt>
+                <dd>
+                    <span>{{niveau.encours}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.niveau.typeDocument">Type Document</span></dt>
+                <dd>
+                    <span *ngFor="let typeDocument of niveau.typeDocuments; let last = last">
+                        <a [routerLink]="['/type-document', typeDocument?.id, 'view' ]">{{typeDocument.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/niveau', niveau.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

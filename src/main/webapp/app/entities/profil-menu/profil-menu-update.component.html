@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-profil-menu-heading" jhiTranslate="gestionEcoleApp.profilMenu.home.createOrEditLabel">Create or edit a Profil Menu</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!profilMenu.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="profilMenu.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.voir" for="field_voir">Voir</label>
+                    <input type="number" class="form-control" name="voir" id="field_voir"
+                        [(ngModel)]="profilMenu.voir" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.ajouter" for="field_ajouter">Ajouter</label>
+                    <input type="number" class="form-control" name="ajouter" id="field_ajouter"
+                        [(ngModel)]="profilMenu.ajouter" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.supprimer" for="field_supprimer">Supprimer</label>
+                    <input type="number" class="form-control" name="supprimer" id="field_supprimer"
+                        [(ngModel)]="profilMenu.supprimer" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.modifier" for="field_modifier">Modifier</label>
+                    <input type="number" class="form-control" name="modifier" id="field_modifier"
+                        [(ngModel)]="profilMenu.modifier" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.imprimer" for="field_imprimer">Imprimer</label>
+                    <input type="number" class="form-control" name="imprimer" id="field_imprimer"
+                        [(ngModel)]="profilMenu.imprimer" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.profil" for="field_profil">Profil</label>
+                    <select class="form-control" id="field_profil" name="profil" [(ngModel)]="profilMenu.profil" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profilOption.id === profilMenu.profil?.id ? profilMenu.profil : profilOption" *ngFor="let profilOption of profils; trackBy: trackProfilById">{{profilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.menu" for="field_menu">Menu</label>
+                    <select class="form-control" id="field_menu" name="menu" [(ngModel)]="profilMenu.menu" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="menuOption.id === profilMenu.menu?.id ? profilMenu.menu : menuOption" *ngFor="let menuOption of menus; trackBy: trackMenuById">{{menuOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.profilMenu.rubriqueProfil" for="field_rubriqueProfil">Rubrique Profil</label>
+                    <select class="form-control" id="field_rubriqueProfil" name="rubriqueProfil" [(ngModel)]="profilMenu.rubriqueProfil" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="rubriqueProfilOption.id === profilMenu.rubriqueProfil?.id ? profilMenu.rubriqueProfil : rubriqueProfilOption" *ngFor="let rubriqueProfilOption of rubriqueprofils; trackBy: trackRubriqueProfilById">{{rubriqueProfilOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

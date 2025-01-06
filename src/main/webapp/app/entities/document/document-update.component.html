@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-document-heading" jhiTranslate="gestionEcoleApp.document.home.createOrEditLabel">Create or edit a Document</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!document.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="document.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.document.etat" for="field_etat">Etat</label>
+                    <input type="checkbox" class="form-control" name="etat" id="field_etat"
+                        [(ngModel)]="document.etat" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.document.document1" for="field_document1">Document 1</label>
+                    <div>
+                        <img [src]="'data:' + document.document1ContentType + ';base64,' + document.document1" style="max-height: 100px;" *ngIf="document.document1" alt="document image"/>
+                        <div *ngIf="document.document1" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{document.document1ContentType}}, {{byteSize(document.document1)}}</span>
+                            <button type="button" (click)="clearInputImage('document1', 'document1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_document1" (change)="setFileData($event, document, 'document1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="document1" id="field_document1"
+                        [(ngModel)]="document.document1" />
+                    <input type="hidden" class="form-control" name="document1ContentType" id="field_document1ContentType"
+                        [(ngModel)]="document.document1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.document.document2" for="field_document2">Document 2</label>
+                    <textarea class="form-control" name="document2" id="field_document2"
+                        [(ngModel)]="document.document2" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.document.ref" for="field_ref">Ref</label>
+                    <input type="number" class="form-control" name="ref" id="field_ref"
+                        [(ngModel)]="document.ref" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.document.typeDocument" for="field_typeDocument">Type Document</label>
+                    <select class="form-control" id="field_typeDocument" name="typeDocument" [(ngModel)]="document.typeDocument" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="typeDocumentOption.id === document.typeDocument?.id ? document.typeDocument : typeDocumentOption" *ngFor="let typeDocumentOption of typedocuments; trackBy: trackTypeDocumentById">{{typeDocumentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

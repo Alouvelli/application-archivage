@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rubrique">
+            <h2><span jhiTranslate="gestionEcoleApp.rubrique.detail.title">Rubrique</span> {{rubrique.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.libelleRubrique">Libelle Rubrique</span></dt>
+                <dd>
+                    <span>{{rubrique.libelleRubrique}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.rangRubrique">Rang Rubrique</span></dt>
+                <dd>
+                    <span>{{rubrique.rangRubrique}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.iconeRubrique">Icone Rubrique</span></dt>
+                <dd>
+                    <span>{{rubrique.iconeRubrique}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.etatRubrique">Etat Rubrique</span></dt>
+                <dd>
+                    <span>{{rubrique.etatRubrique}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.rang">Rang</span></dt>
+                <dd>
+                    <span>{{rubrique.rang}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.rubrique.module">Module</span></dt>
+                <dd>
+                    <div *ngIf="rubrique.module">
+                        <a [routerLink]="['/module', rubrique.module?.id, 'view']">{{rubrique.module?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rubrique', rubrique.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

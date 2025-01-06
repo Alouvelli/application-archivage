@@ -1,0 +1,106 @@
+<div>
+    <h2 id="page-heading">
+
+        <button style="float: right ;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rubrique" [routerLink]="['/rubrique/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.rubrique.home.createLabel">
+            Create new Rubrique
+            </span>
+        </button>
+    </h2>
+
+    <br/>
+<br/>
+    <jhi-alert></jhi-alert>
+    <section id="content" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Rubriques</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="rubriques">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+
+                                        <th jhiSortBy="libelleRubrique"><span >Libelle </span> <fa-icon [icon]="'sort'"></fa-icon></th>
+
+
+
+                                        <th jhiSortBy="module.id"><span>Module</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="etatRubrique"><span >Etat </span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th>Options</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let rubrique of rubriques ;trackBy: trackId">
+                                       <!-- <td><a [routerLink]="['/rubrique', rubrique.id, 'view' ]">{{rubrique.id}}</a></td>-->
+                                        <td>{{rubrique.libelleRubrique}}</td>
+
+
+
+                                        <td>
+                                            <div *ngIf="rubrique.module">
+                                                <a [routerLink]="['../module', rubrique.module?.id, 'view' ]" >{{rubrique.module?.libelleModule}}</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm col-md-8" (click)="setActive(rubrique,rubrique.etatRubrique)" *ngIf="rubrique.etatRubrique==0"
+                                            >Deactivated</button>
+                                            <button class="btn btn-success btn-sm col-md-8" (click)="setActive(rubrique,rubrique.etatRubrique)" *ngIf="rubrique.etatRubrique==1"
+                                            >Activated</button>
+                                            </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['/rubrique', rubrique.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"   [routerLink]="['/rubrique', rubrique.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(rubrique.id)">Supprimer</span>
+
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div style="float: right;margin-right: 20px" *ngIf="rubriques && rubriques.length">
+       <!-- <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>-->
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
+

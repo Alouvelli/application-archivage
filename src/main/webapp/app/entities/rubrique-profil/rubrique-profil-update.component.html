@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-rubrique-profil-heading" jhiTranslate="gestionEcoleApp.rubriqueProfil.home.createOrEditLabel">Create or edit a Rubrique Profil</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!rubriqueProfil.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="rubriqueProfil.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.rubriqueProfil.encours" for="field_encours">Encours</label>
+                    <input type="checkbox" class="form-control" name="encours" id="field_encours"
+                        [(ngModel)]="rubriqueProfil.encours" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.rubriqueProfil.profil" for="field_profil">Profil</label>
+                    <select class="form-control" id="field_profil" name="profil" [(ngModel)]="rubriqueProfil.profil" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profilOption.id === rubriqueProfil.profil?.id ? rubriqueProfil.profil : profilOption" *ngFor="let profilOption of profils; trackBy: trackProfilById">{{profilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.rubriqueProfil.rubrique" for="field_rubrique">Rubrique</label>
+                    <select class="form-control" id="field_rubrique" name="rubrique" [(ngModel)]="rubriqueProfil.rubrique" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="rubriqueOption.id === rubriqueProfil.rubrique?.id ? rubriqueProfil.rubrique : rubriqueOption" *ngFor="let rubriqueOption of rubriques; trackBy: trackRubriqueById">{{rubriqueOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.rubriqueProfil.profilModule" for="field_profilModule">Profil Module</label>
+                    <select class="form-control" id="field_profilModule" name="profilModule" [(ngModel)]="rubriqueProfil.profilModule" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="profilModuleOption.id === rubriqueProfil.profilModule?.id ? rubriqueProfil.profilModule : profilModuleOption" *ngFor="let profilModuleOption of profilmodules; trackBy: trackProfilModuleById">{{profilModuleOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

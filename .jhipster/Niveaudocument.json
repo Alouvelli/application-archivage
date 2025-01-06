@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "niveau",
+            "otherEntityName": "niveau",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "document",
+            "otherEntityName": "document",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190624163228",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "niveaudocument",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

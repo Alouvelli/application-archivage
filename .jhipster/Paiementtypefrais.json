@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "typefrais",
+            "otherEntityName": "typefrais",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "paiement",
+            "otherEntityName": "paiement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "montant",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190624164704",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "paiementtypefrais",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

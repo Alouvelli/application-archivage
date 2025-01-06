@@ -1,0 +1,97 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Document</span>
+                        </div>
+
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <div class="form-group" [hidden]="!documentexcel.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                   [(ngModel)]="documentexcel.id" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.documentexcel.excel" for="field_excel">Excel</label>
+                                            <div>
+                                                <div *ngIf="documentexcel.excel" class="form-text text-danger clearfix">
+                                                    <a class="pull-left" (click)="openFile(documentexcel.excelContentType, documentexcel.excel)" jhiTranslate="entity.action.open">open</a><br>
+                                                    <span class="pull-left">{{documentexcel.excelContentType}}, {{byteSize(documentexcel.excel)}}</span>
+                                                    <button type="button" (click)="documentexcel.excel=null;documentexcel.excelContentType=null;"
+                                                            class="btn btn-secondary btn-xs pull-right">
+                                                        <fa-icon [icon]="'times'"></fa-icon>
+                                                    </button>
+                                                </div>
+                                                <input type="file" id="file_excel" (change)="setFileData($event, documentexcel, 'excel', false)" jhiTranslate="entity.action.addblob"/>
+                                            </div>
+                                            <input type="hidden" class="form-control" name="excel" id="field_excel"
+                                                   [(ngModel)]="documentexcel.excel" />
+                                            <input type="hidden" class="form-control" name="excelContentType" id="field_excelContentType"
+                                                   [(ngModel)]="documentexcel.excelContentType" />
+                                        </div>
+
+                                    </div>
+                                    <div style="float: right">
+                                        <button  type="button" id="cancel-save" class="btn btn-danger"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

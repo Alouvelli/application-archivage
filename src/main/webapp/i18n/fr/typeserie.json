@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "typeserie": {
+            "home": {
+                "title": "Typeseries",
+                "createLabel": "Créer un nouveau Typeserie",
+                "createOrEditLabel": "Créer ou éditer un Typeserie"
+            },
+            "created": "Un nouveau Typeserie a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Typeserie avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Typeserie avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Typeserie {{ id }} ?"
+            },
+            "detail": {
+                "title": "Typeserie"
+            },
+            "libelle": "Libelle",
+            "description": "Description",
+            "etat": "Etat"
+        }
+    }
+}

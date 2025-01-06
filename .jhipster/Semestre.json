@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20190917221556",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "semestre",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

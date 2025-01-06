@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "profil",
+            "otherEntityRelationshipName": "rubriqueProfil",
+            "relationshipName": "profil",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "rubrique",
+            "otherEntityRelationshipName": "rubriqueProfil",
+            "relationshipName": "rubrique",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "profilModule",
+            "otherEntityName": "profilModule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "rubriqueProfil",
+            "otherEntityRelationshipNameUndefined": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "encours",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190603220334",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "rubrique_profil",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

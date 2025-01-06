@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "typeserie": {
+            "home": {
+                "title": "Typeseries",
+                "createLabel": "Create a new Typeserie",
+                "createOrEditLabel": "Create or edit a Typeserie"
+            },
+            "created": "A new Typeserie is created with identifier {{ param }}",
+            "updated": "A Typeserie is updated with identifier {{ param }}",
+            "deleted": "A Typeserie is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Typeserie {{ id }}?"
+            },
+            "detail": {
+                "title": "Typeserie"
+            },
+            "libelle": "Libelle",
+            "description": "Description",
+            "etat": "Etat"
+        }
+    }
+}

@@ -1,0 +1,508 @@
+<section id="content" class="table-layout animated fadeIn">
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12">
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+                        <jhi-ecole-update [(ecole)]="this.ecole"></jhi-ecole-update>
+                        <form style="margin-top:400px" name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Donnés Application</span>
+                            </div>
+
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+
+                                    <!--  <div class="col-md-4">
+                                          <div class="col-sm-3">
+                                              <label class="form-control-label"  for="id">ID</label>
+                                          </div>
+                                          <div class="col-sm-9">
+                                          <div class="section">
+                                              <label class="field">
+                                                  <input type="text" name="id" id="id" class="gui-input"   [(ngModel)]="application.id" readonly>
+                                              </label>
+                                          </div>
+                                          </div>
+                                      </div>-->
+
+                                    <div class="col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"  for="id">Nom </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" name="nomApplication" id="field_nomApplication" class="gui-input" placeholder="Nom Application"   [(ngModel)]="application.nomApplication">
+                                                    <label for="field_nomApplication" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"  for="id">Version </label>
+                                        </div>
+                                        <div class="col-sm-9">
+
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" class="gui-input" name="versionApplication" id="field_versionApplication"
+                                                           [(ngModel)]="application.versionApplication" />
+                                                    <label for="field_versionApplication" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="col-md-3">
+                                            <label class="form-control-label"  for="id">Contrat </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="section">
+
+
+                                                <label class="field prepend-icon append-button file">
+                                                    <span class="button">Choose File</span>
+                                                    <input type="file" class="gui-file" name="file1" id="file1"  onChange="document.getElementById('field_contratMaintenance').value = this.value;">
+                                                    <input type="text" class="gui-input" name="contratMaintenance" id="field_contratMaintenance"
+                                                           [(ngModel)]="application.contratMaintenance" />
+                                                    <label class="field-icon">
+                                                        <i class="fa fa-upload"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"  for="id">Logo </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="section">
+                                                <label class="field prepend-icon append-button file">
+                                                    <span class="button">Choose File</span>
+                                                    <input type="file" class="gui-file" name="file1" id="file1"  onChange="document.getElementById('field_logoApplication').value = this.value;">
+                                                    <input type="text" class="gui-input" name="logoApplication" id="field_logoApplication"
+                                                           [(ngModel)]="application.logoApplication" />
+                                                    <label class="field-icon">
+                                                        <i class="fa fa-upload"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label"  for="id">Coût </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" class="gui-input" name="coutApplication" id="field_coutApplication"
+                                                           [(ngModel)]="application.coutApplication" />
+
+                                                    <label for="field_coutApplication" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.dateVente" for="field_dateVente">Date Vente</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="col-sm-9">
+
+                                                <input id="field_dateVente" type="text"  class="gui-input" name="dateVente" ngbDatepicker  #dateVenteDp="ngbDatepicker" [(ngModel)]="application.dateVente"
+                                                />
+                                            </div>
+                                            <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateVenteDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="form-group col-md-4">
+                                        <div class="col-sm-3" >
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.maintenance" for="field_maintenance" >Maintenance</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <label class="switch block mt15">
+                                                <input type="checkbox" (change)="changeMaintenance()" [checked]="application.maintenance==1" name="tools" id="t1" value="analytics">
+                                                <label for="t1" data-on="Oui" data-off="Non"></label>
+                                                <span>Maintenance</span>
+                                            </label>
+
+
+
+                                            <!--   <label class="option">
+                                                   <input type="checkbox" name="disabled" value="disabled" [checked]="application.maintenance==1"   name="maintenance" id="field_maintenance"
+                                                          [(ngModel)]="application.maintenance">
+
+                                                   <span class="checkbox"></span>Disable</label>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-md-4"></div>
+                                    <div class="form-group col-md-4">
+                                        <div class="col-sm-3">
+                                            <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.dateDebut" for="field_dateDebut">Date Debut</label>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="col-sm-9">
+
+                                                <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="application.dateDebut"
+                                                />
+                                            </div>
+                                            <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4"></div>
+                                    <div class="form-group col-md-4"></div>
+                                    <div class="form-group col-md-4">
+
+                                        <label class=" col-sm-3 form-control-label" jhiTranslate="gestionEcoleApp.application.dateFin" for="field_dateFin">Date Fin</label>
+                                        <div class="input-group">
+                                            <div class="col-sm-9">
+
+                                                <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker  #dateFinDp="ngbDatepicker" [(ngModel)]="application.dateFin"
+                                                />
+                                            </div>
+                                            <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                        </div>
+                                    </div>
+                                    <!--  <div class="form-group col-md-4">
+                                          <div class="col-sm-3">
+                                              <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.etatApplication" for="field_etatApplication">Etat Application</label>
+                                          </div>
+                                          <div class="col-sm-9">
+                                              <input type="number" class="form-control" name="etatApplication" id="field_etatApplication"
+                                                     [(ngModel)]="application.etatApplication" />
+                                          </div>
+                                      </div>-->
+                                    <div class="col-md-4">
+                                        <button *ngIf="this.application.id==null?'hidden':''"  type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" *ngIf="this.application.id==null?'hidden':''"  class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button type="submit" id="save-entity"  *ngIf="this.application.id!=null?'hidden':''"  class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span >Update</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--
+                              <div class="row">
+                                  <div class="col-md-8">
+                                      <div class="section">
+                                          <label class="field">
+                                              <input type="text" name="from" id="from" class="gui-input" placeholder="Input no icon">
+                                          </label>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field prepend-icon">
+                                              <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon left">
+                                              <label for="firstname" class="field-icon">
+                                                  <i class="fa fa-user"></i>
+                                              </label>
+                                          </label>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field append-icon">
+                                              <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Input icon right">
+                                              <label for="firstname" class="field-icon">
+                                                  <i class="fa fa-user"></i>
+                                              </label>
+                                          </label>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field prepend-icon">
+                                              <input type="url" name="website" id="website" class="gui-input" placeholder="URL input">
+                                              <label for="website" class="field-icon">
+                                                  <i class="fa fa-globe"></i>
+                                              </label>
+                                          </label>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field prepend-icon">
+                                              <input type="email" name="email" id="email" class="gui-input" placeholder="Email input">
+                                              <label for="email" class="field-icon">
+                                                  <i class="fa fa-envelope"></i>
+                                              </label>
+                                          </label>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field prepend-icon">
+                                              <input type="search" name="s" id="s" class="gui-input" placeholder="Disabled Search input" disabled>
+                                              <label for="s" class="field-icon">
+                                                  <i class="fa fa-search"></i>
+                                              </label>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      <div class="section">
+                                          <label class="field select">
+                                              <select id="country" name="country">
+                                                  <option value="">Select with single arrow</option>
+                                                  <option value="AL">Albania</option>
+                                                  <option value="DZ">Algeria</option>
+                                              </select>
+                                              <i class="arrow"></i>
+                                          </label>
+                                      </div>
+                                  </div>
+
+                              </div>
+  -->
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- end: .tray-center -->
+
+
+
+</section>
+
+
+<!--
+
+<jhi-ecole-update [(ecole)]="this.ecole"></jhi-ecole-update>
+
+
+<div class="panel panel-dark">
+    <div class="panel-heading">
+        <span class="panel-title">Données Applications</span>
+        <div class="widget-menu pull-right">
+            <code class="mr10 bg-info dark p3 ph5">Données Applications</code>
+        </div>
+
+    </div>
+    <div class="panel-body border">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="row">
+                            <div class="form-group col-md-4" >
+                                <div class="col-sm-3">
+                                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="id" name="id"
+                                           [(ngModel)]="application.id" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.nomApplication" for="field_nomApplication">Nom Application</label>
+
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="nomApplication" id="field_nomApplication"
+                                           [(ngModel)]="application.nomApplication" /></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.versionApplication" for="field_versionApplication">Version Application</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="versionApplication" id="field_versionApplication"
+                                           [(ngModel)]="application.versionApplication" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.logoApplication" for="field_logoApplication">Logo Application</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="logoApplication" id="field_logoApplication"
+                                           [(ngModel)]="application.logoApplication" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.coutApplication" for="field_coutApplication">Cout Application</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="coutApplication" id="field_coutApplication"
+                                           [(ngModel)]="application.coutApplication" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.dateVente" for="field_dateVente">Date Vente</label>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col-sm-9">
+
+                                        <input id="field_dateVente" type="text" class="form-control" name="dateVente" ngbDatepicker  #dateVenteDp="ngbDatepicker" [(ngModel)]="application.dateVente"
+                                        />
+                                    </div>
+                                    <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateVenteDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.maintenance" for="field_maintenance">Maintenance</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" name="maintenance" id="field_maintenance"
+                                           [(ngModel)]="application.maintenance" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.contratMaintenance" for="field_contratMaintenance">Contrat Maintenance</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="contratMaintenance" id="field_contratMaintenance"
+                                           [(ngModel)]="application.contratMaintenance" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.dateDebut" for="field_dateDebut">Date Debut</label>
+                                </div>
+                                <div class="input-group">
+                                    <div class="col-sm-9">
+
+                                        <input id="field_dateDebut" type="text" class="form-control" name="dateDebut" ngbDatepicker  #dateDebutDp="ngbDatepicker" [(ngModel)]="application.dateDebut"
+                                        />
+                                    </div>
+                                    <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group col-md-4">
+
+                                <label class=" col-sm-3 form-control-label" jhiTranslate="gestionEcoleApp.application.dateFin" for="field_dateFin">Date Fin</label>
+                                <div class="input-group">
+                                    <div class="col-sm-9">
+
+                                        <input id="field_dateFin" type="text" class="form-control" name="dateFin" ngbDatepicker  #dateFinDp="ngbDatepicker" [(ngModel)]="application.dateFin"
+                                        />
+                                    </div>
+                                    <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" jhiTranslate="gestionEcoleApp.application.etatApplication" for="field_etatApplication">Etat Application</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" name="etatApplication" id="field_etatApplication"
+                                           [(ngModel)]="application.etatApplication" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button *ngIf="this.application.id==null?'hidden':''"  type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                </button>
+                                <button type="submit" id="save-entity" *ngIf="this.application.id==null?'hidden':''"  class="btn btn-primary">
+                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                </button>
+                                <button type="submit" id="save-entity"  *ngIf="this.application.id!=null?'hidden':''"  class="btn btn-primary">
+                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span >Update</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+

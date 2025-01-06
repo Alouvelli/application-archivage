@@ -1,0 +1,180 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Rubrique</span>
+                        </div>
+                        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+                                    <!--<div class="form-group col-md-4" [hidden]="!rubrique.id">
+                                        <label for="id" jhiTranslate="global.field.id">ID</label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input" id="id" name="id"
+                                                       [(ngModel)]="rubrique.id"  placeholder="Id" readonly />
+                                                <label for="id" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label"  for="field_libelleRubrique">Libelle </label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input"  name="libelleRubrique" id="field_libelleRubrique" required="required" #libelle="ngModel"  [class.invalid]="!libelle.valid && libelle.touched"
+                                                       [(ngModel)]="rubrique.libelleRubrique"  placeholder="Libelle"  />
+                                                <label for="id" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                                <small class="form-text text-danger" [class.hidden]="libelle.valid ||libelle.untouched ">
+                                                    Ce champ est obligatoire
+                                                </small>
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label" for="field_iconeRubrique">Icone </label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="text" class="gui-input"  name="iconeRubrique" id="field_iconeRubrique" required="required" #icon="ngModel"  [class.invalid]="!icon.valid && icon.touched"
+                                                       [(ngModel)]="rubrique.iconeRubrique"  placeholder="Rang"  />
+                                                <label for="field_iconeRubrique" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                                <small class="form-text text-danger"
+                                                       [class.hidden]="icon.valid ||icon.untouched ">
+                                                    Ce champ est obligatoire
+                                                </small>
+
+
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label"  for="field_rangRubrique">Rang </label>
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                <input type="number" class="gui-input"  name="rangRubrique" id="field_rangRubrique"
+                                                       [(ngModel)]="rubrique.rangRubrique"  placeholder="Icone"  />
+                                                <label for="id" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group col-md-4">
+                                     <label class="form-control-label" jhiTranslate="gestionEcoleApp.rubrique.rang" for="field_rang">Rang</label>
+
+                                     <div class="section">
+                                         <label class="field prepend-icon">
+                                             <input type="text" class="gui-input"   name="rang" id="field_rang"
+                                                    [(ngModel)]="rubrique.rang"  placeholder="Rang"  />
+                                             <label for="field_rang" class="field-icon">
+                                                 <i class="fa fa-user"></i>
+                                             </label>
+                                         </label>
+                                     </div>
+                                 </div>-->
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label" for="field_module">Module</label>
+                                        <div class="section">
+                                            <select id="dane" class="select2-default form-control">
+                                                <option [ngValue]="null"></option>
+                                                <option [selected]="moduleOption.cocher==true" *ngFor="let moduleOption of modules">{{moduleOption.libelleModule}}</option>
+
+                                            </select>
+                                            <small class="form-text text-danger"
+                                                   [class.hidden]="this.invalid==true">
+                                                Ce champ est obligatoire
+                                            </small>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 center-block">
+                                        <label class="form-control-label" >Etat</label>
+                                        <div class="section">
+                                            <label class="switch block mt15">
+                                                <input type="checkbox"  (change)="changeEtat()" [checked]="rubrique.etatRubrique==1" name="tools" id="t2" value="reports">
+                                                <label for="t2" data-on="Oui" data-off="Non"></label>
+
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div style="float: right">
+                                        <button  type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                        <button   type="button" id="cancel-save" class="btn btn-danger"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                        </form>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ecole">
+            <h2><span jhiTranslate="gestionEcoleApp.ecole.detail.title">Ecole</span> {{ecole.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.codeEcole">Code Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.codeEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.logoEcole">Logo Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.logoEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.enteteEcole">Entete Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.enteteEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.basPageEcole">Bas Page Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.basPageEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.nineaEcole">Ninea Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.nineaEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.adresseEcole">Adresse Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.adresseEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.telephoneEcole">Telephone Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.telephoneEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.emailEcole">Email Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.emailEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.sigleEcole">Sigle Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.sigleEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.faxEcole">Fax Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.faxEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.etatEcole">Etat Ecole</span></dt>
+                <dd>
+                    <span>{{ecole.etatEcole}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.encours">Encours</span></dt>
+                <dd>
+                    <span>{{ecole.encours}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.rang">Rang</span></dt>
+                <dd>
+                    <span>{{ecole.rang}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.ecole.application">Application</span></dt>
+                <dd>
+                    <div *ngIf="ecole.application">
+                        <a [routerLink]="['/application', ecole.application?.id, 'view']">{{ecole.application?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ecole', ecole.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

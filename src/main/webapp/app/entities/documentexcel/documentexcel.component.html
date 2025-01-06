@@ -1,0 +1,151 @@
+<div>
+
+    <jhi-alert></jhi-alert>
+    <br/>
+    <section id="content" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Barre Outils</span>
+                            </div>
+
+                            <button style="float: right;margin-right: 20px"  id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-documentexcel" [routerLink]="['/documentexcel/new']">
+                                <fa-icon [icon]="'plus'"></fa-icon>
+                                <span  jhiTranslate="gestionEcoleApp.documentexcel.home.createLabel">
+            Create new Documentexcel
+            </span>
+                            </button>
+                            <!--<input type="file" (change)="onFileChange($event)" />-->
+                            <div class="form-group col-md-4">
+                                <div class="col-sm-3">
+                                    <label class="form-control-label" for="field_enteteEcole">Charger Des Etudiants</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="section">
+                                        <label class="field prepend-icon append-button file">
+                                            <span class="button" style="background-color: #3399FF;color: white">Choose File</span>
+                                            <input type="file" class="gui-file" name="file1" id="file1"  (change)="confirmeCharge($event)">
+                                            <input type="text" class="gui-input" name="enteteEcole" id="field_enteteEcole"/>
+                                            <label class="field-icon">
+                                                <i class="fa fa-upload"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="content" style="margin-top: -150px" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Documents</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="documentexcels">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="excel"><span jhiTranslate="gestionEcoleApp.documentexcel.excel">Excel</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let documentexcel of documentexcels ;trackBy: trackId">
+                                        <td><a [routerLink]="['/documentexcel', documentexcel.id, 'view' ]">{{documentexcel.id}}</a></td>
+                                        <td>
+                                            <span style="margin-right: 10px" type="button"  *ngIf="documentexcel.excel" (click)="openFile(documentexcel.excelContentType, documentexcel.excel)" class="label label-rounded label-primary">Télécharger</span>
+
+                                            <span *ngIf="documentexcel.excel">{{documentexcel.excelContentType}}, {{byteSize(documentexcel.excel)}}</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                              <!--  <button type="submit"
+                                                        [routerLink]="['/documentexcel', documentexcel.id, 'view' ]"
+                                                        class="btn btn-info btn-sm">
+                                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/documentexcel', documentexcel.id, 'edit']"
+                                                        class="btn btn-primary btn-sm">
+                                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                </button>
+                                                <button type="submit"
+                                                        [routerLink]="['/', 'documentexcel', { outlets: { popup: documentexcel.id + '/delete'} }]"
+                                                        replaceUrl="true"
+                                                        queryParamsHandling="merge"
+                                                        class="btn btn-danger btn-sm">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                </button>-->
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['/documentexcel', documentexcel.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"    [routerLink]="['/documentexcel', documentexcel.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(documentexcel.id)">Supprimer</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="float: right;margin-right: 20px" *ngIf="documentexcels && documentexcels.length">
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

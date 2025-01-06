@@ -1,0 +1,26 @@
+{
+    "gestionEcoleApp": {
+        "discipline": {
+            "home": {
+                "title": "Disciplines",
+                "createLabel": "Créer un nouveau Discipline",
+                "createOrEditLabel": "Créer ou éditer un Discipline"
+            },
+            "created": "Un nouveau Discipline a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Discipline avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Discipline avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Discipline {{ id }} ?"
+            },
+            "detail": {
+                "title": "Discipline"
+            },
+            "code": "Code",
+            "libelle": "Libelle",
+            "description": "Description",
+            "etat": "Etat",
+            "composition": "Composition",
+            "cycle": "Cycle"
+        }
+    }
+}

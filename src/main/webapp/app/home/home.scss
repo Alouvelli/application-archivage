@@ -1,0 +1,28 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+body{
+    width: 500px;
+    height: 500px;
+    background-image: url("2453791f4c76731c905ff703c59c8ac4-1024x576.jpg");
+}
+.hipster {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+    background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    .hipster {
+        background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+        background-size: contain;
+    }
+
+}

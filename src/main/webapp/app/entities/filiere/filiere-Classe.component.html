@@ -1,0 +1,73 @@
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>La liste des classes</span>
+                        </div>
+
+
+
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <div *ngFor="let a of this.classe">
+
+                                    <div class="col-md-3">
+                                        <div class="fileupload fileupload-new admin-form col-md-8"  data-provides="fileupload">
+                                            <div class="fileupload-preview thumbnail mb15">
+                                                <img src="icons8-dossier-80.png"  [routerLink]="['/inscription',a.libelle,'etudiant']" >
+                                            </div>
+                                        </div>
+
+                                     <span class="label label-rounded label-primary col-md-8"  type="button" >{{a.libelle}}</span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

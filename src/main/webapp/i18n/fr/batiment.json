@@ -1,0 +1,24 @@
+{
+    "gestionEcoleApp": {
+        "batiment": {
+            "home": {
+                "title": "Batiments",
+                "createLabel": "Créer un nouveau Batiment",
+                "createOrEditLabel": "Créer ou éditer un Batiment"
+            },
+            "created": "Un nouveau Batiment a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Batiment avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Batiment avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Batiment {{ id }} ?"
+            },
+            "detail": {
+                "title": "Batiment"
+            },
+            "libelle": "Libelle",
+            "code": "Code",
+            "etat": "Etat",
+            "typebatitment": "Typebatitment"
+        }
+    }
+}

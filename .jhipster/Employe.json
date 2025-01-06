@@ -1,0 +1,39 @@
+{
+    "name": "Employe",
+    "fields": [
+        {
+            "fieldName": "telUtilisateur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etatUtilisateur",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "employe",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "profil",
+            "otherEntityRelationshipName": "employe",
+            "relationshipName": "profil",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190603220325",
+    "entityTableName": "employe",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

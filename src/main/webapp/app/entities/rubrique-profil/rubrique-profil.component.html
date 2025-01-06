@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gestionEcoleApp.rubriqueProfil.home.title">Rubrique Profils</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rubrique-profil" [routerLink]="['/rubrique-profil/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.rubriqueProfil.home.createLabel">
+            Create new Rubrique Profil
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="rubriqueProfils">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gestionEcoleApp.rubriqueProfil.encours">Encours</span></th>
+            <th><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profil">Profil</span></th>
+            <th><span jhiTranslate="gestionEcoleApp.rubriqueProfil.rubrique">Rubrique</span></th>
+            <th><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profilModule">Profil Module</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rubriqueProfil of rubriqueProfils ;trackBy: trackId">
+                <td><a [routerLink]="['/rubrique-profil', rubriqueProfil.id, 'view' ]">{{rubriqueProfil.id}}</a></td>
+                <td>{{rubriqueProfil.encours}}</td>
+                <td>
+                    <div *ngIf="rubriqueProfil.profil">
+                        <a [routerLink]="['../profil', rubriqueProfil.profil?.id, 'view' ]" >{{rubriqueProfil.profil?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="rubriqueProfil.rubrique">
+                        <a [routerLink]="['../rubrique', rubriqueProfil.rubrique?.id, 'view' ]" >{{rubriqueProfil.rubrique?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="rubriqueProfil.profilModule">
+                        <a [routerLink]="['../profil-module', rubriqueProfil.profilModule?.id, 'view' ]" >{{rubriqueProfil.profilModule?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/rubrique-profil', rubriqueProfil.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/rubrique-profil', rubriqueProfil.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'rubrique-profil', { outlets: { popup: rubriqueProfil.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

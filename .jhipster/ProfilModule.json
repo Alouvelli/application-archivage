@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "profil",
+            "otherEntityRelationshipName": "profilModule",
+            "relationshipName": "profil",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "module",
+            "otherEntityRelationshipName": "profilModule",
+            "relationshipName": "module",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "siteProfil",
+            "otherEntityName": "siteProfil",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "profilModule",
+            "otherEntityRelationshipNameUndefined": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "encours",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190603220335",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "profil_module",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="etudiant">
+            <h2><span jhiTranslate="gestionEcoleApp.etudiant.detail.title">Etudiant</span> {{etudiant.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.nom">Nom</span></dt>
+                <dd>
+                    <span>{{etudiant.nom}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{etudiant.prenom}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.dateNaissance">Date Naissance</span></dt>
+                <dd>
+                    <span>{{etudiant.dateNaissance}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.tel">Tel</span></dt>
+                <dd>
+                    <span>{{etudiant.tel}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.email">Email</span></dt>
+                <dd>
+                    <span>{{etudiant.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{etudiant.adresse}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.etat">Etat</span></dt>
+                <dd>
+                    <span>{{etudiant.etat}}</span>
+                </dd>
+                <dt><span jhiTranslate="gestionEcoleApp.etudiant.matricule">Matricule</span></dt>
+                <dd>
+                    <span>{{etudiant.matricule}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/etudiant', etudiant.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

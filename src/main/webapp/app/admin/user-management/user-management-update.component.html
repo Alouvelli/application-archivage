@@ -1,0 +1,252 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier</span>
+                        </div>
+
+
+                        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                            <div>
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+
+                                    <div *ngIf="!this.user.id" class="form-group col-md-6 center-block" >
+
+                                        <div class="form-group col-md-12 center-block">
+                                            <label class="form-control-label " >Utilisateur</label>
+                                            <div class="section">
+                                                <select id="dane1" class="select2-default form-control">
+                                                    <option [ngValue]="null"></option>
+                                                    <option [selected]="us.cocher==true" *ngFor="let us of this.users">{{us.login}}</option>
+
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                <div class="form-group col-md-6 center-block">
+                                    <label class="form-control-label" jhiTranslate="userManagement.login">Login</label>
+                                  <!--  <input type="text" class="form-control" name="login" #loginInput="ngModel"
+                                           [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">-->
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input"  name="libelleRubrique" id="field_libelleRubrique"
+                                               #loginInput="ngModel"
+                                               [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$"  placeholder="Libelle"  />
+                                        <label for="id" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+
+                                    </label>
+
+                                    <div *ngIf="loginInput.dirty && loginInput.invalid">
+                                        <small class="form-text text-danger"
+                                               *ngIf="loginInput.errors.required" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+
+                                        <small class="form-text text-danger"
+                                               *ngIf="loginInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                               [translateValues]="{max: 50}">
+                                            This field cannot be longer than 50 characters.
+                                        </small>
+
+                                        <small class="form-text text-danger"
+                                               *ngIf="loginInput.errors.pattern" jhiTranslate="entity.validation.patternLogin">
+                                            This field can only contain letters, digits and e-mail addresses.
+                                        </small>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="form-group col-md-6 center-block">
+                                    <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input"  name="libelleRubrique2" id="field_libelleRubrique2"
+                                               required="required" #prenom="ngModel"  [class.invalid]="!prenom.valid && prenom.touched"
+                                               [(ngModel)]="user.firstName"  placeholder="Libelle"  />
+                                        <label for="id1" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+                                        <span class="danger" [class.hidden]="prenom.valid ||prenom.untouched ">le libelle est obligatoire</span>
+                                    </label>
+
+
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="form-group col-md-6 center-block">
+                                    <label jhiTranslate="userManagement.lastName">Last Name</label>
+
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input"  name="libelleRubrique1" id="field_libelleRubrique1"
+                                               required="required" #nom="ngModel"  [class.invalid]="!nom.valid && nom.touched"
+                                               [(ngModel)]="user.lastName"  placeholder="Libelle"  />
+                                        <label for="id" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+                                        <span class="danger" [class.hidden]="nom.valid ||nom.untouched ">le libelle est obligatoire</span>
+                                    </label>
+
+                                </div>
+                                </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 center-block">
+                                    <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
+
+                                    <label class="field prepend-icon">
+                                        <input  class="gui-input"  type="email" class="form-control" name="email"
+                                               required="required"  placeholder="Libelle" #emailInput="ngModel"
+                                               [(ngModel)]="user.email" minlength="5" required maxlength="254" email  />
+                                        <label for="id1" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+
+                                    </label>
+
+
+
+                                    <div *ngIf="emailInput.dirty && emailInput.invalid">
+                                        <small class="form-text text-danger"
+                                               *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">
+                                            This field is required.
+                                        </small>
+
+                                        <small class="form-text text-danger"
+                                               *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                               [translateValues]="{max: 100}">
+                                            This field cannot be longer than 100 characters.
+                                        </small>
+
+                                        <small class="form-text text-danger"
+                                               *ngIf="emailInput.errors.minlength" jhiTranslate="entity.validation.minlength"
+                                               [translateValues]="{min: 5}">
+                                            This field is required to be at least 5 characters.
+                                        </small>
+
+                                        <small class="form-text text-danger"
+                                               *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                                            Your email is invalid.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                               <!-- <div class="form-check">
+                                    <label class="form-check-label" for="activated">
+                                        <input class="form-check-input" [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
+                                        <span jhiTranslate="userManagement.activated">Activated</span>
+                                    </label>
+                                </div>-->
+
+                               <!-- <div class="form-group col-md-4" *ngIf="languages && languages.length > 0">
+                                    <label jhiTranslate="userManagement.langKey">Lang Key</label>
+                                    <select class="form-control" id="langKey" name="langKey" [(ngModel)]="user.langKey">
+                                        <option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</option>
+                                    </select>
+                                </div>
+                                </div>-->
+                                <div class="row">
+
+                                <div class="form-group col-md-6 center-block" >
+                                    <label >Telephone</label>
+
+                                    <label class="field prepend-icon">
+                                        <input type="text" class="gui-input"  name="libelleRubrique4" id="field_libelleRubrique4"
+                                               required="required" #tel="ngModel"  [class.invalid]="!tel.valid && tel.touched"
+                                               [(ngModel)]="employe.telUtilisateur"  placeholder="Libelle"  />
+                                        <label for="id4" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+                                        <span class="danger" [class.hidden]="tel.valid ||tel.untouched ">le libelle est obligatoire</span>
+                                    </label>
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="form-group col-md-6 center-block" >
+
+                                    <div class="form-group col-md-12 center-block">
+                                        <label class="form-control-label " >Profil</label>
+                                        <div class="section">
+                                            <select id="dane" class="select2-default form-control">
+                                                <option [ngValue]="null"></option>
+                                                <option [selected]="p.cocher==true" *ngFor="let p of profils ">{{p.libelleProfil}}</option>
+
+                                            </select>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                                <!--
+                                <div class="form-group">
+                                    <label jhiTranslate="userManagement.profiles">Profiles</label>
+                                    <select class="form-control" multiple name="authority" [(ngModel)]="user.authorities">
+                                        <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
+                                    </select>
+                                </div>
+                                -->
+                            </div>
+                            <div class="row">
+                            <div style="float: right">
+                                <button  type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                </button>
+                                <button  type="button" class="btn btn-danger" (click)="previousState()">
+                                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
+                                    jhiTranslate="entity.action.cancel">Cancel</span>
+                                </button>
+
+                            </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

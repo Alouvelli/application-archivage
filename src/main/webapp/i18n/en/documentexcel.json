@@ -1,0 +1,21 @@
+{
+    "gestionEcoleApp": {
+        "documentexcel": {
+            "home": {
+                "title": "Documentexcels",
+                "createLabel": "Create a new Documentexcel",
+                "createOrEditLabel": "Create or edit a Documentexcel"
+            },
+            "created": "A new Documentexcel is created with identifier {{ param }}",
+            "updated": "A Documentexcel is updated with identifier {{ param }}",
+            "deleted": "A Documentexcel is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Documentexcel {{ id }}?"
+            },
+            "detail": {
+                "title": "Documentexcel"
+            },
+            "excel": "Excel"
+        }
+    }
+}

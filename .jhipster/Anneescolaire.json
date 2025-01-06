@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "encours",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190624160659",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "anneescolaire",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

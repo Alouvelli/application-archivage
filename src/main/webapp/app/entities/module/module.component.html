@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+
+        <button style="float: right;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-module" [routerLink]="['/module/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.module.home.createLabel">
+            Create new Module
+            </span>
+        </button>
+    </h2>
+
+    <br/>
+
+    <br/>
+    <jhi-alert></jhi-alert>
+    <section id="content" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Donnés Module</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="modules">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th><span >Libelle </span></th>
+
+
+
+                                        <th><span>Site</span></th>
+                                        <th><span >Etat </span></th>
+
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let module of modules ;trackBy: trackId">
+                                        <!--<td><a [routerLink]="['/module', module.id, 'view' ]">{{module.id}}</a></td>-->
+                                        <td>{{module.libelleModule}}</td>
+
+
+
+                                        <td>
+                    <span *ngFor="let site of module.sites; let last = last">
+                            <a class="form-control-static" >{{site.sigleSite}}</a>{{last ? '' : ', '}}
+                        </span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm col-md-12" (click)="setActive(module,module.etatModule)" *ngIf="module.etatModule==0"
+                                            >Inactif</button>
+                                            <button class="btn btn-success btn-sm col-md-12" (click)="setActive(module,module.etatModule)" *ngIf="module.etatModule==1"
+                                            >Actif</button>
+                                            </td>
+
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['/module', module.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"  [routerLink]="['/module', module.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="confirmDelete(module.id)">Supprimer</span>
+
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+</div>

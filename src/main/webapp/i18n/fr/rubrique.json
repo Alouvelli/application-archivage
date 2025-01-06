@@ -1,0 +1,28 @@
+{
+    "gestionEcoleApp": {
+        "rubrique": {
+            "home": {
+                "title": "Rubriques",
+                "createLabel": "Créer un nouveau Rubrique",
+                "createOrEditLabel": "Créer ou éditer un Rubrique"
+            },
+            "created": "Un nouveau Rubrique a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Rubrique avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Rubrique avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Rubrique {{ id }} ?"
+            },
+            "detail": {
+                "title": "Rubrique"
+            },
+            "libelleRubrique": "Libelle Rubrique",
+            "rangRubrique": "Rang Rubrique",
+            "iconeRubrique": "Icone Rubrique",
+            "etatRubrique": "Etat Rubrique",
+            "rang": "Rang",
+            "menu": "Menu",
+            "rubriqueProfil": "Rubrique Profil",
+            "module": "Module"
+        }
+    }
+}

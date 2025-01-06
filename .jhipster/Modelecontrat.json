@@ -1,0 +1,61 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "type",
+            "otherEntityName": "type",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "modelecontrat"
+        },
+        {
+            "relationshipName": "cycle",
+            "otherEntityName": "cycle",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "modelecontrat",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datedeb",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "datefin",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "duree",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "annescolairedeb",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "anneescolairefin",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20190627152029",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "modelecontrat",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

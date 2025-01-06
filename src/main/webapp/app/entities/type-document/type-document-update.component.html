@@ -1,0 +1,124 @@
+
+
+<section id="content" class="table-layout animated fadeIn"   >
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center col-md-12" >
+
+        <div class="mw1400 center-block">
+
+            <!-- Begin: Content Header -->
+            <div class="content-header">
+
+            </div>
+
+            <!-- Begin: Admin Form -->
+            <div class="admin-form" >
+
+                <div class="panel heading-border">
+                    <div class="panel-body bg-light">
+
+
+
+                        <div class="section-divider mb40" id="spy1">
+                            <span>Créer ou Modifier Types de Documents</span>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                       <!-- <div class="form-group" [hidden]="!typeDocument.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                   [(ngModel)]="typeDocument.id" readonly />
+                                        </div>-->
+                                        <div class="form-group col-md-6 center-block">
+                                            <div class="section">
+                                                <label>Libelle</label>
+                                                <label class="field prepend-icon">
+
+                                                    <input type="text" class="gui-input"  name="libelle" id="field_libelle" required="required"
+                                                           [(ngModel)]="typeDocument.libelle"  placeholder="Rang" />
+                                                    <label for="field_libelle" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div [hidden]="!(editForm.controls.libelle?.dirty && editForm.controls.libelle?.invalid)">
+                                            <small class="form-text text-danger"
+                                                   [hidden]="!editForm.controls.libelle?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                        <div class="col-md-6 center-block">
+                                            <label>Description</label>
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <textarea class="gui-textarea"      [(ngModel)]="typeDocument.description" id="comment" name="comment" placeholder="Text area"   ></textarea>
+                                                    <label for="comment" class="field-icon">
+                                                        <i class="fa fa-comments"></i>
+                                                    </label>
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 center-block">
+                                            <label class="form-control-label" >Etat</label>
+
+                                            <div class="section">
+                                                <label class="switch block mt15">
+                                                    <input type="checkbox"  (change)="changeEtat()" [checked]="typeDocument.etat==1" name="tools" id="t2" value="reports">
+                                                    <label for="t2" data-on="Oui" data-off="Non"></label>
+                                                    <span>Etat</span>
+                                                </label>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="float: right">
+                                        <button type="button" id="cancel-save" class="btn btn-danger"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

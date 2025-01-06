@@ -1,0 +1,208 @@
+<div>
+    <h2 id="page-heading">
+
+        <button  style="float: right;margin-right: 20px" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-documentclasse" [routerLink]="['/documentclasse/'+motclasse+'/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="gestionEcoleApp.documentclasse.home.createLabel">
+            Create new Documentclasse
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <section id="content" class="table-layout animated fadeIn" style="margin-top: -100px"   >
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Barre de Recherche</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-sm-12">
+                                            <label class="form-control-label" >Matiére</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" class="gui-input" name="matricule" id="field_codeEcole"
+                                                           [(ngModel)]="motmatricule" placeholder="Matricule" />
+                                                    <label for="field_codeEcole" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-sm-12">
+                                            <label class="form-control-label" >Année Scolaire</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="text" class="gui-input" name="annee" id="field_codeEcole"
+                                                           [(ngModel)]="motannee" placeholder="Année Scolaire" />
+                                                    <label for="field_codeEcole" class="field-icon">
+                                                        <i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                              <!--  <div class="col-md-3">
+
+                                    <div class="form-group col-md-12 center-block">
+                                        <label class="form-control-label" >Classe</label>
+                                        <div class="section">
+                                            <select id="dane" class="select2-default form-control">
+                                                <option [ngValue]=""></option>
+                                                <option   *ngFor="let classe of this.classes">{{classe.libelle}}</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>-->
+
+
+                            </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="content" style="margin-top: -150px" class="table-layout animated fadeIn"   >
+
+        <!-- begin: .tray-center -->
+
+        <div class="tray tray-center col-md-12" >
+
+            <div class="mw1400 center-block">
+
+                <!-- Begin: Content Header -->
+                <div class="content-header">
+
+                </div>
+
+                <!-- Begin: Admin Form -->
+                <div class="admin-form" >
+
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+
+                            <div class="section-divider mb40" id="spy1">
+                                <span>Liste des Documents de {{motclasse}}</span>
+                            </div>
+                            <div class="table-responsive" *ngIf="documentclasses">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                        <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                                        <th jhiSortBy="document1"><span jhiTranslate="gestionEcoleApp.documentclasse.document1">Document 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+
+                                        <th jhiSortBy="nomdocument"><span >Matiére</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="classe.id"><span jhiTranslate="gestionEcoleApp.documentclasse.classe">Classe</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th jhiSortBy="ref"><span >Annnée Scolaire</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr *ngFor="let documentclasse of documentclasses |etudiant:motclasse:motmatricule:motannee">
+                                        <!--<td><a [routerLink]="['/documentclasse', documentclasse.id, 'view' ]">{{documentclasse.id}}</a></td>-->
+                                        <td>
+                                            <a *ngIf="documentclasse.document1" (click)="openFile(documentclasse.document1ContentType, documentclasse.document1)">
+                                                <img [src]="'data:' + documentclasse.document1ContentType + ';base64,' + documentclasse.document1" style="max-height: 30px;" alt="documentclasse image"/>
+                                            </a>
+
+                                            <span style="margin-right: 10px" type="button" (click)="download( documentclasse.document1)" class="label label-rounded label-primary">Imprimer</span>
+                                        </td>
+
+                                        <td>{{documentclasse.nomdocument}}</td>
+                                        <td>
+                                            <div *ngIf="documentclasse.classe">
+                                                <p  >{{documentclasse.classe?.libelle}}</p>
+                                            </div>
+                                        </td>
+                                        <td>{{documentclasse.ref}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <!--   <button type="submit"
+                                                           [routerLink]="['/documentclasse', documentclasse.id, 'view' ]"
+                                                           class="btn btn-info btn-sm">
+                                                       <fa-icon [icon]="'eye'"></fa-icon>
+                                                       <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                                   </button>
+                                                   <button type="submit"
+                                                           [routerLink]="['/documentclasse', documentclasse.id, 'edit']"
+                                                           class="btn btn-primary btn-sm">
+                                                       <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                       <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                   </button>
+                                                   <button type="submit"
+                                                           [routerLink]="['/', 'documentclasse', { outlets: { popup: documentclasse.id + '/delete'} }]"
+                                                           replaceUrl="true"
+                                                           queryParamsHandling="merge"
+                                                           class="btn btn-danger btn-sm">
+                                                       <fa-icon [icon]="'times'"></fa-icon>
+                                                       <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                   </button>-->
+                                                <span style="margin-right: 10px" type="button"  [routerLink]="['../classe', documentclasse.classe?.id, 'view' ]" class="label label-rounded label-primary">Voir</span>
+                                                <span style="margin-right: 10px" type="button" class="label label-rounded label-warning"  [routerLink]="['/documentclasse', documentclasse.id, 'edit']">Editer</span>
+                                                <span class="label label-rounded label-danger"  type="button" (click)="deleteSupprimer(documentclasse.id)">Supprimer</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div style="float: right;margin-right: 20px" class="row justify-content-center">
+        <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+    </div>
+</div>
+</div>

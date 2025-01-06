@@ -1,0 +1,89 @@
+{
+    "name": "Site",
+    "fields": [
+        {
+            "fieldName": "codeSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "logoSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "enteteSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "basPageSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nineaSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresseSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emailSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sigleSite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "faxEcole",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "etatSite",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "encours",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rang",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "ecole",
+            "otherEntityRelationshipName": "site",
+            "relationshipName": "ecole",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "profil",
+            "otherEntityRelationshipName": "site",
+            "relationshipName": "profil"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "module",
+            "otherEntityRelationshipName": "site",
+            "relationshipName": "module",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190603220329",
+    "entityTableName": "site",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

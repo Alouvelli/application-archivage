@@ -1,0 +1,36 @@
+{
+    "gestionEcoleApp": {
+        "site": {
+            "home": {
+                "title": "Sites",
+                "createLabel": "Créer un nouveau Site",
+                "createOrEditLabel": "Créer ou éditer un Site"
+            },
+            "created": "Un nouveau Site a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Site avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Site avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Site {{ id }} ?"
+            },
+            "detail": {
+                "title": "Site"
+            },
+            "codeSite": "Code Site",
+            "logoSite": "Logo Site",
+            "enteteSite": "Entete Site",
+            "basPageSite": "Bas Page Site",
+            "nineaSite": "Ninea Site",
+            "adresseSite": "Adresse Site",
+            "telephone": "Telephone",
+            "emailSite": "Email Site",
+            "sigleSite": "Sigle Site",
+            "faxEcole": "Fax Ecole",
+            "etatSite": "Etat Site",
+            "encours": "Encours",
+            "rang": "Rang",
+            "ecole": "Ecole",
+            "profil": "Profil",
+            "module": "Module"
+        }
+    }
+}
