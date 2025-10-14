@@ -1,0 +1,56 @@
+# Version obsolète - supprimée comme indiqué dans le warning
+# version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: archivage-mysql
+    # Pour Mac M1/M2, décommentez la ligne suivante si nécessaire
+    # platform: linux/arm64/v8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: archivageEcole
+      MYSQL_USER: archivage
+      MYSQL_PASSWORD: passer
+      # ⚠️ SÉCURITÉ : Ne jamais utiliser en production
+      # MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - archivage-network
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: archivage-phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      # Supprime le warning Apache
+      APACHE_SERVER_NAME: localhost
+    ports:
+      - "8081:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - archivage-network
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  archivage-network:
+    driver: bridge
