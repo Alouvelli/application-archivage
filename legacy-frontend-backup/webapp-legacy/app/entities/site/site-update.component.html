@@ -1,0 +1,131 @@
+<section class="row justify-content-center">
+  <div class="col-12 col-xl-10">
+    <form [formGroup]="editForm" novalidate (ngSubmit)="save()">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+        <h2 id="jhi-site-heading" class="h4 mb-0">
+          {{ 'gestionEcoleApp.site.home.createOrEditLabel' | translate }}
+        </h2>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="save-entity" [disabled]="editForm.invalid || isSaving">
+            <fa-icon [icon]="faSave"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.save' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      @if (editForm.get('id')?.value !== null) {
+        <div class="mb-3">
+          <label for="field_id" class="form-label text-uppercase small text-muted">{{ 'global.field.id' | translate }}</label>
+          <input id="field_id" type="text" class="form-control" formControlName="id" readonly />
+        </div>
+      }
+
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="field_codeSite" class="form-label">{{ 'gestionEcoleApp.site.codeSite' | translate }}</label>
+          <input id="field_codeSite" type="text" class="form-control" formControlName="codeSite" />
+          @if (editForm.get('codeSite')?.invalid && (editForm.get('codeSite')?.dirty || editForm.get('codeSite')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-4">
+          <label for="field_sigleSite" class="form-label">{{ 'gestionEcoleApp.site.sigleSite' | translate }}</label>
+          <input id="field_sigleSite" type="text" class="form-control" formControlName="sigleSite" />
+          @if (editForm.get('sigleSite')?.invalid && (editForm.get('sigleSite')?.dirty || editForm.get('sigleSite')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-4">
+          <label for="field_nineaSite" class="form-label">{{ 'gestionEcoleApp.site.nineaSite' | translate }}</label>
+          <input id="field_nineaSite" type="text" class="form-control" formControlName="nineaSite" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="field_adresseSite" class="form-label">{{ 'gestionEcoleApp.site.adresseSite' | translate }}</label>
+          <input id="field_adresseSite" type="text" class="form-control" formControlName="adresseSite" />
+        </div>
+
+        <div class="col-md-3">
+          <label for="field_telephone" class="form-label">{{ 'gestionEcoleApp.site.telephone' | translate }}</label>
+          <input id="field_telephone" type="text" class="form-control" formControlName="telephone" />
+        </div>
+
+        <div class="col-md-3">
+          <label for="field_emailSite" class="form-label">{{ 'gestionEcoleApp.site.emailSite' | translate }}</label>
+          <input id="field_emailSite" type="email" class="form-control" formControlName="emailSite" />
+          @if (editForm.get('emailSite')?.invalid && (editForm.get('emailSite')?.dirty || editForm.get('emailSite')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'global.messages.validate.email.invalid' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-4">
+        <label for="field_faxEcole" class="form-label">{{ 'gestionEcoleApp.site.faxEcole' | translate }}</label>
+        <input id="field_faxEcole" type="text" class="form-control" formControlName="faxSite" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="field_logoSite" class="form-label">{{ 'gestionEcoleApp.site.logoSite' | translate }}</label>
+          <input id="field_logoSite" type="text" class="form-control" formControlName="logoSite" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="field_rang" class="form-label">{{ 'gestionEcoleApp.site.rang' | translate }}</label>
+          <input id="field_rang" type="number" class="form-control" formControlName="rang" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="field_enteteSite" class="form-label">{{ 'gestionEcoleApp.site.enteteSite' | translate }}</label>
+          <textarea id="field_enteteSite" class="form-control" rows="2" formControlName="enteteSite"></textarea>
+        </div>
+
+        <div class="col-md-6">
+          <label for="field_basPageSite" class="form-label">{{ 'gestionEcoleApp.site.basPageSite' | translate }}</label>
+          <textarea id="field_basPageSite" class="form-control" rows="2" formControlName="basPageSite"></textarea>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-md-4">
+          <label for="field_ecole" class="form-label">{{ 'gestionEcoleApp.site.ecole' | translate }}</label>
+          <select id="field_ecole" class="form-select" formControlName="ecoleId">
+            <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+            @for (ecole of ecoles; track ecole.id) {
+              <option [ngValue]="ecole.id">{{ ecole.sigleEcole ?? ecole.codeEcole ?? ecole.id }}</option>
+            }
+          </select>
+          @if (editForm.get('ecoleId')?.invalid && (editForm.get('ecoleId')?.dirty || editForm.get('ecoleId')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-4 d-flex align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="field_etatSite" formControlName="etatSite" />
+            <label class="form-check-label ms-2" for="field_etatSite">{{ 'gestionEcoleApp.site.etatSite' | translate }}</label>
+          </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="field_encours" formControlName="encours" />
+            <label class="form-check-label ms-2" for="field_encours">{{ 'gestionEcoleApp.site.encours' | translate }}</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

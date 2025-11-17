@@ -1,28 +1,31 @@
 {
-    "gestionEcoleApp": {
-        "rubrique": {
-            "home": {
-                "title": "Rubriques",
-                "createLabel": "Create a new Rubrique",
-                "createOrEditLabel": "Create or edit a Rubrique"
-            },
-            "created": "A new Rubrique is created with identifier {{ param }}",
-            "updated": "A Rubrique is updated with identifier {{ param }}",
-            "deleted": "A Rubrique is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Rubrique {{ id }}?"
-            },
-            "detail": {
-                "title": "Rubrique"
-            },
-            "libelleRubrique": "Libelle Rubrique",
-            "rangRubrique": "Rang Rubrique",
-            "iconeRubrique": "Icone Rubrique",
-            "etatRubrique": "Etat Rubrique",
-            "rang": "Rang",
-            "menu": "Menu",
-            "rubriqueProfil": "Rubrique Profil",
-            "module": "Module"
-        }
+  "gestionEcoleApp": {
+    "rubrique": {
+      "home": {
+        "title": "Rubriques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rubrique",
+        "createOrEditLabel": "Create or edit a Rubrique",
+        "notFound": "No Rubriques found"
+      },
+      "created": "A new Rubrique is created with identifier {{ param }}",
+      "updated": "A Rubrique is updated with identifier {{ param }}",
+      "deleted": "A Rubrique is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rubrique {{ id }}?"
+      },
+      "detail": {
+        "title": "Rubrique"
+      },
+      "id": "ID",
+      "libelleRubrique": "Libelle Rubrique",
+      "rangRubrique": "Rang Rubrique",
+      "iconeRubrique": "Icone Rubrique",
+      "etatRubrique": "Etat Rubrique",
+      "rang": "Rang",
+      "menu": "Menu",
+      "rubriqueProfil": "Rubrique Profil",
+      "module": "Module"
     }
+  }
 }

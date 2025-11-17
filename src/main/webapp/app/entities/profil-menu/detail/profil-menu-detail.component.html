@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (profilMenu(); as profilMenuRef) {
+      <div>
+        <h2 data-cy="profilMenuDetailsHeading"><span jhiTranslate="gestionEcoleApp.profilMenu.detail.title">Profil Menu</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.voir">Voir</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.voir }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.ajouter">Ajouter</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.ajouter }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.supprimer">Supprimer</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.supprimer }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.modifier">Modifier</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.modifier }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.imprimer">Imprimer</span></dt>
+          <dd>
+            <span>{{ profilMenuRef.imprimer }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.profil">Profil</span></dt>
+          <dd>
+            @if (profilMenu()!.profil) {
+              <div>
+                <a [routerLink]="['/profil', profilMenu()!.profil?.id, 'view']">{{ profilMenuRef.profil?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.menu">Menu</span></dt>
+          <dd>
+            @if (profilMenu()!.menu) {
+              <div>
+                <a [routerLink]="['/menu', profilMenu()!.menu?.id, 'view']">{{ profilMenuRef.menu?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profilMenu.rubriqueProfil">Rubrique Profil</span></dt>
+          <dd>
+            @if (profilMenu()!.rubriqueProfil) {
+              <div>
+                <a [routerLink]="['/rubrique-profil', profilMenu()!.rubriqueProfil?.id, 'view']">{{ profilMenuRef.rubriqueProfil?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/profil-menu', profilMenuRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  padding: 2rem 0 3rem;
+  background: #f7f8fb;
+}
+
+.entity-detail {
+  display: flex;
+  justify-content: center;
+}
+
+.entity-card {
+  width: min(620px, 100%);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 25px 55px rgba(6, 24, 63, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.entity-card header {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.18rem;
+  color: #7a839f;
+}
+
+.entity-card h1 {
+  margin: 0.3rem 0 0;
+  font-size: 2rem;
+  color: #04143a;
+}
+
+.subtitle {
+  margin: 0;
+  color: #7a839f;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0;
+}
+
+dl div {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #f4f6fb;
+}
+
+dt {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  color: #7a839f;
+}
+
+dd {
+  margin: 0.4rem 0 0;
+  font-size: 1.05rem;
+  color: #04143a;
+}
+
+.truncate {
+  word-break: break-all;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.btn-ghost {
+  border-radius: 999px;
+  border: 1px solid rgba(4, 20, 58, 0.2);
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-primary {
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+@media (max-width: 640px) {
+  .entity-card {
+    padding: 1.8rem;
+  }
+}

@@ -1,0 +1,35 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    @if (typeDocument) {
+      <div class="card shadow-sm">
+        <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <h2 class="h4 mb-0">
+            {{ 'gestionEcoleApp.typeDocument.detail.title' | translate }} #{{ typeDocument.id }}
+          </h2>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+              <fa-icon [icon]="faArrowLeft"></fa-icon>
+              <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+            </button>
+            <a class="btn btn-primary" [routerLink]="['/type-document', typeDocument.id, 'edit']">
+              <fa-icon [icon]="faPen"></fa-icon>
+              <span class="ms-2">{{ 'entity.action.edit' | translate }}</span>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <dl class="row gy-3">
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.typeDocument.libelle' | translate }}</dt>
+            <dd class="col-sm-8">{{ typeDocument.libelle || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.typeDocument.description' | translate }}</dt>
+            <dd class="col-sm-8">{{ typeDocument.description || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.typeDocument.etat' | translate }}</dt>
+            <dd class="col-sm-8">{{ typeDocument.etat ? 'Oui' : 'Non' }}</dd>
+          </dl>
+        </div>
+      </div>
+    }
+  </div>
+</section>

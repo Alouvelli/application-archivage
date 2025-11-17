@@ -1,52 +1,58 @@
 {
-    "name": "Module",
-    "fields": [
-        {
-            "fieldName": "libelleModule",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "logoModule",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etatModule",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "rang",
-            "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "rubrique",
-            "otherEntityRelationshipName": "module",
-            "relationshipName": "rubrique"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "profilModule",
-            "otherEntityRelationshipName": "module",
-            "relationshipName": "profilModule"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "site",
-            "otherEntityRelationshipName": "module",
-            "relationshipName": "site",
-            "otherEntityField": "id",
-            "ownerSide": true
-        }
-    ],
-    "changelogDate": "20190603220333",
-    "entityTableName": "module",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+  "annotations": {
+    "changelogDate": "20190603220333"
+  },
+  "applications": "*",
+  "changelogDate": "20190603220333",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "module",
+  "fields": [
+    {
+      "fieldName": "libelleModule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logoModule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatModule",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rang",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Module",
+  "pagination": "no",
+  "relationships": [
+    {
+      "otherEntityName": "rubrique",
+      "otherEntityRelationshipName": "module",
+      "relationshipName": "rubrique",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "profilModule",
+      "otherEntityRelationshipName": "module",
+      "relationshipName": "profilModule",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "site",
+      "otherEntityRelationshipName": "module",
+      "ownerSide": true,
+      "relationshipName": "site",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
 }

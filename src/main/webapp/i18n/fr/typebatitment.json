@@ -1,22 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "typebatitment": {
-            "home": {
-                "title": "Typebatitments",
-                "createLabel": "Créer un nouveau Typebatitment",
-                "createOrEditLabel": "Créer ou éditer un Typebatitment"
-            },
-            "created": "Un nouveau Typebatitment a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Typebatitment avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Typebatitment avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Typebatitment {{ id }} ?"
-            },
-            "detail": {
-                "title": "Typebatitment"
-            },
-            "libelle": "Libelle",
-            "etat": "Etat"
-        }
+  "gestionEcoleApp": {
+    "typebatitment": {
+      "home": {
+        "title": "Typebatitments",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Typebatitment",
+        "createOrEditLabel": "Créer ou éditer un Typebatitment",
+        "notFound": "Aucun Typebatitment trouvé"
+      },
+      "created": "Un nouveau Typebatitment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Typebatitment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Typebatitment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Typebatitment {{ id }} ?"
+      },
+      "detail": {
+        "title": "Typebatitment"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "etat": "Etat",
+      "batiment": "Batiment"
     }
+  }
 }

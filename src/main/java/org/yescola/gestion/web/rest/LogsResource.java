@@ -1,12 +1,11 @@
 package org.yescola.gestion.web.rest;
 
-import org.yescola.gestion.web.rest.vm.LoggerVM;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.yescola.gestion.web.rest.vm.LoggerVM;
 
 import java.util.List;
 import java.util.stream.Collectors;

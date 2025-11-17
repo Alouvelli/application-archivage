@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (document(); as documentRef) {
+      <div>
+        <h2 data-cy="documentDetailsHeading"><span jhiTranslate="gestionEcoleApp.document.detail.title">Document</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ documentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.document.etat">Etat</span></dt>
+          <dd>
+            <span>{{ documentRef.etat }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.document.document1">Document 1</span></dt>
+          <dd>
+            @if (documentRef.document1) {
+              <div>
+                <a (click)="openFile(documentRef.document1 ?? '', documentRef.document1ContentType)">
+                  <img
+                    [src]="'data:' + documentRef.document1ContentType + ';base64,' + documentRef.document1"
+                    style="max-width: 100%"
+                    alt="document"
+                  />
+                </a>
+                {{ documentRef.document1ContentType }}, {{ byteSize(documentRef.document1 ?? '') }}
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.document.document2">Document 2</span></dt>
+          <dd>
+            <span>{{ documentRef.document2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.document.ref">Ref</span></dt>
+          <dd>
+            <span>{{ documentRef.ref }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.document.typeDocument">Type Document</span></dt>
+          <dd>
+            @if (document()!.typeDocument) {
+              <div>
+                <a [routerLink]="['/type-document', document()!.typeDocument?.id, 'view']">{{ documentRef.typeDocument?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/document', documentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

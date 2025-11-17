@@ -1,44 +1,51 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "profil",
-            "otherEntityRelationshipName": "profilModule",
-            "relationshipName": "profil",
-            "otherEntityField": "id",
-            "otherEntityRelationshipNameUndefined": false
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "module",
-            "otherEntityRelationshipName": "profilModule",
-            "relationshipName": "module",
-            "otherEntityField": "id",
-            "otherEntityRelationshipNameUndefined": false
-        },
-        {
-            "relationshipName": "siteProfil",
-            "otherEntityName": "siteProfil",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "profilModule",
-            "otherEntityRelationshipNameUndefined": true
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "encours",
-            "fieldType": "Boolean"
-        }
-    ],
-    "changelogDate": "20190603220335",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "profil_module",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "no"
+  "annotations": {
+    "changelogDate": "20190603220335"
+  },
+  "changelogDate": "20190603220335",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "profil_module",
+  "fields": [
+    {
+      "fieldName": "encours",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProfilModule",
+  "pagination": "no",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "profilModule",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "profil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "profilModule",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "module",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "siteProfil",
+      "otherEntityRelationshipName": "profilModule",
+      "otherEntityRelationshipNameUndefined": true,
+      "relationshipName": "siteProfil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
 }

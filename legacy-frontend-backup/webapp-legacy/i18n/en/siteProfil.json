@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "siteProfil": {
+            "home": {
+                "title": "Site Profils",
+                "createLabel": "Create a new Site Profil",
+                "createOrEditLabel": "Create or edit a Site Profil"
+            },
+            "created": "A new Site Profil is created with identifier {{ param }}",
+            "updated": "A Site Profil is updated with identifier {{ param }}",
+            "deleted": "A Site Profil is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Site Profil {{ id }}?"
+            },
+            "detail": {
+                "title": "Site Profil"
+            },
+            "encours": "Encours",
+            "site": "Site",
+            "profil": "Profil"
+        }
+    }
+}

@@ -1,24 +1,27 @@
 {
-    "gestionEcoleApp": {
-        "matiere": {
-            "home": {
-                "title": "Matieres",
-                "createLabel": "Create a new Matiere",
-                "createOrEditLabel": "Create or edit a Matiere"
-            },
-            "created": "A new Matiere is created with identifier {{ param }}",
-            "updated": "A Matiere is updated with identifier {{ param }}",
-            "deleted": "A Matiere is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Matiere {{ id }}?"
-            },
-            "detail": {
-                "title": "Matiere"
-            },
-            "libelle": "Libelle",
-            "description": "Description",
-            "etat": "Etat",
-            "cycle": "Cycle"
-        }
+  "gestionEcoleApp": {
+    "matiere": {
+      "home": {
+        "title": "Matieres",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Matiere",
+        "createOrEditLabel": "Create or edit a Matiere",
+        "notFound": "No Matieres found"
+      },
+      "created": "A new Matiere is created with identifier {{ param }}",
+      "updated": "A Matiere is updated with identifier {{ param }}",
+      "deleted": "A Matiere is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Matiere {{ id }}?"
+      },
+      "detail": {
+        "title": "Matiere"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "description": "Description",
+      "etat": "Etat",
+      "cycle": "Cycle"
     }
+  }
 }

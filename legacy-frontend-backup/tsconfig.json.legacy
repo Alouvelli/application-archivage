@@ -1,0 +1,50 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./target/out-tsc/root",
+        "paths": {
+            "app/*": ["src/main/webapp/app/*"],
+            "environments/*": ["src/main/webapp/environments/*"],
+            "ng-jhipster": ["src/main/webapp/app/core/legacy/ng-jhipster"],
+            "ngx-webstorage": ["src/main/webapp/app/core/util/webstorage.service"]
+        },
+        "types": ["node"],
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true, //ce ficheir a ete modifier
+        "strictNullChecks": true,
+        "noImplicitReturns": true, //ce ficheir a ete modifier
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true, //ce ficheir a ete modifier
+        "useDefineForClassFields": false,
+        "target": "es2022",
+        "module": "es2020",
+        "typeRoots": ["node_modules/@types", "node"],
+        "lib": ["es2018", "es2020", "dom"]
+    },
+    "references": [
+        {
+            "path": "tsconfig.spec.json"
+        }
+    ],
+    "angularCompilerOptions": {
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true, //ce ficheir a ete modifier
+        "preserveWhitespaces": true,
+        "disableTypeScriptVersionCheck": true,
+        "noStrictGenericTypes": false
+    },
+}
+
+// This is a temporary workaround for a bug in the JHipster generator, please remove it when the bug is fixed.
+// For more details see https://github.com/jhipster/generator-jhipster/issues/26524
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore

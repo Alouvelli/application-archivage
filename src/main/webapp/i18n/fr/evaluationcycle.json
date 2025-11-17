@@ -1,25 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "evaluationcycle": {
-            "home": {
-                "title": "Evaluationcycles",
-                "createLabel": "Créer un nouveau Evaluationcycle",
-                "createOrEditLabel": "Créer ou éditer un Evaluationcycle"
-            },
-            "created": "Un nouveau Evaluationcycle a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Evaluationcycle avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Evaluationcycle avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Evaluationcycle {{ id }} ?"
-            },
-            "detail": {
-                "title": "Evaluationcycle"
-            },
-            "notemax": "Notemax",
-            "typevalue": "Typevalue",
-            "nombre": "Nombre",
-            "cycle": "Cycle",
-            "evaluation": "Evaluation"
-        }
+  "gestionEcoleApp": {
+    "evaluationcycle": {
+      "home": {
+        "title": "Evaluationcycles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Evaluationcycle",
+        "createOrEditLabel": "Créer ou éditer un Evaluationcycle",
+        "notFound": "Aucun Evaluationcycle trouvé"
+      },
+      "created": "Un nouveau Evaluationcycle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Evaluationcycle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Evaluationcycle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Evaluationcycle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Evaluationcycle"
+      },
+      "id": "ID",
+      "notemax": "Notemax",
+      "typevalue": "Typevalue",
+      "nombre": "Nombre",
+      "cycle": "Cycle",
+      "evaluation": "Evaluation"
     }
+  }
 }

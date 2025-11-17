@@ -1,10 +1,5 @@
 package org.yescola.gestion.config;
 
-import java.net.InetSocketAddress;
-import java.util.Iterator;
-
-import io.github.jhipster.config.JHipsterProperties;
-
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
@@ -22,6 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import tech.jhipster.config.JHipsterProperties;
+
+import java.net.InetSocketAddress;
+import java.util.Iterator;
 
 @Configuration
 public class LoggingConfiguration {
@@ -36,21 +36,21 @@ public class LoggingConfiguration {
 
     private final String appName;
 
-    private final String serverPort;
+    private final String serverPort; // Sera initialisé à partir de Environment
 
     private final JHipsterProperties jHipsterProperties;
 
-    public LoggingConfiguration(@Value("${spring.application.name}") String appName, @Value("${server.port}") String serverPort,
-         JHipsterProperties jHipsterProperties) {
+    // MODIFICATION: Récupération de serverPort via Environment au lieu de @Value directe
+    public LoggingConfiguration(@Value("${spring.application.name}") String appName,
+                                Environment env, // Injection de Environment
+                                JHipsterProperties jHipsterProperties) {
         this.appName = appName;
-        this.serverPort = serverPort;
+        // Récupération du port depuis l'environnement, avec une valeur par défaut si non trouvé
+        this.serverPort = env.getProperty("server.port", "8080");
         this.jHipsterProperties = jHipsterProperties;
         if (jHipsterProperties.getLogging().getLogstash().isEnabled()) {
             addLogstashAppender(context);
             addContextListener(context);
-        }
-        if (jHipsterProperties.getMetrics().getLogs().isEnabled()) {
-            setMetricsMarkerLogbackFilter(context);
         }
     }
 
@@ -66,6 +66,7 @@ public class LoggingConfiguration {
         LogstashTcpSocketAppender logstashAppender = new LogstashTcpSocketAppender();
         logstashAppender.setName(LOGSTASH_APPENDER_NAME);
         logstashAppender.setContext(context);
+        // Utilisation de this.serverPort qui est maintenant initialisé
         String customFields = "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"}";
 
         // More documentation is available at: https://github.com/logstash/logstash-logback-encoder
@@ -85,7 +86,7 @@ public class LoggingConfiguration {
         AsyncAppender asyncLogstashAppender = new AsyncAppender();
         asyncLogstashAppender.setContext(context);
         asyncLogstashAppender.setName(ASYNC_LOGSTASH_APPENDER_NAME);
-        asyncLogstashAppender.setQueueSize(jHipsterProperties.getLogging().getLogstash().getQueueSize());
+        asyncLogstashAppender.setQueueSize(jHipsterProperties.getLogging().getLogstash().getRingBufferSize());
         asyncLogstashAppender.addAppender(logstashAppender);
         asyncLogstashAppender.start();
 
@@ -150,5 +151,4 @@ public class LoggingConfiguration {
             // Nothing to do.
         }
     }
-
 }

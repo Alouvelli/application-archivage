@@ -1,12 +1,12 @@
 package org.yescola.gestion.service;
 
-import org.yescola.gestion.config.audit.AuditEventConverter;
-import org.yescola.gestion.repository.PersistenceAuditEventRepository;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yescola.gestion.config.audit.AuditEventConverter;
+import org.yescola.gestion.repository.PersistenceAuditEventRepository;
 
 import java.time.Instant;
 import java.util.Optional;

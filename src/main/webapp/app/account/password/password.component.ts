@@ -1,147 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, Signal, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-import { AccountService } from 'app/core';
+import SharedModule from 'app/shared/shared.module';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
 import { PasswordService } from './password.service';
+import PasswordStrengthBarComponent from './password-strength-bar/password-strength-bar.component';
 
 @Component({
-    selector: 'jhi-password',
-    templateUrl: './password.component.html'
+  selector: 'jhi-password',
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent],
+  templateUrl: './password.component.html',
 })
-export class PasswordComponent implements OnInit {
-    doNotMatch: string;
-    error: string;
-    success: string;
-    account: any;
-    currentPassword: string;
-    newPassword: string;
-    confirmPassword: string;
+export default class PasswordComponent implements OnInit {
+  doNotMatch = signal(false);
+  error = signal(false);
+  success = signal(false);
+  account?: Signal<Account | undefined | null>;
+  passwordForm = new FormGroup({
+    currentPassword: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    newPassword: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
+    confirmPassword: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
+  });
 
-    constructor(private passwordService: PasswordService, private accountService: AccountService) {}
+  private readonly passwordService = inject(PasswordService);
+  private readonly accountService = inject(AccountService);
+  private readonly injector = inject(Injector);
 
-    ngOnInit() {
-        this.accountService.identity().then(account => {
-            this.account = account;
-        });
-        jQuery(document).ready(setTimeout(function() {
+  ngOnInit(): void {
+    const account$ = this.accountService.identity();
+    this.account = toSignal(account$, { injector: this.injector });
+  }
 
+  changePassword(): void {
+    this.error.set(false);
+    this.success.set(false);
+    this.doNotMatch.set(false);
 
-
-
-            // Form Switcher
-            $('#form-switcher > button').on('click', function() {
-                var btnData = $(this).data('form-layout');
-                var btnActive = $('#form-elements-pane .admin-form.active');
-
-                // Remove any existing animations and then fade current form out
-                btnActive.removeClass('slideInUp').addClass('animated fadeOutRight animated-shorter');
-                // When above exit animation ends remove leftover classes and animate the new form in
-                btnActive.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                    btnActive.removeClass('active fadeOutRight animated-shorter');
-                    $('#' + btnData).addClass('active animated slideInUp animated-shorter')
-                });
-            });
-
-            // Cache several DOM elements
-            var pageHeader = $('.content-header').find('b');
-            var adminForm = $('.admin-form');
-            var options = adminForm.find('.option');
-            var switches = adminForm.find('.switch');
-            var buttons = adminForm.find('.button');
-            var Panel = adminForm.find('.panel');
-
-            // Form Skin Switcher
-            $('#skin-switcher a').on('click', function() {
-                var btnData = $(this).data('form-skin');
-
-                $('#skin-switcher a').removeClass('item-active');
-                $(this).addClass('item-active')
-
-                adminForm.each(function(i, e) {
-                    var skins = 'theme-primary theme-info theme-success theme-warning theme-danger theme-alert theme-system theme-dark';
-                    var panelSkins = 'panel-primary panel-info panel-success panel-warning panel-danger panel-alert panel-system panel-dark';
-                    $(e).removeClass(skins).addClass('theme-' + btnData);
-                    Panel.removeClass(panelSkins).addClass('panel-' + btnData);
-                    pageHeader.removeClass().addClass('text-' + btnData);
-                });
-
-                $(options).each(function(i, e) {
-                    if ($(e).hasClass('block')) {
-                        $(e).removeClass().addClass('block mt15 option option-' + btnData);
-                    } else {
-                        $(e).removeClass().addClass('option option-' + btnData);
-                    }
-                });
-                $(switches).each(function(i, ele) {
-                    if ($(ele).hasClass('switch-round')) {
-                        if ($(ele).hasClass('block')) {
-                            $(ele).removeClass().addClass('block mt15 switch switch-round switch-' + btnData);
-                        } else {
-                            $(ele).removeClass().addClass('switch switch-round switch-' + btnData);
-                        }
-                    } else {
-                        if ($(ele).hasClass('block')) {
-                            $(ele).removeClass().addClass('block mt15 switch switch-' + btnData);
-                        } else {
-                            $(ele).removeClass().addClass('switch switch-' + btnData);
-                        }
-                    }
-
-                });
-                buttons.removeClass().addClass('button btn-' + btnData);
-            });
-
-            setTimeout(function() {
-                adminForm.addClass('theme-primary');
-                Panel.addClass('panel-primary');
-                pageHeader.addClass('text-primary');
-
-                $(options).each(function(i, e) {
-                    if ($(e).hasClass('block')) {
-                        $(e).removeClass().addClass('block mt15 option option-primary');
-                    } else {
-                        $(e).removeClass().addClass('option option-primary');
-                    }
-                });
-                $(switches).each(function(i, ele) {
-
-                    if ($(ele).hasClass('switch-round')) {
-                        if ($(ele).hasClass('block')) {
-                            $(ele).removeClass().addClass('block mt15 switch switch-round switch-primary');
-                        } else {
-                            $(ele).removeClass().addClass('switch switch-round switch-primary');
-                        }
-                    } else {
-                        if ($(ele).hasClass('block')) {
-                            $(ele).removeClass().addClass('block mt15 switch switch-primary');
-                        } else {
-                            $(ele).removeClass().addClass('switch switch-primary');
-                        }
-                    }
-                });
-                buttons.removeClass().addClass('button btn-primary');
-            }, 800);
-
-
-        },1000));
+    const { newPassword, confirmPassword, currentPassword } = this.passwordForm.getRawValue();
+    if (newPassword !== confirmPassword) {
+      this.doNotMatch.set(true);
+    } else {
+      this.passwordService.save(newPassword, currentPassword).subscribe({
+        next: () => this.success.set(true),
+        error: () => this.error.set(true),
+      });
     }
-
-    changePassword() {
-        if (this.newPassword !== this.confirmPassword) {
-            this.error = null;
-            this.success = null;
-            this.doNotMatch = 'ERROR';
-        } else {
-            this.doNotMatch = null;
-            this.passwordService.save(this.newPassword, this.currentPassword).subscribe(
-                () => {
-                    this.error = null;
-                    this.success = 'OK';
-                },
-                () => {
-                    this.success = null;
-                    this.error = 'ERROR';
-                }
-            );
-        }
-    }
+  }
 }

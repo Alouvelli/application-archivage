@@ -1,53 +1,58 @@
 {
-    "name": "Menu",
-    "fields": [
-        {
-            "fieldName": "codeMenu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "libelleMenu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "rangMenu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "urlMenu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "iconeMenu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etatMenu",
-            "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "profilMenu",
-            "otherEntityRelationshipName": "menu",
-            "relationshipName": "profilMenu"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "rubrique",
-            "otherEntityRelationshipName": "menu",
-            "relationshipName": "rubrique",
-            "otherEntityField": "id"
-        }
-    ],
-    "changelogDate": "20190603220328",
-    "entityTableName": "menu",
-    "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+  "annotations": {
+    "changelogDate": "20190603220328"
+  },
+  "applications": "*",
+  "changelogDate": "20190603220328",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "menu",
+  "fields": [
+    {
+      "fieldName": "codeMenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libelleMenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rangMenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlMenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iconeMenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatMenu",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Menu",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "profilMenu",
+      "otherEntityRelationshipName": "menu",
+      "relationshipName": "profilMenu",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "rubrique",
+      "otherEntityRelationshipName": "menu",
+      "relationshipName": "rubrique",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
 }

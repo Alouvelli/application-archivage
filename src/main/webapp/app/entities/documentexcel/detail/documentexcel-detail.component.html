@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (documentexcel(); as documentexcelRef) {
+      <div>
+        <h2 data-cy="documentexcelDetailsHeading"><span jhiTranslate="gestionEcoleApp.documentexcel.detail.title">Documentexcel</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ documentexcelRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentexcel.excel">Excel</span></dt>
+          <dd>
+            @if (documentexcelRef.excel) {
+              <div>
+                <a (click)="openFile(documentexcelRef.excel ?? '', documentexcelRef.excelContentType)" jhiTranslate="entity.action.open"
+                  >Ouvrir</a
+                >
+                {{ documentexcelRef.excelContentType }}, {{ byteSize(documentexcelRef.excel ?? '') }}
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/documentexcel', documentexcelRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,27 +1,31 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [],
-    "fields": [
-        {
-            "fieldName": "libelle",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "description",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etat",
-            "fieldType": "Boolean"
-        }
-    ],
-    "changelogDate": "20190624161142",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "typedocument",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190624161142"
+  },
+  "changelogDate": "20190624161142",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "typedocument",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TypeDocument",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": false,
+  "service": "no"
 }

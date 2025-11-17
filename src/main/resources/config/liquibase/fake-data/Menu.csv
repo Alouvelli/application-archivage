@@ -1,0 +1,4 @@
+id,code_menu,libelle_menu,rang_menu,url_menu,icone_menu,etat_menu,rubrique_id
+1,codeMenu_1,libelleMenu_1,rangMenu_1,urlMenu_1,iconeMenu_1,1,1
+2,codeMenu_2,libelleMenu_2,rangMenu_2,urlMenu_2,iconeMenu_2,2,2
+3,codeMenu_3,libelleMenu_3,rangMenu_3,urlMenu_3,iconeMenu_3,3,3

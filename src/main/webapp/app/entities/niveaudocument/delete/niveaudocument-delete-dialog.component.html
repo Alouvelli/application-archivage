@@ -1,0 +1,30 @@
+@if (niveaudocument) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(niveaudocument.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="niveaudocumentDeleteDialogHeading" jhiTranslate="entity.delete.title">
+        Confirmation de suppression
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error />
+      <p
+        id="jhi-delete-niveaudocument-heading"
+        jhiTranslate="gestionEcoleApp.niveaudocument.delete.question"
+        [translateValues]="{ id: niveaudocument.id }"
+      >
+        Êtes-vous certain de vouloir supprimer le Niveaudocument {{ niveaudocument.id }} ?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+      </button>
+
+      <button id="jhi-confirm-delete-niveaudocument" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Supprimer</span>
+      </button>
+    </div>
+  </form>
+}

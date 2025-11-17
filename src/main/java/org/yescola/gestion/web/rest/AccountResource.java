@@ -1,6 +1,12 @@
 package org.yescola.gestion.web.rest;
 
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.yescola.gestion.domain.User;
 import org.yescola.gestion.repository.UserRepository;
 import org.yescola.gestion.security.SecurityUtils;
@@ -12,15 +18,7 @@ import org.yescola.gestion.web.rest.errors.*;
 import org.yescola.gestion.web.rest.vm.KeyAndPasswordVM;
 import org.yescola.gestion.web.rest.vm.ManagedUserVM;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.
@@ -110,17 +108,23 @@ public class AccountResource {
      */
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
-        String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
-        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
-        if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
-            throw new EmailAlreadyUsedException();
-        }
-        Optional<User> user = userRepository.findOneByLogin(userLogin);
-        if (!user.isPresent()) {
-            throw new InternalServerErrorException("User could not be found");
-        }
-        userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-            userDTO.getLangKey(), userDTO.getImageUrl());
+        String userLogin = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
+
+        userRepository.findOneByEmailIgnoreCase(userDTO.getEmail())
+            .filter(user -> !user.getLogin().equalsIgnoreCase(userLogin))
+            .ifPresent(user -> { throw new EmailAlreadyUsedException(); });
+
+        userRepository.findOneByLogin(userLogin)
+            .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+
+        userService.updateUser(
+            userDTO.getFirstName(),
+            userDTO.getLastName(),
+            userDTO.getEmail(),
+            userDTO.getLangKey(),
+            userDTO.getImageUrl()
+        );
     }
 
     /**
@@ -145,10 +149,10 @@ public class AccountResource {
      */
     @PostMapping(path = "/account/reset-password/init")
     public void requestPasswordReset(@RequestBody String mail) {
-       mailService.sendPasswordResetMail(
-           userService.requestPasswordReset(mail)
-               .orElseThrow(EmailNotFoundException::new)
-       );
+        mailService.sendPasswordResetMail(
+            userService.requestPasswordReset(mail)
+                .orElseThrow(EmailNotFoundException::new)
+        );
     }
 
     /**

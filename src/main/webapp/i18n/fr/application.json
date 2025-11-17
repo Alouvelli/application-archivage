@@ -1,31 +1,34 @@
 {
-    "gestionEcoleApp": {
-        "application": {
-            "home": {
-                "title": "Applications",
-                "createLabel": "Créer un nouveau Application",
-                "createOrEditLabel": "Créer ou éditer un Application"
-            },
-            "created": "Un nouveau Application a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Application avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Application avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Application {{ id }} ?"
-            },
-            "detail": {
-                "title": "Application"
-            },
-            "nomApplication": "Nom Application",
-            "versionApplication": "Version Application",
-            "logoApplication": "Logo Application",
-            "coutApplication": "Cout Application",
-            "dateVente": "Date Vente",
-            "maintenance": "Maintenance",
-            "contratMaintenance": "Contrat Maintenance",
-            "dateDebut": "Date Debut",
-            "dateFin": "Date Fin",
-            "etatApplication": "Etat Application",
-            "ecole": "Ecole"
-        }
+  "gestionEcoleApp": {
+    "application": {
+      "home": {
+        "title": "Applications",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Application",
+        "createOrEditLabel": "Créer ou éditer un Application",
+        "notFound": "Aucun Application trouvé"
+      },
+      "created": "Un nouveau Application a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Application avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Application avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Application {{ id }} ?"
+      },
+      "detail": {
+        "title": "Application"
+      },
+      "id": "ID",
+      "nomApplication": "Nom Application",
+      "versionApplication": "Version Application",
+      "logoApplication": "Logo Application",
+      "coutApplication": "Cout Application",
+      "dateVente": "Date Vente",
+      "maintenance": "Maintenance",
+      "contratMaintenance": "Contrat Maintenance",
+      "dateDebut": "Date Debut",
+      "dateFin": "Date Fin",
+      "etatApplication": "Etat Application",
+      "ecole": "Ecole"
     }
+  }
 }

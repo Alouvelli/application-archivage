@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "specialitecycle": {
+            "home": {
+                "title": "Specialitecycles",
+                "createLabel": "Create a new Specialitecycle",
+                "createOrEditLabel": "Create or edit a Specialitecycle"
+            },
+            "created": "A new Specialitecycle is created with identifier {{ param }}",
+            "updated": "A Specialitecycle is updated with identifier {{ param }}",
+            "deleted": "A Specialitecycle is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Specialitecycle {{ id }}?"
+            },
+            "detail": {
+                "title": "Specialitecycle"
+            },
+            "nombreprof": "Nombreprof",
+            "specialite": "Specialite",
+            "cycle": "Cycle"
+        }
+    }
+}

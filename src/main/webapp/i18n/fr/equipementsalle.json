@@ -1,23 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "equipementsalle": {
-            "home": {
-                "title": "Equipementsalles",
-                "createLabel": "Créer un nouveau Equipementsalle",
-                "createOrEditLabel": "Créer ou éditer un Equipementsalle"
-            },
-            "created": "Un nouveau Equipementsalle a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Equipementsalle avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Equipementsalle avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Equipementsalle {{ id }} ?"
-            },
-            "detail": {
-                "title": "Equipementsalle"
-            },
-            "nombre": "Nombre",
-            "salle": "Salle",
-            "equipement": "Equipement"
-        }
+  "gestionEcoleApp": {
+    "equipementsalle": {
+      "home": {
+        "title": "Equipementsalles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Equipementsalle",
+        "createOrEditLabel": "Créer ou éditer un Equipementsalle",
+        "notFound": "Aucun Equipementsalle trouvé"
+      },
+      "created": "Un nouveau Equipementsalle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Equipementsalle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Equipementsalle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Equipementsalle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Equipementsalle"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "salle": "Salle",
+      "equipement": "Equipement"
     }
+  }
 }

@@ -1,0 +1,28 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+  ?generated-in=IntelliJ IDEA
+
+###
+# curl -X POST http://localhost:8082/api/authenticate
+#  -H "Content-Type: application/json"
+#  -d '{"username":"admin","password":"admin","rememberMe":true}'
+POST http://localhost:8082/api/authenticate
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin",
+  "rememberMe": true
+}
+
+###
+###
+
+# curl -X GET "http://localhost:8082/api/account"
+#  -H "Authorization: Bearer VOTRE_TOKEN"
+GET http://localhost:8082/api/account
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTc2NTg5MTU1NH0.doyxobY3d9EsaMKg5Khf5iPxyd7_ShPd23MurGAzxTAcuJdfFSlkBCe5dBhbLm_FjPnHWYUlsfhBniRBHurE-w
+
+###
+POST http://localhost:8082/#/account/reset/finish?key=f0LBWt74BFd98vflaksK

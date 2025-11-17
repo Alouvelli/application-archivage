@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (rubriqueProfil(); as rubriqueProfilRef) {
+      <div>
+        <h2 data-cy="rubriqueProfilDetailsHeading">
+          <span jhiTranslate="gestionEcoleApp.rubriqueProfil.detail.title">Rubrique Profil</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ rubriqueProfilRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.encours">Encours</span></dt>
+          <dd>
+            <span>{{ rubriqueProfilRef.encours }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profil">Profil</span></dt>
+          <dd>
+            @if (rubriqueProfil()!.profil) {
+              <div>
+                <a [routerLink]="['/profil', rubriqueProfil()!.profil?.id, 'view']">{{ rubriqueProfilRef.profil?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.rubrique">Rubrique</span></dt>
+          <dd>
+            @if (rubriqueProfil()!.rubrique) {
+              <div>
+                <a [routerLink]="['/rubrique', rubriqueProfil()!.rubrique?.id, 'view']">{{ rubriqueProfilRef.rubrique?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubriqueProfil.profilModule">Profil Module</span></dt>
+          <dd>
+            @if (rubriqueProfil()!.profilModule) {
+              <div>
+                <a [routerLink]="['/profil-module', rubriqueProfil()!.profilModule?.id, 'view']">{{
+                  rubriqueProfilRef.profilModule?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/rubrique-profil', rubriqueProfilRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

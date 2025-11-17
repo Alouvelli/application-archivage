@@ -1,0 +1,90 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <form [formGroup]="editForm" novalidate (ngSubmit)="save()">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+        <h2 id="jhi-classe-heading" class="h4 mb-0">
+          {{ 'gestionEcoleApp.classe.home.createOrEditLabel' | translate }}
+        </h2>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="save-entity" [disabled]="editForm.invalid || isSaving">
+            <fa-icon [icon]="faSave"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.save' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      @if (editForm.get('id')?.value !== null) {
+        <div class="mb-3">
+          <label for="field_id" class="form-label text-uppercase small text-muted">{{ 'global.field.id' | translate }}</label>
+          <input class="form-control" id="field_id" formControlName="id" readonly />
+        </div>
+      }
+
+      <div class="mb-3">
+        <label for="field_code" class="form-label">{{ 'gestionEcoleApp.classe.code' | translate }}</label>
+        <input id="field_code" type="text" class="form-control" formControlName="code" />
+        @if (editForm.get('code')?.invalid && (editForm.get('code')?.dirty || editForm.get('code')?.touched)) {
+          <div class="invalid-feedback d-block">
+            {{ 'entity.validation.required' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="field_libelle" class="form-label">{{ 'gestionEcoleApp.classe.libelle' | translate }}</label>
+        <input id="field_libelle" type="text" class="form-control" formControlName="libelle" />
+        @if (editForm.get('libelle')?.invalid && (editForm.get('libelle')?.dirty || editForm.get('libelle')?.touched)) {
+          <div class="invalid-feedback d-block">
+            {{ 'entity.validation.required' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="field_description" class="form-label">{{ 'gestionEcoleApp.classe.description' | translate }}</label>
+        <textarea id="field_description" class="form-control" formControlName="description" rows="3"></textarea>
+      </div>
+
+      <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" role="switch" id="field_etat" formControlName="etat" />
+        <label class="form-check-label" for="field_etat">{{ 'gestionEcoleApp.classe.etat' | translate }}</label>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="field_filiere" class="form-label">{{ 'gestionEcoleApp.classe.filiere' | translate }}</label>
+          <select id="field_filiere" class="form-select" formControlName="filiereId">
+            <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+            @for (filiere of filieres; track filiere.id) {
+              <option [ngValue]="filiere.id">{{ filiere.libelle }}</option>
+            }
+          </select>
+          @if (editForm.get('filiereId')?.invalid && (editForm.get('filiereId')?.dirty || editForm.get('filiereId')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label for="field_niveau" class="form-label">{{ 'gestionEcoleApp.classe.niveau' | translate }}</label>
+          <select id="field_niveau" class="form-select" formControlName="niveauId">
+            <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+            @for (niveau of niveaux; track niveau.id) {
+              <option [ngValue]="niveau.id">{{ niveau.libelle }}</option>
+            }
+          </select>
+          @if (editForm.get('niveauId')?.invalid && (editForm.get('niveauId')?.dirty || editForm.get('niveauId')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

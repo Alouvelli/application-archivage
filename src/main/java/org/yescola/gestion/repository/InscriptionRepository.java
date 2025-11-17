@@ -1,13 +1,14 @@
 package org.yescola.gestion.repository;
 
-import org.yescola.gestion.domain.Etudiant;
-import org.yescola.gestion.domain.Inscription;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.yescola.gestion.domain.Inscription;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,4 +38,9 @@ public interface InscriptionRepository extends JpaRepository<Inscription, Long> 
 
     @Query(value = "select ins from Inscription  ins")
     List<Inscription> getAll();
+
+    @Query("select YEAR(i.date), MONTH(i.date), count(i) from Inscription i where i.date is not null and i.date >= :start group by YEAR(i.date), MONTH(i.date) order by YEAR(i.date), MONTH(i.date)")
+    List<Object[]> countMonthlySince(@Param("start") LocalDate start);
+
+    List<Inscription> findTop5ByDateIsNotNullOrderByDateDesc();
 }

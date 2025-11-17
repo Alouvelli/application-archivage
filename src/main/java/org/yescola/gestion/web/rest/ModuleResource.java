@@ -1,18 +1,18 @@
 package org.yescola.gestion.web.rest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.yescola.gestion.domain.Module;
 import org.yescola.gestion.domain.Rubrique;
 import org.yescola.gestion.repository.ModuleRepository;
 import org.yescola.gestion.web.rest.errors.BadRequestAlertException;
 import org.yescola.gestion.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import tech.jhipster.web.util.ResponseUtil;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 

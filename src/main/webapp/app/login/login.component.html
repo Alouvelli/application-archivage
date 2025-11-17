@@ -1,0 +1,49 @@
+<div class="auth-shell">
+  <section class="auth-card">
+    <p class="eyebrow">Groupe ISI</p>
+    <h1>Connexion</h1>
+    <p class="subtitle">Accédez à votre espace d'archivage.</p>
+
+    @if (authenticationError()) {
+      <div class="auth-alert" data-cy="loginError">
+        Identifiants incorrects. Merci de réessayer.
+      </div>
+    }
+
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <label class="visually-hidden" for="username" jhiTranslate="global.form.username.label">Nom d'utilisateur</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        formControlName="username"
+        placeholder="{{ 'global.form.username.placeholder' | translate }}"
+        autocomplete="username"
+        data-cy="username"
+      />
+
+      <label class="visually-hidden" for="password" jhiTranslate="login.form.password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="{{ 'login.form.password.placeholder' | translate }}"
+        autocomplete="current-password"
+        data-cy="password"
+      />
+
+      <label class="remember">
+        <input type="checkbox" formControlName="rememberMe" id="rememberMe" />
+        <span>Garder ma session</span>
+      </label>
+
+      <button type="submit" class="btn btn-primary" data-cy="submit" [disabled]="loginForm.invalid">Se connecter</button>
+    </form>
+
+    <div class="auth-links">
+      <a routerLink="/account/reset/request" data-cy="forgetYourPasswordSelector">Mot de passe oublié ?</a>
+      <a routerLink="/account/register">Créer un compte</a>
+    </div>
+  </section>
+</div>

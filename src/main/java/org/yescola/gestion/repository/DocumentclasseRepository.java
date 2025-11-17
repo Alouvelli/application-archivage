@@ -1,9 +1,9 @@
 package org.yescola.gestion.repository;
 
-import org.yescola.gestion.domain.Documentclasse;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.yescola.gestion.domain.Inscription;
+import org.yescola.gestion.domain.Documentclasse;
 
 import java.util.List;
 

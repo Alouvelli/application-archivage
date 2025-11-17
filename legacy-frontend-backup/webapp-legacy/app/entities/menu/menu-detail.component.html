@@ -1,0 +1,51 @@
+@if (menu) {
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="h5 mb-0">
+        {{ 'gestionEcoleApp.menu.detail.title' | translate }} #{{ menu.id }}
+      </h2>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="previousState()">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.back' | translate }}</span>
+        </button>
+        <a class="btn btn-primary btn-sm" [routerLink]="['/menu', menu.id, 'edit']">
+          <fa-icon [icon]="faPen"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.edit' | translate }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <dl class="row gy-3">
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.codeMenu' | translate }}</dt>
+        <dd class="col-sm-8">{{ menu.codeMenu }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.libelleMenu' | translate }}</dt>
+        <dd class="col-sm-8">{{ menu.libelleMenu }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.rangMenu' | translate }}</dt>
+        <dd class="col-sm-8">{{ menu.rangMenu }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.urlMenu' | translate }}</dt>
+        <dd class="col-sm-8">{{ menu.urlMenu }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.iconeMenu' | translate }}</dt>
+        <dd class="col-sm-8">{{ menu.iconeMenu }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.etatMenu' | translate }}</dt>
+        <dd class="col-sm-8">
+          <span class="badge" [class.bg-success]="menu.etatMenu === 1" [class.bg-secondary]="menu.etatMenu !== 1">
+            {{ menu.etatMenu === 1 ? (('entity.boolean.true' | translate) || 'Oui') : (('entity.boolean.false' | translate) || 'Non') }}
+          </span>
+        </dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.menu.rubrique' | translate }}</dt>
+        <dd class="col-sm-8">
+          @if (menu.rubrique) {
+            <a [routerLink]="['/rubrique', menu.rubrique!.id, 'view']">{{ menu.rubrique!.libelle ?? menu.rubrique!.id }}</a>
+          }
+        </dd>
+      </dl>
+    </div>
+  </div>
+}

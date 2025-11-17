@@ -1,9 +1,5 @@
 package org.yescola.gestion.web.rest;
 
-import org.yescola.gestion.service.AuditEventService;
-import org.yescola.gestion.web.rest.util.PaginationUtil;
-
-import io.github.jhipster.web.util.ResponseUtil;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +7,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.yescola.gestion.service.AuditEventService;
+import org.yescola.gestion.web.rest.util.PaginationUtil;
+import tech.jhipster.web.util.ResponseUtil;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

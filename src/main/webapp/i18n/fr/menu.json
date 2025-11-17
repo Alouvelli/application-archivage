@@ -1,28 +1,31 @@
 {
-    "gestionEcoleApp": {
-        "menu": {
-            "home": {
-                "title": "Menus",
-                "createLabel": "Créer un nouveau Menu",
-                "createOrEditLabel": "Créer ou éditer un Menu"
-            },
-            "created": "Un nouveau Menu a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Menu avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Menu avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Menu {{ id }} ?"
-            },
-            "detail": {
-                "title": "Menu"
-            },
-            "codeMenu": "Code Menu",
-            "libelleMenu": "Libelle Menu",
-            "rangMenu": "Rang Menu",
-            "urlMenu": "Url Menu",
-            "iconeMenu": "Icone Menu",
-            "etatMenu": "Etat Menu",
-            "profilMenu": "Profil Menu",
-            "rubrique": "Rubrique"
-        }
+  "gestionEcoleApp": {
+    "menu": {
+      "home": {
+        "title": "Menus",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Menu",
+        "createOrEditLabel": "Créer ou éditer un Menu",
+        "notFound": "Aucun Menu trouvé"
+      },
+      "created": "Un nouveau Menu a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Menu avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Menu avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Menu {{ id }} ?"
+      },
+      "detail": {
+        "title": "Menu"
+      },
+      "id": "ID",
+      "codeMenu": "Code Menu",
+      "libelleMenu": "Libelle Menu",
+      "rangMenu": "Rang Menu",
+      "urlMenu": "Url Menu",
+      "iconeMenu": "Icone Menu",
+      "etatMenu": "Etat Menu",
+      "profilMenu": "Profil Menu",
+      "rubrique": "Rubrique"
     }
+  }
 }

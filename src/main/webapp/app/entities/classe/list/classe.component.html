@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="ClasseHeading">
+    <span jhiTranslate="gestionEcoleApp.classe.home.title">Classes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.classe.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-classe"
+        [routerLink]="['/classe/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.classe.home.createLabel">Créer un nouveau Classe</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (classes().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.classe.home.notFound">Aucun Classe trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.description">Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etat">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.etat">Etat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="code">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.code">Code</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelle">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.libelle">Libelle</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="filiere.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.filiere">Filiere</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="niveau.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.classe.niveau">Niveau</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (classe of classes(); track trackId(classe)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/classe', classe.id, 'view']">{{ classe.id }}</a>
+              </td>
+              <td>{{ classe.description }}</td>
+              <td>{{ classe.etat }}</td>
+              <td>{{ classe.code }}</td>
+              <td>{{ classe.libelle }}</td>
+              <td>
+                @if (classe.filiere) {
+                  <div>
+                    <a [routerLink]="['/filiere', classe.filiere.id, 'view']">{{ classe.filiere.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (classe.niveau) {
+                  <div>
+                    <a [routerLink]="['/niveau', classe.niveau.id, 'view']">{{ classe.niveau.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/classe', classe.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/classe', classe.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(classe)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (classes().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

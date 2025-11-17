@@ -1,0 +1,4 @@
+id,date,manquant,etudiant_id,classe_id,anneescolaire_id
+1,2024-01-01,false,1,1,1
+2,2024-02-01,true,2,2,2
+3,2024-03-01,false,3,3,3

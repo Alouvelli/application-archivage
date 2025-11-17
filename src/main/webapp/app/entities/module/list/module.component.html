@@ -1,0 +1,122 @@
+<div>
+  <h2 id="page-heading" data-cy="ModuleHeading">
+    <span jhiTranslate="gestionEcoleApp.module.home.title">Modules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.module.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-module"
+        [routerLink]="['/module/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.module.home.createLabel">Créer un nouveau Module</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (modules().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.module.home.notFound">Aucun Module trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelleModule">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.module.libelleModule">Libelle Module</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="logoModule">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.module.logoModule">Logo Module</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatModule">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.module.etatModule">Etat Module</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rang">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.module.rang">Rang</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="site.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.module.site">Site</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (module of modules(); track trackId(module)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/module', module.id, 'view']">{{ module.id }}</a>
+              </td>
+              <td>{{ module.libelleModule }}</td>
+              <td>{{ module.logoModule }}</td>
+              <td>{{ module.etatModule }}</td>
+              <td>{{ module.rang }}</td>
+              <td>
+                @for (site of module.sites; track $index; let last = $last) {
+                  <span>
+                    <a class="form-control-static" [routerLink]="['/site', site.id, 'view']">{{ site.id }}</a
+                    >{{ last ? '' : ', ' }}
+                  </span>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/module', module.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/module', module.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(module)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

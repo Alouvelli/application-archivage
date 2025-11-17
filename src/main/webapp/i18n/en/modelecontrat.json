@@ -1,29 +1,33 @@
 {
-    "gestionEcoleApp": {
-        "modelecontrat": {
-            "home": {
-                "title": "Modelecontrats",
-                "createLabel": "Create a new Modelecontrat",
-                "createOrEditLabel": "Create or edit a Modelecontrat"
-            },
-            "created": "A new Modelecontrat is created with identifier {{ param }}",
-            "updated": "A Modelecontrat is updated with identifier {{ param }}",
-            "deleted": "A Modelecontrat is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Modelecontrat {{ id }}?"
-            },
-            "detail": {
-                "title": "Modelecontrat"
-            },
-            "datedeb": "Datedeb",
-            "datefin": "Datefin",
-            "duree": "Duree",
-            "annescolairedeb": "Annescolairedeb",
-            "anneescolairefin": "Anneescolairefin",
-            "code": "Code",
-            "etat": "Etat",
-            "type": "Type",
-            "cycle": "Cycle"
-        }
+  "gestionEcoleApp": {
+    "modelecontrat": {
+      "home": {
+        "title": "Modelecontrats",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Modelecontrat",
+        "createOrEditLabel": "Create or edit a Modelecontrat",
+        "notFound": "No Modelecontrats found"
+      },
+      "created": "A new Modelecontrat is created with identifier {{ param }}",
+      "updated": "A Modelecontrat is updated with identifier {{ param }}",
+      "deleted": "A Modelecontrat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Modelecontrat {{ id }}?"
+      },
+      "detail": {
+        "title": "Modelecontrat"
+      },
+      "id": "ID",
+      "datedeb": "Datedeb",
+      "datefin": "Datefin",
+      "duree": "Duree",
+      "annescolairedeb": "Annescolairedeb",
+      "anneescolairefin": "Anneescolairefin",
+      "code": "Code",
+      "etat": "Etat",
+      "type": "Type",
+      "cycle": "Cycle",
+      "contrat": "Contrat"
     }
+  }
 }

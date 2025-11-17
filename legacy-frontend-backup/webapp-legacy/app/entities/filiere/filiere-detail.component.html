@@ -1,0 +1,42 @@
+@if (filiere) {
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="h5 mb-0">
+        {{ 'gestionEcoleApp.filiere.detail.title' | translate }} #{{ filiere.id }}
+      </h2>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="previousState()">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.back' | translate }}</span>
+        </button>
+        <a class="btn btn-primary btn-sm" [routerLink]="['/filiere', filiere.id, 'edit']">
+          <fa-icon [icon]="faPen"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.edit' | translate }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <dl class="row gy-3">
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.filiere.libelle' | translate }}</dt>
+        <dd class="col-sm-8">{{ filiere.libelle }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.filiere.description' | translate }}</dt>
+        <dd class="col-sm-8">{{ filiere.description }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.filiere.etat' | translate }}</dt>
+        <dd class="col-sm-8">
+          <span class="badge" [class.bg-success]="filiere.etat" [class.bg-secondary]="!filiere.etat">
+            {{ filiere.etat ? (('entity.boolean.true' | translate) || 'Oui') : (('entity.boolean.false' | translate) || 'Non') }}
+          </span>
+        </dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.filiere.departement' | translate }}</dt>
+        <dd class="col-sm-8">
+          @if (filiere.departement) {
+            <a [routerLink]="['/departement', filiere.departement!.id, 'view']">{{ filiere.departement!.libelle }}</a>
+          }
+        </dd>
+      </dl>
+    </div>
+  </div>
+}

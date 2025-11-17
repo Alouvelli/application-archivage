@@ -1,20 +1,23 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [],
-    "fields": [
-        {
-            "fieldName": "excel",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any"
-        }
-    ],
-    "changelogDate": "20190802194931",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "documentexcel",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190802194931"
+  },
+  "changelogDate": "20190802194931",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "documentexcel",
+  "fields": [
+    {
+      "fieldName": "excel",
+      "fieldType": "AnyBlob"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Documentexcel",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": false,
+  "service": "no"
 }

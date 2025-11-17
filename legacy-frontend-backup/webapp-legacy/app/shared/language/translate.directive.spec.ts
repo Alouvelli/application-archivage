@@ -1,0 +1,37 @@
+import { AlertErrorComponent } from 'app/shared/alert/alert-error.component';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+import TranslateDirective from './translate.directive';
+
+@Component({
+  imports: [TranslateDirective, CommonModule, AlertErrorComponent],
+  template: ` <div jhiTranslate="test"></div> `
+})
+class TestTranslateDirectiveComponent {}
+
+describe('TranslateDirective Tests', () => {
+  let fixture: ComponentFixture<TestTranslateDirectiveComponent>;
+  let translateService: TranslateService;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot(), TestTranslateDirectiveComponent]
+});
+  }));
+
+  beforeEach(() => {
+    translateService = TestBed.inject(TranslateService);
+    fixture = TestBed.createComponent(TestTranslateDirectiveComponent);
+  });
+
+  it('should change HTML', () => {
+    const spy = jest.spyOn(translateService, 'get');
+
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  });
+});

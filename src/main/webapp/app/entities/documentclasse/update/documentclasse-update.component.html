@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-documentclasse-heading"
+        data-cy="DocumentclasseCreateUpdateHeading"
+        jhiTranslate="gestionEcoleApp.documentclasse.home.createOrEditLabel"
+      >
+        Créer ou éditer un Documentclasse
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.documentclasse.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let document1Ref = editForm.get('document1')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_document1" jhiTranslate="gestionEcoleApp.documentclasse.document1">Document 1</label>
+          <div>
+            @if (document1Ref.value) {
+              <img
+                [src]="'data:' + editForm.get('document1ContentType')!.value + ';base64,' + document1Ref.value"
+                style="max-height: 100px"
+                alt="documentclasse"
+              />
+            }
+            @if (document1Ref.value) {
+              <div class="form-text text-danger clearfix">
+                <span class="pull-start">{{ editForm.get('document1ContentType')!.value }}, {{ byteSize(document1Ref.value!) }}</span>
+                <button
+                  type="button"
+                  (click)="clearInputImage('document1', 'document1ContentType', 'file_document1')"
+                  class="btn btn-secondary btn-xs pull-end"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            }
+            <input
+              type="file"
+              id="file_document1"
+              data-cy="document1"
+              (change)="setFileData($event, 'document1', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="document1" id="field_document1" data-cy="document1" formControlName="document1" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="document1ContentType"
+            id="field_document1ContentType"
+            formControlName="document1ContentType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ref" jhiTranslate="gestionEcoleApp.documentclasse.ref">Ref</label>
+          <input type="text" class="form-control" name="ref" id="field_ref" data-cy="ref" formControlName="ref" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomdocument" jhiTranslate="gestionEcoleApp.documentclasse.nomdocument">Nomdocument</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomdocument"
+            id="field_nomdocument"
+            data-cy="nomdocument"
+            formControlName="nomdocument"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_classe" jhiTranslate="gestionEcoleApp.documentclasse.classe">Classe</label>
+          <select
+            class="form-control"
+            id="field_classe"
+            data-cy="classe"
+            name="classe"
+            formControlName="classe"
+            [compareWith]="compareClasse"
+          >
+            <option [ngValue]="null"></option>
+            @for (classeOption of classesSharedCollection; track $index) {
+              <option [ngValue]="classeOption">{{ classeOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_semestre" jhiTranslate="gestionEcoleApp.documentclasse.semestre">Semestre</label>
+          <select
+            class="form-control"
+            id="field_semestre"
+            data-cy="semestre"
+            name="semestre"
+            formControlName="semestre"
+            [compareWith]="compareSemestre"
+          >
+            <option [ngValue]="null"></option>
+            @for (semestreOption of semestresSharedCollection; track $index) {
+              <option [ngValue]="semestreOption">{{ semestreOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

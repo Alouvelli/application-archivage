@@ -1,23 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "niveaudocument": {
-            "home": {
-                "title": "Niveaudocuments",
-                "createLabel": "Create a new Niveaudocument",
-                "createOrEditLabel": "Create or edit a Niveaudocument"
-            },
-            "created": "A new Niveaudocument is created with identifier {{ param }}",
-            "updated": "A Niveaudocument is updated with identifier {{ param }}",
-            "deleted": "A Niveaudocument is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Niveaudocument {{ id }}?"
-            },
-            "detail": {
-                "title": "Niveaudocument"
-            },
-            "etat": "Etat",
-            "niveau": "Niveau",
-            "document": "Document"
-        }
+  "gestionEcoleApp": {
+    "niveaudocument": {
+      "home": {
+        "title": "Niveaudocuments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Niveaudocument",
+        "createOrEditLabel": "Create or edit a Niveaudocument",
+        "notFound": "No Niveaudocuments found"
+      },
+      "created": "A new Niveaudocument is created with identifier {{ param }}",
+      "updated": "A Niveaudocument is updated with identifier {{ param }}",
+      "deleted": "A Niveaudocument is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Niveaudocument {{ id }}?"
+      },
+      "detail": {
+        "title": "Niveaudocument"
+      },
+      "id": "ID",
+      "etat": "Etat",
+      "niveau": "Niveau",
+      "document": "Document"
     }
+  }
 }

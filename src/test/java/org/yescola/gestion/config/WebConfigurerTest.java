@@ -1,13 +1,12 @@
 package org.yescola.gestion.config;
 
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.config.JHipsterProperties;
-import io.github.jhipster.web.filter.CachingHttpHeadersFilter;
+import tech.jhipster.config.JHipsterConstants;
+import tech.jhipster.config.JHipsterProperties;
+import tech.jhipster.web.filter.CachingHttpHeadersFilter;
 import io.undertow.Undertow;
 import io.undertow.Undertow.Builder;
 import io.undertow.UndertowOptions;
 import org.apache.commons.io.FilenameUtils;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
@@ -19,8 +18,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.xnio.OptionMap;
 
-import javax.servlet.*;
-import java.util.*;
+import jakarta.servlet.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -46,6 +47,8 @@ public class WebConfigurerTest {
 
     private JHipsterProperties props;
 
+    private ApplicationProperties applicationProps; // AJOUT : Déclaration de ApplicationProperties
+
     @Before
     public void setup() {
         servletContext = spy(new MockServletContext());
@@ -56,8 +59,10 @@ public class WebConfigurerTest {
 
         env = new MockEnvironment();
         props = new JHipsterProperties();
+        applicationProps = new ApplicationProperties(); // AJOUT : Instanciation de ApplicationProperties
 
-        webConfigurer = new WebConfigurer(env, props);
+        // MODIFICATION : Passage de applicationProps au constructeur de WebConfigurer
+        webConfigurer = new WebConfigurer(env, props, applicationProps);
     }
 
     @Test
@@ -96,7 +101,8 @@ public class WebConfigurerTest {
 
     @Test
     public void testUndertowHttp2Enabled() {
-        props.getHttp().setVersion(JHipsterProperties.Http.Version.V_2_0);
+        // MODIFICATION : Utilisation de ApplicationProperties.Http.Version au lieu de JHipsterProperties.Http.Version
+        applicationProps.getHttp().setVersion(ApplicationProperties.Http.Version.V_2_0);
         UndertowServletWebServerFactory container = new UndertowServletWebServerFactory();
         webConfigurer.customize(container);
         Builder builder = Undertow.builder();
@@ -118,9 +124,9 @@ public class WebConfigurerTest {
             .build();
 
         mockMvc.perform(
-            options("/api/test-cors")
-                .header(HttpHeaders.ORIGIN, "other.domain.com")
-                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
+                options("/api/test-cors")
+                    .header(HttpHeaders.ORIGIN, "other.domain.com")
+                    .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST"))
             .andExpect(status().isOk())
             .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "other.domain.com"))
             .andExpect(header().string(HttpHeaders.VARY, "Origin"))
@@ -129,8 +135,8 @@ public class WebConfigurerTest {
             .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "1800"));
 
         mockMvc.perform(
-            get("/api/test-cors")
-                .header(HttpHeaders.ORIGIN, "other.domain.com"))
+                get("/api/test-cors")
+                    .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().string(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "other.domain.com"));
     }
@@ -148,8 +154,8 @@ public class WebConfigurerTest {
             .build();
 
         mockMvc.perform(
-            get("/test/test-cors")
-                .header(HttpHeaders.ORIGIN, "other.domain.com"))
+                get("/test/test-cors")
+                    .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }
@@ -163,8 +169,8 @@ public class WebConfigurerTest {
             .build();
 
         mockMvc.perform(
-            get("/api/test-cors")
-                .header(HttpHeaders.ORIGIN, "other.domain.com"))
+                get("/api/test-cors")
+                    .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }
@@ -178,8 +184,8 @@ public class WebConfigurerTest {
             .build();
 
         mockMvc.perform(
-            get("/api/test-cors")
-                .header(HttpHeaders.ORIGIN, "other.domain.com"))
+                get("/api/test-cors")
+                    .header(HttpHeaders.ORIGIN, "other.domain.com"))
             .andExpect(status().isOk())
             .andExpect(header().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN));
     }

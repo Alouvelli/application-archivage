@@ -1,26 +1,29 @@
 {
-    "gestionEcoleApp": {
-        "inscription": {
-            "home": {
-                "title": "Inscriptions",
-                "createLabel": "Create a new Inscription",
-                "createOrEditLabel": "Create or edit a Inscription"
-            },
-            "created": "A new Inscription is created with identifier {{ param }}",
-            "updated": "A Inscription is updated with identifier {{ param }}",
-            "deleted": "A Inscription is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Inscription {{ id }}?"
-            },
-            "detail": {
-                "title": "Inscription"
-            },
-            "date": "Date",
-            "manquant": "Manquant",
-            "etudiant": "Etudiant",
-            "classe": "Classe",
-            "anneescolaire": "Anneescolaire",
-            "document": "Document"
-        }
+  "gestionEcoleApp": {
+    "inscription": {
+      "home": {
+        "title": "Inscriptions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Inscription",
+        "createOrEditLabel": "Create or edit a Inscription",
+        "notFound": "No Inscriptions found"
+      },
+      "created": "A new Inscription is created with identifier {{ param }}",
+      "updated": "A Inscription is updated with identifier {{ param }}",
+      "deleted": "A Inscription is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Inscription {{ id }}?"
+      },
+      "detail": {
+        "title": "Inscription"
+      },
+      "id": "ID",
+      "date": "Date",
+      "manquant": "Manquant",
+      "etudiant": "Etudiant",
+      "classe": "Classe",
+      "anneescolaire": "Anneescolaire",
+      "document": "Document"
     }
+  }
 }

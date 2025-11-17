@@ -1,24 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "filiere": {
-            "home": {
-                "title": "Filieres",
-                "createLabel": "Créer un nouveau Filiere",
-                "createOrEditLabel": "Créer ou éditer un Filiere"
-            },
-            "created": "Un nouveau Filiere a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Filiere avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Filiere avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Filiere {{ id }} ?"
-            },
-            "detail": {
-                "title": "Filiere"
-            },
-            "libelle": "Libelle",
-            "description": "Description",
-            "etat": "Etat",
-            "departement": "Departement"
-        }
+  "gestionEcoleApp": {
+    "filiere": {
+      "home": {
+        "title": "Filieres",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Filiere",
+        "createOrEditLabel": "Créer ou éditer un Filiere",
+        "notFound": "Aucun Filiere trouvé"
+      },
+      "created": "Un nouveau Filiere a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Filiere avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Filiere avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Filiere {{ id }} ?"
+      },
+      "detail": {
+        "title": "Filiere"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "description": "Description",
+      "etat": "Etat",
+      "departement": "Departement",
+      "classe": "Classe"
     }
+  }
 }

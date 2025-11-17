@@ -1,0 +1,212 @@
+<div>
+  <h2 id="page-heading" data-cy="EcoleHeading">
+    <span jhiTranslate="gestionEcoleApp.ecole.home.title">Ecoles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.ecole.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ecole"
+        [routerLink]="['/ecole/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.ecole.home.createLabel">Créer un nouveau Ecole</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (ecoles().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.ecole.home.notFound">Aucun Ecole trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.codeEcole">Code Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="logoEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.logoEcole">Logo Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enteteEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.enteteEcole">Entete Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="basPageEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.basPageEcole">Bas Page Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nineaEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.nineaEcole">Ninea Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="adresseEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.adresseEcole">Adresse Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telephoneEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.telephoneEcole">Telephone Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="emailEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.emailEcole">Email Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sigleEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.sigleEcole">Sigle Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="faxEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.faxEcole">Fax Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatEcole">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.etatEcole">Etat Ecole</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="encours">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.encours">Encours</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rang">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.rang">Rang</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="application.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.ecole.application">Application</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ecole of ecoles(); track trackId(ecole)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/ecole', ecole.id, 'view']">{{ ecole.id }}</a>
+              </td>
+              <td>{{ ecole.codeEcole }}</td>
+              <td>{{ ecole.logoEcole }}</td>
+              <td>{{ ecole.enteteEcole }}</td>
+              <td>{{ ecole.basPageEcole }}</td>
+              <td>{{ ecole.nineaEcole }}</td>
+              <td>{{ ecole.adresseEcole }}</td>
+              <td>{{ ecole.telephoneEcole }}</td>
+              <td>{{ ecole.emailEcole }}</td>
+              <td>{{ ecole.sigleEcole }}</td>
+              <td>{{ ecole.faxEcole }}</td>
+              <td>{{ ecole.etatEcole }}</td>
+              <td>{{ ecole.encours }}</td>
+              <td>{{ ecole.rang }}</td>
+              <td>
+                @if (ecole.application) {
+                  <div>
+                    <a [routerLink]="['/application', ecole.application.id, 'view']">{{ ecole.application.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/ecole', ecole.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/ecole', ecole.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(ecole)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (ecoles().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

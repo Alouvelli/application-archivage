@@ -1,22 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "periode": {
-            "home": {
-                "title": "Periodes",
-                "createLabel": "Create a new Periode",
-                "createOrEditLabel": "Create or edit a Periode"
-            },
-            "created": "A new Periode is created with identifier {{ param }}",
-            "updated": "A Periode is updated with identifier {{ param }}",
-            "deleted": "A Periode is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Periode {{ id }}?"
-            },
-            "detail": {
-                "title": "Periode"
-            },
-            "libelle": "Libelle",
-            "etat": "Etat"
-        }
+  "gestionEcoleApp": {
+    "periode": {
+      "home": {
+        "title": "Periodes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Periode",
+        "createOrEditLabel": "Create or edit a Periode",
+        "notFound": "No Periodes found"
+      },
+      "created": "A new Periode is created with identifier {{ param }}",
+      "updated": "A Periode is updated with identifier {{ param }}",
+      "deleted": "A Periode is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Periode {{ id }}?"
+      },
+      "detail": {
+        "title": "Periode"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "etat": "Etat",
+      "cycle": "Cycle"
     }
+  }
 }

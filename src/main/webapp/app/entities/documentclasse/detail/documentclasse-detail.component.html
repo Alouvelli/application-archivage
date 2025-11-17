@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (documentclasse(); as documentclasseRef) {
+      <div>
+        <h2 data-cy="documentclasseDetailsHeading">
+          <span jhiTranslate="gestionEcoleApp.documentclasse.detail.title">Documentclasse</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ documentclasseRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentclasse.document1">Document 1</span></dt>
+          <dd>
+            @if (documentclasseRef.document1) {
+              <div>
+                <a (click)="openFile(documentclasseRef.document1 ?? '', documentclasseRef.document1ContentType)">
+                  <img
+                    [src]="'data:' + documentclasseRef.document1ContentType + ';base64,' + documentclasseRef.document1"
+                    style="max-width: 100%"
+                    alt="documentclasse"
+                  />
+                </a>
+                {{ documentclasseRef.document1ContentType }}, {{ byteSize(documentclasseRef.document1 ?? '') }}
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentclasse.ref">Ref</span></dt>
+          <dd>
+            <span>{{ documentclasseRef.ref }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentclasse.nomdocument">Nomdocument</span></dt>
+          <dd>
+            <span>{{ documentclasseRef.nomdocument }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentclasse.classe">Classe</span></dt>
+          <dd>
+            @if (documentclasse()!.classe) {
+              <div>
+                <a [routerLink]="['/classe', documentclasse()!.classe?.id, 'view']">{{ documentclasseRef.classe?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.documentclasse.semestre">Semestre</span></dt>
+          <dd>
+            @if (documentclasse()!.semestre) {
+              <div>
+                <a [routerLink]="['/semestre', documentclasse()!.semestre?.id, 'view']">{{ documentclasseRef.semestre?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/documentclasse', documentclasseRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <form [formGroup]="editForm" novalidate (ngSubmit)="save()">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+        <h2 id="jhi-employe-heading" class="h4 mb-0">
+          {{ 'gestionEcoleApp.employe.home.createOrEditLabel' | translate }}
+        </h2>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="save-entity" [disabled]="editForm.invalid || isSaving">
+            <fa-icon [icon]="faSave"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.save' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      @if (editForm.get('id')?.value !== null) {
+        <div class="mb-3">
+          <label for="field_id" class="form-label text-uppercase small text-muted">{{ 'global.field.id' | translate }}</label>
+          <input class="form-control" id="field_id" formControlName="id" readonly />
+        </div>
+      }
+
+      <div class="mb-3">
+        <label for="field_telUtilisateur" class="form-label">{{ 'gestionEcoleApp.employe.telUtilisateur' | translate }}</label>
+        <input id="field_telUtilisateur" type="text" class="form-control" formControlName="telUtilisateur" />
+        @if (editForm.get('telUtilisateur')?.invalid && (editForm.get('telUtilisateur')?.dirty || editForm.get('telUtilisateur')?.touched)) {
+          <div class="invalid-feedback d-block">
+            {{ 'entity.validation.required' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="field_etatUtilisateur" class="form-label">{{ 'gestionEcoleApp.employe.etatUtilisateur' | translate }}</label>
+        <input id="field_etatUtilisateur" type="number" class="form-control" formControlName="etatUtilisateur" />
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="field_user" class="form-label">{{ 'gestionEcoleApp.employe.user' | translate }}</label>
+          <select id="field_user" class="form-select" formControlName="userId">
+            <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+            @for (user of users; track user.id) {
+              <option [ngValue]="user.id">{{ user.login ?? user.id }}</option>
+            }
+          </select>
+          @if (editForm.get('userId')?.invalid && (editForm.get('userId')?.dirty || editForm.get('userId')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="col-md-6">
+          <label for="field_profil" class="form-label">{{ 'gestionEcoleApp.employe.profil' | translate }}</label>
+          <select id="field_profil" class="form-select" formControlName="profilId">
+            <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+            @for (profil of profils; track profil.id) {
+              <option [ngValue]="profil.id">{{ profil.libelle ?? profil.id }}</option>
+            }
+          </select>
+          @if (editForm.get('profilId')?.invalid && (editForm.get('profilId')?.dirty || editForm.get('profilId')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

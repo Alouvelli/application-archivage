@@ -1,26 +1,33 @@
 {
-    "gestionEcoleApp": {
-        "cycle": {
-            "home": {
-                "title": "Cycles",
-                "createLabel": "Créer un nouveau Cycle",
-                "createOrEditLabel": "Créer ou éditer un Cycle"
-            },
-            "created": "Un nouveau Cycle a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Cycle avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Cycle avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Cycle {{ id }} ?"
-            },
-            "detail": {
-                "title": "Cycle"
-            },
-            "libelle": "Libelle",
-            "description": "Description",
-            "etat": "Etat",
-            "periode": "Periode",
-            "niveau": "Niveau",
-            "document": "Document"
-        }
+  "gestionEcoleApp": {
+    "cycle": {
+      "home": {
+        "title": "Cycles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cycle",
+        "createOrEditLabel": "Créer ou éditer un Cycle",
+        "notFound": "Aucun Cycle trouvé"
+      },
+      "created": "Un nouveau Cycle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cycle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cycle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Cycle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cycle"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "description": "Description",
+      "etat": "Etat",
+      "periode": "Periode",
+      "niveau": "Niveau",
+      "document": "Document",
+      "serie": "Serie",
+      "discipline": "Discipline",
+      "matiere": "Matiere",
+      "modelecontrat": "Modelecontrat"
     }
+  }
 }

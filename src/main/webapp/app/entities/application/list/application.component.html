@@ -1,0 +1,175 @@
+<div>
+  <h2 id="page-heading" data-cy="ApplicationHeading">
+    <span jhiTranslate="gestionEcoleApp.application.home.title">Applications</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.application.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-application"
+        [routerLink]="['/application/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.application.home.createLabel">Créer un nouveau Application</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (applications().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.application.home.notFound">Aucun Application trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nomApplication">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.nomApplication">Nom Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="versionApplication">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.versionApplication">Version Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="logoApplication">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.logoApplication">Logo Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coutApplication">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.coutApplication">Cout Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateVente">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.dateVente">Date Vente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maintenance">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.maintenance">Maintenance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contratMaintenance">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.contratMaintenance">Contrat Maintenance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDebut">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.dateDebut">Date Debut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateFin">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.dateFin">Date Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatApplication">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.application.etatApplication">Etat Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (application of applications(); track trackId(application)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/application', application.id, 'view']">{{ application.id }}</a>
+              </td>
+              <td>{{ application.nomApplication }}</td>
+              <td>{{ application.versionApplication }}</td>
+              <td>{{ application.logoApplication }}</td>
+              <td>{{ application.coutApplication }}</td>
+              <td>{{ application.dateVente | formatMediumDate }}</td>
+              <td>{{ application.maintenance }}</td>
+              <td>{{ application.contratMaintenance }}</td>
+              <td>{{ application.dateDebut | formatMediumDate }}</td>
+              <td>{{ application.dateFin | formatMediumDate }}</td>
+              <td>{{ application.etatApplication }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/application', application.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/application', application.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(application)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (applications().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

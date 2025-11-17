@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (filiere(); as filiereRef) {
+      <div>
+        <h2 data-cy="filiereDetailsHeading"><span jhiTranslate="gestionEcoleApp.filiere.detail.title">Filiere</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ filiereRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.filiere.libelle">Libelle</span></dt>
+          <dd>
+            <span>{{ filiereRef.libelle }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.filiere.description">Description</span></dt>
+          <dd>
+            <span>{{ filiereRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.filiere.etat">Etat</span></dt>
+          <dd>
+            <span>{{ filiereRef.etat }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.filiere.departement">Departement</span></dt>
+          <dd>
+            @if (filiere()!.departement) {
+              <div>
+                <a [routerLink]="['/departement', filiere()!.departement?.id, 'view']">{{ filiereRef.departement?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/filiere', filiereRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

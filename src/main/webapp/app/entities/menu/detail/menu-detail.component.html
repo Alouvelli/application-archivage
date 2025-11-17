@@ -1,0 +1,55 @@
+<div class="entity-detail">
+  @if (menu(); as menuRef) {
+    <section class="entity-card" data-cy="menuDetailsHeading">
+      <header>
+        <p class="eyebrow" jhiTranslate="gestionEcoleApp.menu.detail.title">Menu</p>
+        <h1>{{ menuRef.libelleMenu ?? ('gestionEcoleApp.menu.codeMenu' | translate) }}</h1>
+        <p class="subtitle">ID {{ menuRef.id }}</p>
+      </header>
+
+      <dl>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.codeMenu">Code</dt>
+          <dd>{{ menuRef.codeMenu }}</dd>
+        </div>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.rangMenu">Rang</dt>
+          <dd>{{ menuRef.rangMenu }}</dd>
+        </div>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.urlMenu">URL</dt>
+          <dd class="truncate">{{ menuRef.urlMenu }}</dd>
+        </div>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.iconeMenu">Icône</dt>
+          <dd>{{ menuRef.iconeMenu }}</dd>
+        </div>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.etatMenu">Etat</dt>
+          <dd>{{ menuRef.etatMenu }}</dd>
+        </div>
+        <div>
+          <dt jhiTranslate="gestionEcoleApp.menu.rubrique">Rubrique</dt>
+          <dd>
+            @if (menuRef.rubrique) {
+              <a [routerLink]="['/rubrique', menuRef.rubrique.id, 'view']">{{ menuRef.rubrique.id }}</a>
+            } @else {
+              —
+            }
+          </dd>
+        </div>
+      </dl>
+
+      <div class="card-actions">
+        <button type="button" class="btn btn-ghost" (click)="previousState()" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>
+          <span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+        <a class="btn btn-primary" [routerLink]="['/menu', menuRef.id, 'edit']">
+          <fa-icon icon="pencil-alt"></fa-icon>
+          <span jhiTranslate="entity.action.edit">Editer</span>
+        </a>
+      </div>
+    </section>
+  }
+</div>

@@ -1,25 +1,31 @@
 {
-    "gestionEcoleApp": {
-        "profil": {
-            "home": {
-                "title": "Profils",
-                "createLabel": "Create a new Profil",
-                "createOrEditLabel": "Create or edit a Profil"
-            },
-            "created": "A new Profil is created with identifier {{ param }}",
-            "updated": "A Profil is updated with identifier {{ param }}",
-            "deleted": "A Profil is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Profil {{ id }}?"
-            },
-            "detail": {
-                "title": "Profil"
-            },
-            "etatProfil": "Etat Profil",
-            "libelleProfil": "Libelle Profil",
-            "ecole": "Ecole",
-            "site": "Site",
-            "employe": "Employe"
-        }
+  "gestionEcoleApp": {
+    "profil": {
+      "home": {
+        "title": "Profils",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Profil",
+        "createOrEditLabel": "Create or edit a Profil",
+        "notFound": "No Profils found"
+      },
+      "created": "A new Profil is created with identifier {{ param }}",
+      "updated": "A Profil is updated with identifier {{ param }}",
+      "deleted": "A Profil is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Profil {{ id }}?"
+      },
+      "detail": {
+        "title": "Profil"
+      },
+      "id": "ID",
+      "etatProfil": "Etat Profil",
+      "libelleProfil": "Libelle Profil",
+      "ecole": "Ecole",
+      "site": "Site",
+      "employe": "Employe",
+      "profilMenu": "Profil Menu",
+      "rubriqueProfil": "Rubrique Profil",
+      "profilModule": "Profil Module"
     }
+  }
 }

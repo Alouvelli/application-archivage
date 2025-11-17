@@ -1,12 +1,13 @@
 package org.yescola.gestion.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Persist AuditEvent managed by the Spring Boot actuator.
@@ -36,7 +37,7 @@ public class PersistentAuditEvent implements Serializable {
 
     @ElementCollection
     @MapKeyColumn(name = "name")
-    @Column(name = "value")
+    @Column(name = "event_value")
     @CollectionTable(name = "jhi_persistent_audit_evt_data", joinColumns=@JoinColumn(name="event_id"))
     private Map<String, String> data = new HashMap<>();
 

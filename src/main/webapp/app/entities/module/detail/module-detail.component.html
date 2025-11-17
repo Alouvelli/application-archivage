@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (module(); as moduleRef) {
+      <div>
+        <h2 data-cy="moduleDetailsHeading"><span jhiTranslate="gestionEcoleApp.module.detail.title">Module</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ moduleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.module.libelleModule">Libelle Module</span></dt>
+          <dd>
+            <span>{{ moduleRef.libelleModule }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.module.logoModule">Logo Module</span></dt>
+          <dd>
+            <span>{{ moduleRef.logoModule }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.module.etatModule">Etat Module</span></dt>
+          <dd>
+            <span>{{ moduleRef.etatModule }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.module.rang">Rang</span></dt>
+          <dd>
+            <span>{{ moduleRef.rang }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.module.site">Site</span></dt>
+          <dd>
+            @for (site of moduleRef.sites; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/site', site.id, 'view']">{{ site?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/module', moduleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

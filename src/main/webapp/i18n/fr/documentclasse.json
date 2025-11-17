@@ -1,25 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "documentclasse": {
-            "home": {
-                "title": "Documentclasses",
-                "createLabel": "Créer un nouveau Documentclasse",
-                "createOrEditLabel": "Créer ou éditer un Documentclasse"
-            },
-            "created": "Un nouveau Documentclasse a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Documentclasse avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Documentclasse avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Documentclasse {{ id }} ?"
-            },
-            "detail": {
-                "title": "Documentclasse"
-            },
-            "document1": "Document 1",
-            "ref": "Ref",
-            "nomdocument": "Nomdocument",
-            "classe": "Classe",
-            "semestre": "Semestre"
-        }
+  "gestionEcoleApp": {
+    "documentclasse": {
+      "home": {
+        "title": "Documentclasses",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Documentclasse",
+        "createOrEditLabel": "Créer ou éditer un Documentclasse",
+        "notFound": "Aucun Documentclasse trouvé"
+      },
+      "created": "Un nouveau Documentclasse a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Documentclasse avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Documentclasse avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Documentclasse {{ id }} ?"
+      },
+      "detail": {
+        "title": "Documentclasse"
+      },
+      "id": "ID",
+      "document1": "Document 1",
+      "ref": "Ref",
+      "nomdocument": "Nomdocument",
+      "classe": "Classe",
+      "semestre": "Semestre"
     }
+  }
 }

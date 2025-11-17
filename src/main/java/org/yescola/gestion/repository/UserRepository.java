@@ -1,24 +1,18 @@
 package org.yescola.gestion.repository;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.yescola.gestion.domain.Employe;
-import org.yescola.gestion.domain.Profil;
-import org.yescola.gestion.domain.User;
-import org.yescola.gestion.domain.SiteProfil;
-import org.yescola.gestion.domain.ProfilModule;
-import org.yescola.gestion.domain.ProfilMenu;
-import org.yescola.gestion.domain.RubriqueProfil;
-
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.yescola.gestion.domain.*;
+
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import java.time.Instant;
 
 /**
  * Spring Data JPA repository for the User entity.
@@ -76,6 +70,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select profilmenu from ProfilMenu profilmenu where profilmenu.rubriqueProfil.id = :id ")
     List<ProfilMenu> getProfilMenuX(@Param("id")  Long id);
+
 
 
 }

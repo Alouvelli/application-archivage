@@ -1,21 +1,24 @@
 {
-    "gestionEcoleApp": {
-        "documentexcel": {
-            "home": {
-                "title": "Documentexcels",
-                "createLabel": "Créer un nouveau Documentexcel",
-                "createOrEditLabel": "Créer ou éditer un Documentexcel"
-            },
-            "created": "Un nouveau Documentexcel a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Documentexcel avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Documentexcel avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Documentexcel {{ id }} ?"
-            },
-            "detail": {
-                "title": "Documentexcel"
-            },
-            "excel": "Excel"
-        }
+  "gestionEcoleApp": {
+    "documentexcel": {
+      "home": {
+        "title": "Documentexcels",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Documentexcel",
+        "createOrEditLabel": "Créer ou éditer un Documentexcel",
+        "notFound": "Aucun Documentexcel trouvé"
+      },
+      "created": "Un nouveau Documentexcel a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Documentexcel avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Documentexcel avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Documentexcel {{ id }} ?"
+      },
+      "detail": {
+        "title": "Documentexcel"
+      },
+      "id": "ID",
+      "excel": "Excel"
     }
+  }
 }

@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (profil(); as profilRef) {
+      <div>
+        <h2 data-cy="profilDetailsHeading"><span jhiTranslate="gestionEcoleApp.profil.detail.title">Profil</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ profilRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profil.etatProfil">Etat Profil</span></dt>
+          <dd>
+            <span>{{ profilRef.etatProfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profil.libelleProfil">Libelle Profil</span></dt>
+          <dd>
+            <span>{{ profilRef.libelleProfil }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profil.ecole">Ecole</span></dt>
+          <dd>
+            @if (profil()!.ecole) {
+              <div>
+                <a [routerLink]="['/ecole', profil()!.ecole?.id, 'view']">{{ profilRef.ecole?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.profil.site">Site</span></dt>
+          <dd>
+            @if (profil()!.site) {
+              <div>
+                <a [routerLink]="['/site', profil()!.site?.id, 'view']">{{ profilRef.site?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/profil', profilRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

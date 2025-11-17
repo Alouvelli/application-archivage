@@ -1,0 +1,123 @@
+<div>
+  <h2 id="page-heading" data-cy="ProfilModuleHeading">
+    <span jhiTranslate="gestionEcoleApp.profilModule.home.title">ProfilModules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.profilModule.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-profil-module"
+        [routerLink]="['/profil-module/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.profilModule.home.createLabel">Créer un nouveau Profil Module</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (profilModules().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.profilModule.home.notFound">Aucun Profil Module trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="encours">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.profilModule.encours">Encours</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="profil.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.profilModule.profil">Profil</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="module.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.profilModule.module">Module</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="siteProfil.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.profilModule.siteProfil">Site Profil</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (profilModule of profilModules(); track trackId(profilModule)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/profil-module', profilModule.id, 'view']">{{ profilModule.id }}</a>
+              </td>
+              <td>{{ profilModule.encours }}</td>
+              <td>
+                @if (profilModule.profil) {
+                  <div>
+                    <a [routerLink]="['/profil', profilModule.profil.id, 'view']">{{ profilModule.profil.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (profilModule.module) {
+                  <div>
+                    <a [routerLink]="['/module', profilModule.module.id, 'view']">{{ profilModule.module.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (profilModule.siteProfil) {
+                  <div>
+                    <a [routerLink]="['/site-profil', profilModule.siteProfil.id, 'view']">{{ profilModule.siteProfil.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/profil-module', profilModule.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/profil-module', profilModule.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(profilModule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

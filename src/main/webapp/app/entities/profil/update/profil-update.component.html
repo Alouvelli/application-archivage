@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-profil-heading" data-cy="ProfilCreateUpdateHeading" jhiTranslate="gestionEcoleApp.profil.home.createOrEditLabel">
+        Créer ou éditer un Profil
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.profil.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etatProfil" jhiTranslate="gestionEcoleApp.profil.etatProfil">Etat Profil</label>
+          <input
+            type="number"
+            class="form-control"
+            name="etatProfil"
+            id="field_etatProfil"
+            data-cy="etatProfil"
+            formControlName="etatProfil"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_libelleProfil" jhiTranslate="gestionEcoleApp.profil.libelleProfil">Libelle Profil</label>
+          <input
+            type="text"
+            class="form-control"
+            name="libelleProfil"
+            id="field_libelleProfil"
+            data-cy="libelleProfil"
+            formControlName="libelleProfil"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ecole" jhiTranslate="gestionEcoleApp.profil.ecole">Ecole</label>
+          <select class="form-control" id="field_ecole" data-cy="ecole" name="ecole" formControlName="ecole" [compareWith]="compareEcole">
+            <option [ngValue]="null"></option>
+            @for (ecoleOption of ecolesSharedCollection; track $index) {
+              <option [ngValue]="ecoleOption">{{ ecoleOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_site" jhiTranslate="gestionEcoleApp.profil.site">Site</label>
+          <select class="form-control" id="field_site" data-cy="site" name="site" formControlName="site" [compareWith]="compareSite">
+            <option [ngValue]="null"></option>
+            @for (siteOption of sitesSharedCollection; track $index) {
+              <option [ngValue]="siteOption">{{ siteOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

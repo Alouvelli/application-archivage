@@ -1,0 +1,36 @@
+{
+    "gestionEcoleApp": {
+        "ecole": {
+            "home": {
+                "title": "Ecoles",
+                "createLabel": "Create a new Ecole",
+                "createOrEditLabel": "Create or edit a Ecole"
+            },
+            "created": "A new Ecole is created with identifier {{ param }}",
+            "updated": "A Ecole is updated with identifier {{ param }}",
+            "deleted": "A Ecole is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ecole {{ id }}?"
+            },
+            "detail": {
+                "title": "Ecole"
+            },
+            "codeEcole": "Code Ecole",
+            "logoEcole": "Logo Ecole",
+            "enteteEcole": "Entete Ecole",
+            "basPageEcole": "Bas Page Ecole",
+            "nineaEcole": "Ninea Ecole",
+            "adresseEcole": "Adresse Ecole",
+            "telephoneEcole": "Telephone Ecole",
+            "emailEcole": "Email Ecole",
+            "sigleEcole": "Sigle Ecole",
+            "faxEcole": "Fax Ecole",
+            "etatEcole": "Etat Ecole",
+            "encours": "Encours",
+            "rang": "Rang",
+            "application": "Application",
+            "site": "Site",
+            "profil": "Profil"
+        }
+    }
+}

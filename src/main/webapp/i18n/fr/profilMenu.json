@@ -1,28 +1,31 @@
 {
-    "gestionEcoleApp": {
-        "profilMenu": {
-            "home": {
-                "title": "ProfilMenus",
-                "createLabel": "Créer un nouveau Profil Menu",
-                "createOrEditLabel": "Créer ou éditer un Profil Menu"
-            },
-            "created": "Un nouveau Profil Menu a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Profil Menu avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Profil Menu avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Profil Menu {{ id }} ?"
-            },
-            "detail": {
-                "title": "Profil Menu"
-            },
-            "voir": "Voir",
-            "ajouter": "Ajouter",
-            "supprimer": "Supprimer",
-            "modifier": "Modifier",
-            "imprimer": "Imprimer",
-            "profil": "Profil",
-            "menu": "Menu",
-            "rubriqueProfil": "Rubrique Profil"
-        }
+  "gestionEcoleApp": {
+    "profilMenu": {
+      "home": {
+        "title": "ProfilMenus",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Profil Menu",
+        "createOrEditLabel": "Créer ou éditer un Profil Menu",
+        "notFound": "Aucun Profil Menu trouvé"
+      },
+      "created": "Un nouveau Profil Menu a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Profil Menu avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Profil Menu avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Profil Menu {{ id }} ?"
+      },
+      "detail": {
+        "title": "Profil Menu"
+      },
+      "id": "ID",
+      "voir": "Voir",
+      "ajouter": "Ajouter",
+      "supprimer": "Supprimer",
+      "modifier": "Modifier",
+      "imprimer": "Imprimer",
+      "profil": "Profil",
+      "menu": "Menu",
+      "rubriqueProfil": "Rubrique Profil"
     }
+  }
 }

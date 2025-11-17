@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (rubrique(); as rubriqueRef) {
+      <div>
+        <h2 data-cy="rubriqueDetailsHeading"><span jhiTranslate="gestionEcoleApp.rubrique.detail.title">Rubrique</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.libelleRubrique">Libelle Rubrique</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.libelleRubrique }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.rangRubrique">Rang Rubrique</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.rangRubrique }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.iconeRubrique">Icone Rubrique</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.iconeRubrique }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.etatRubrique">Etat Rubrique</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.etatRubrique }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.rang">Rang</span></dt>
+          <dd>
+            <span>{{ rubriqueRef.rang }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.rubrique.module">Module</span></dt>
+          <dd>
+            @if (rubrique()!.module) {
+              <div>
+                <a [routerLink]="['/module', rubrique()!.module?.id, 'view']">{{ rubriqueRef.module?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/rubrique', rubriqueRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, computed, effect, inject, input } from '@angular/core';
+
 import { AccountService } from 'app/core/auth/account.service';
 
 /**
@@ -13,30 +14,25 @@ import { AccountService } from 'app/core/auth/account.service';
  * ```
  */
 @Directive({
-    selector: '[jhiHasAnyAuthority]'
+  selector: '[jhiHasAnyAuthority]',
 })
-export class HasAnyAuthorityDirective {
-    private authorities: string[];
+export default class HasAnyAuthorityDirective {
+  public authorities = input<string | string[]>([], { alias: 'jhiHasAnyAuthority' });
 
-    constructor(
-        private accountService: AccountService,
-        private templateRef: TemplateRef<any>,
-        private viewContainerRef: ViewContainerRef
-    ) {}
+  private readonly templateRef = inject(TemplateRef<any>);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
-    @Input()
-    set jhiHasAnyAuthority(value: string | string[]) {
-        this.authorities = typeof value === 'string' ? [value] : value;
-        this.updateView();
-        // Get notified each time authentication state changes.
-        this.accountService.getAuthenticationState().subscribe(identity => this.updateView());
-    }
+  constructor() {
+    const accountService = inject(AccountService);
+    const currentAccount = accountService.trackCurrentAccount();
+    const hasPermission = computed(() => currentAccount()?.authorities && accountService.hasAnyAuthority(this.authorities()));
 
-    private updateView(): void {
-        const hasAnyAuthority = this.accountService.hasAnyAuthority(this.authorities);
+    effect(() => {
+      if (hasPermission()) {
+        this.viewContainerRef.createEmbeddedView(this.templateRef);
+      } else {
         this.viewContainerRef.clear();
-        if (hasAnyAuthority) {
-            this.viewContainerRef.createEmbeddedView(this.templateRef);
-        }
-    }
+      }
+    });
+  }
 }

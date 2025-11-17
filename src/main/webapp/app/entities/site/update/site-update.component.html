@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-site-heading" data-cy="SiteCreateUpdateHeading" jhiTranslate="gestionEcoleApp.site.home.createOrEditLabel">
+        Créer ou éditer un Site
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.site.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codeSite" jhiTranslate="gestionEcoleApp.site.codeSite">Code Site</label>
+          <input type="text" class="form-control" name="codeSite" id="field_codeSite" data-cy="codeSite" formControlName="codeSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_logoSite" jhiTranslate="gestionEcoleApp.site.logoSite">Logo Site</label>
+          <input type="text" class="form-control" name="logoSite" id="field_logoSite" data-cy="logoSite" formControlName="logoSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enteteSite" jhiTranslate="gestionEcoleApp.site.enteteSite">Entete Site</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enteteSite"
+            id="field_enteteSite"
+            data-cy="enteteSite"
+            formControlName="enteteSite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_basPageSite" jhiTranslate="gestionEcoleApp.site.basPageSite">Bas Page Site</label>
+          <input
+            type="text"
+            class="form-control"
+            name="basPageSite"
+            id="field_basPageSite"
+            data-cy="basPageSite"
+            formControlName="basPageSite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nineaSite" jhiTranslate="gestionEcoleApp.site.nineaSite">Ninea Site</label>
+          <input type="text" class="form-control" name="nineaSite" id="field_nineaSite" data-cy="nineaSite" formControlName="nineaSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresseSite" jhiTranslate="gestionEcoleApp.site.adresseSite">Adresse Site</label>
+          <input
+            type="text"
+            class="form-control"
+            name="adresseSite"
+            id="field_adresseSite"
+            data-cy="adresseSite"
+            formControlName="adresseSite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telephone" jhiTranslate="gestionEcoleApp.site.telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_emailSite" jhiTranslate="gestionEcoleApp.site.emailSite">Email Site</label>
+          <input type="text" class="form-control" name="emailSite" id="field_emailSite" data-cy="emailSite" formControlName="emailSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sigleSite" jhiTranslate="gestionEcoleApp.site.sigleSite">Sigle Site</label>
+          <input type="text" class="form-control" name="sigleSite" id="field_sigleSite" data-cy="sigleSite" formControlName="sigleSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_faxEcole" jhiTranslate="gestionEcoleApp.site.faxEcole">Fax Ecole</label>
+          <input type="text" class="form-control" name="faxEcole" id="field_faxEcole" data-cy="faxEcole" formControlName="faxEcole" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etatSite" jhiTranslate="gestionEcoleApp.site.etatSite">Etat Site</label>
+          <input type="number" class="form-control" name="etatSite" id="field_etatSite" data-cy="etatSite" formControlName="etatSite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_encours" jhiTranslate="gestionEcoleApp.site.encours">Encours</label>
+          <input type="number" class="form-control" name="encours" id="field_encours" data-cy="encours" formControlName="encours" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rang" jhiTranslate="gestionEcoleApp.site.rang">Rang</label>
+          <input type="number" class="form-control" name="rang" id="field_rang" data-cy="rang" formControlName="rang" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ecole" jhiTranslate="gestionEcoleApp.site.ecole">Ecole</label>
+          <select class="form-control" id="field_ecole" data-cy="ecole" name="ecole" formControlName="ecole" [compareWith]="compareEcole">
+            <option [ngValue]="null"></option>
+            @for (ecoleOption of ecolesSharedCollection; track $index) {
+              <option [ngValue]="ecoleOption">{{ ecoleOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_modules" jhiTranslate="gestionEcoleApp.site.module">Module</label>
+          <select
+            class="form-control"
+            id="field_modules"
+            data-cy="module"
+            multiple
+            name="modules"
+            formControlName="modules"
+            [compareWith]="compareModule"
+          >
+            @for (moduleOption of modulesSharedCollection; track $index) {
+              <option [ngValue]="moduleOption">{{ moduleOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

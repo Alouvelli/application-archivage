@@ -1,0 +1,187 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-application-heading"
+        data-cy="ApplicationCreateUpdateHeading"
+        jhiTranslate="gestionEcoleApp.application.home.createOrEditLabel"
+      >
+        Créer ou éditer un Application
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.application.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nomApplication" jhiTranslate="gestionEcoleApp.application.nomApplication"
+            >Nom Application</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nomApplication"
+            id="field_nomApplication"
+            data-cy="nomApplication"
+            formControlName="nomApplication"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_versionApplication" jhiTranslate="gestionEcoleApp.application.versionApplication"
+            >Version Application</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="versionApplication"
+            id="field_versionApplication"
+            data-cy="versionApplication"
+            formControlName="versionApplication"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_logoApplication" jhiTranslate="gestionEcoleApp.application.logoApplication"
+            >Logo Application</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="logoApplication"
+            id="field_logoApplication"
+            data-cy="logoApplication"
+            formControlName="logoApplication"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_coutApplication" jhiTranslate="gestionEcoleApp.application.coutApplication"
+            >Cout Application</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="coutApplication"
+            id="field_coutApplication"
+            data-cy="coutApplication"
+            formControlName="coutApplication"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateVente" jhiTranslate="gestionEcoleApp.application.dateVente">Date Vente</label>
+          <div class="input-group">
+            <input
+              id="field_dateVente"
+              data-cy="dateVente"
+              type="text"
+              class="form-control"
+              name="dateVente"
+              ngbDatepicker
+              #dateVenteDp="ngbDatepicker"
+              formControlName="dateVente"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateVenteDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_maintenance" jhiTranslate="gestionEcoleApp.application.maintenance">Maintenance</label>
+          <input
+            type="number"
+            class="form-control"
+            name="maintenance"
+            id="field_maintenance"
+            data-cy="maintenance"
+            formControlName="maintenance"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contratMaintenance" jhiTranslate="gestionEcoleApp.application.contratMaintenance"
+            >Contrat Maintenance</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contratMaintenance"
+            id="field_contratMaintenance"
+            data-cy="contratMaintenance"
+            formControlName="contratMaintenance"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateDebut" jhiTranslate="gestionEcoleApp.application.dateDebut">Date Debut</label>
+          <div class="input-group">
+            <input
+              id="field_dateDebut"
+              data-cy="dateDebut"
+              type="text"
+              class="form-control"
+              name="dateDebut"
+              ngbDatepicker
+              #dateDebutDp="ngbDatepicker"
+              formControlName="dateDebut"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDebutDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateFin" jhiTranslate="gestionEcoleApp.application.dateFin">Date Fin</label>
+          <div class="input-group">
+            <input
+              id="field_dateFin"
+              data-cy="dateFin"
+              type="text"
+              class="form-control"
+              name="dateFin"
+              ngbDatepicker
+              #dateFinDp="ngbDatepicker"
+              formControlName="dateFin"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etatApplication" jhiTranslate="gestionEcoleApp.application.etatApplication"
+            >Etat Application</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="etatApplication"
+            id="field_etatApplication"
+            data-cy="etatApplication"
+            formControlName="etatApplication"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

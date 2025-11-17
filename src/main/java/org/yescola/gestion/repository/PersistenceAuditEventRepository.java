@@ -1,9 +1,9 @@
 package org.yescola.gestion.repository;
 
-import org.yescola.gestion.domain.PersistentAuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.yescola.gestion.domain.PersistentAuditEvent;
 
 import java.time.Instant;
 import java.util.List;

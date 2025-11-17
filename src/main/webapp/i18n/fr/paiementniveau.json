@@ -1,23 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "paiementniveau": {
-            "home": {
-                "title": "Paiementniveaus",
-                "createLabel": "Créer un nouveau Paiementniveau",
-                "createOrEditLabel": "Créer ou éditer un Paiementniveau"
-            },
-            "created": "Un nouveau Paiementniveau a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Paiementniveau avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Paiementniveau avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Paiementniveau {{ id }} ?"
-            },
-            "detail": {
-                "title": "Paiementniveau"
-            },
-            "encours": "Encours",
-            "niveau": "Niveau",
-            "paiement": "Paiement"
-        }
+  "gestionEcoleApp": {
+    "paiementniveau": {
+      "home": {
+        "title": "Paiementniveaus",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Paiementniveau",
+        "createOrEditLabel": "Créer ou éditer un Paiementniveau",
+        "notFound": "Aucun Paiementniveau trouvé"
+      },
+      "created": "Un nouveau Paiementniveau a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Paiementniveau avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Paiementniveau avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Paiementniveau {{ id }} ?"
+      },
+      "detail": {
+        "title": "Paiementniveau"
+      },
+      "id": "ID",
+      "encours": "Encours",
+      "niveau": "Niveau",
+      "paiement": "Paiement"
     }
+  }
 }

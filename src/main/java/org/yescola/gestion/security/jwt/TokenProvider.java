@@ -1,11 +1,9 @@
 package org.yescola.gestion.security.jwt;
 
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.*;
-import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
-
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,12 +12,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+import tech.jhipster.config.JHipsterProperties;
 
-import io.github.jhipster.config.JHipsterProperties;
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.stream.Collectors;
 
 @Component
 public class TokenProvider {
@@ -43,14 +43,22 @@ public class TokenProvider {
     @PostConstruct
     public void init() {
         byte[] keyBytes;
-        String secret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
-        if (!StringUtils.isEmpty(secret)) {
-            log.warn("Warning: the JWT key used is not Base64-encoded. " +
-                "We recommend using the `jhipster.security.authentication.jwt.base64-secret` key for optimum security.");
-            keyBytes = secret.getBytes(StandardCharsets.UTF_8);
-        } else {
+        // Récupération des deux types de secret
+        String base64Secret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getBase64Secret();
+        String plainSecret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
+
+        if (base64Secret != null && !base64Secret.isEmpty()) {
+            // Priorité au secret Base64-encodé
             log.debug("Using a Base64-encoded JWT secret key");
-            keyBytes = Decoders.BASE64.decode(jHipsterProperties.getSecurity().getAuthentication().getJwt().getBase64Secret());
+            keyBytes = Decoders.BASE64.decode(base64Secret);
+        } else if (plainSecret != null && !plainSecret.isEmpty()) {
+            // Fallback au secret en texte clair si le secret Base64 n'est pas configuré
+            log.warn("Warning: the JWT key used is not Base64-encoded. " +
+                "For a production environment, it is strongly recommended to use a Base64-encoded key.");
+            keyBytes = plainSecret.getBytes(StandardCharsets.UTF_8);
+        } else {
+            // Si aucun secret n'est configuré, c'est une erreur de configuration critique
+            throw new IllegalStateException("Neither jhipster.security.authentication.jwt.base64-secret nor jhipster.security.authentication.jwt.secret is configured!");
         }
         this.key = Keys.hmacShaKeyFor(keyBytes);
         this.tokenValidityInMilliseconds =
@@ -82,15 +90,17 @@ public class TokenProvider {
     }
 
     public Authentication getAuthentication(String token) {
+        // REVERSION: Retour à Jwts.parserBuilder() car la version 0.12.6 est confirmée
         Claims claims = Jwts.parser()
             .setSigningKey(key)
+            .build()
             .parseClaimsJws(token)
             .getBody();
 
         Collection<? extends GrantedAuthority> authorities =
             Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                 .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+                .toList();
 
         User principal = new User(claims.getSubject(), "", authorities);
 
@@ -99,9 +109,13 @@ public class TokenProvider {
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
+            // REVERSION: Retour à Jwts.parserBuilder() car la version 0.12.6 est confirmée
+            Jwts.parser()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(authToken);
             return true;
-        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+        } catch (SecurityException | MalformedJwtException e) {
             log.info("Invalid JWT signature.");
             log.trace("Invalid JWT signature trace: {}", e);
         } catch (ExpiredJwtException e) {

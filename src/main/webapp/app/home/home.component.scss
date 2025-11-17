@@ -1,0 +1,166 @@
+:host {
+  display: block;
+  padding: 3rem 0;
+  background: #f4f6fb;
+}
+
+.home-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #04143a, #0a3081);
+  color: #fff;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.hero-actions .btn {
+  min-width: 180px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+}
+
+.status-chip strong {
+  color: #ffb600;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-stats img {
+  width: clamp(120px, 20vw, 160px);
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.35));
+}
+
+.mini-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.mini-dashboard article {
+  padding: 1.25rem;
+  border-radius: 1.1rem;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(4, 20, 58, 0.04), 0 10px 20px rgba(6, 24, 63, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.slot-label {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: #7a839f;
+}
+
+.slot-value {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #04143a;
+}
+
+.mini-dashboard .btn-link {
+  padding: 0;
+  align-self: flex-start;
+  font-weight: 600;
+  color: #0a3081;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.cards article {
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  background: #fff;
+  box-shadow: 0 15px 30px rgba(9, 27, 76, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cards h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #04143a;
+}
+
+.cards p {
+  margin: 0;
+  color: #4a5677;
+}
+
+.cards .btn-link {
+  align-self: flex-start;
+  padding: 0;
+  color: #0a3081;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 1.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+}

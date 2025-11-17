@@ -1,22 +1,25 @@
 package org.yescola.gestion.service.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.yescola.gestion.config.Constants;
-
 import org.yescola.gestion.domain.Authority;
 import org.yescola.gestion.domain.User;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * A DTO representing a user, with his authorities.
+ * A DTO representing a user, with only the public attributes.
  */
-public class UserDTO {
+public class UserDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 
@@ -38,9 +41,9 @@ public class UserDTO {
     @Size(max = 256)
     private String imageUrl;
 
-    private boolean activated = false;
+    private boolean activated = false; // Type primitif boolean
 
-    @Size(min = 2, max = 6)
+    @Size(min = 2, max = 10) // Ajusté la taille maximale à 10 pour être cohérent avec AdminUserDTO
     private String langKey;
 
     private String createdBy;
@@ -54,7 +57,7 @@ public class UserDTO {
     private Set<String> authorities;
 
     public UserDTO() {
-        // Empty constructor needed for Jackson.
+        // Constructeur vide nécessaire pour Jackson.
     }
 
     public UserDTO(User user) {
@@ -63,7 +66,7 @@ public class UserDTO {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
-        this.activated = user.getActivated();
+        this.activated = user.getActivated(); // Utilise getActivated() de l'entité User
         this.imageUrl = user.getImageUrl();
         this.langKey = user.getLangKey();
         this.createdBy = user.getCreatedBy();
@@ -123,11 +126,11 @@ public class UserDTO {
         this.imageUrl = imageUrl;
     }
 
-    public boolean isActivated() {
+    public boolean isActivated() { // Getter pour un boolean primitif
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void setActivated(boolean activated) { // Setter pour un boolean primitif
         this.activated = activated;
     }
 
@@ -179,21 +182,60 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    /**
+     * Compare deux objets UserDTO pour l'égalité.
+     * Les objets sont considérés égaux si leurs IDs sont égaux, ou si leurs logins et emails sont égaux (si les IDs sont nuls).
+     *
+     * @param o l'objet à comparer.
+     * @return true si les objets sont égaux, false sinon.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        UserDTO userDTO = (UserDTO) o;
+        // Si les IDs sont présents, comparez par ID.
+        // Sinon, comparez par login et email pour une égalité logique.
+        if (id != null) {
+            return id.equals(userDTO.id);
+        }
+        return Objects.equals(login, userDTO.login) &&
+            Objects.equals(email, userDTO.email);
+    }
+
+    /**
+     * Génère un code de hachage pour l'objet UserDTO.
+     * Inclut les champs utilisés dans la méthode equals().
+     *
+     * @return le code de hachage.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, email);
+    }
+
+    // prettier-ignore
     @Override
     public String toString() {
         return "UserDTO{" +
-            "login='" + login + '\'' +
+            "id=" + id +
+            ", login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
+            ", createdBy='" + createdBy + '\'' +
             ", createdDate=" + createdDate +
             ", lastModifiedBy='" + lastModifiedBy + '\'' +
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
-            "}";
+            '}';
     }
 }

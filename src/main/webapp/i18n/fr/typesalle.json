@@ -1,23 +1,27 @@
 {
-    "gestionEcoleApp": {
-        "typesalle": {
-            "home": {
-                "title": "Typesalles",
-                "createLabel": "Créer un nouveau Typesalle",
-                "createOrEditLabel": "Créer ou éditer un Typesalle"
-            },
-            "created": "Un nouveau Typesalle a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Typesalle avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Typesalle avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Typesalle {{ id }} ?"
-            },
-            "detail": {
-                "title": "Typesalle"
-            },
-            "libelle": "Libelle",
-            "etat": "Etat",
-            "equipement": "Equipement"
-        }
+  "gestionEcoleApp": {
+    "typesalle": {
+      "home": {
+        "title": "Typesalles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Typesalle",
+        "createOrEditLabel": "Créer ou éditer un Typesalle",
+        "notFound": "Aucun Typesalle trouvé"
+      },
+      "created": "Un nouveau Typesalle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Typesalle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Typesalle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Typesalle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Typesalle"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "etat": "Etat",
+      "equipement": "Equipement",
+      "salle": "Salle"
     }
+  }
 }

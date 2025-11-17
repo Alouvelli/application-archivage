@@ -1,0 +1,24 @@
+{
+    "gestionEcoleApp": {
+        "rubriqueProfil": {
+            "home": {
+                "title": "Rubrique Profils",
+                "createLabel": "Create a new Rubrique Profil",
+                "createOrEditLabel": "Create or edit a Rubrique Profil"
+            },
+            "created": "A new Rubrique Profil is created with identifier {{ param }}",
+            "updated": "A Rubrique Profil is updated with identifier {{ param }}",
+            "deleted": "A Rubrique Profil is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Rubrique Profil {{ id }}?"
+            },
+            "detail": {
+                "title": "Rubrique Profil"
+            },
+            "encours": "Encours",
+            "profil": "Profil",
+            "rubrique": "Rubrique",
+            "profilModule": "Profil Module"
+        }
+    }
+}

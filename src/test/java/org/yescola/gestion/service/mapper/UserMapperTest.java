@@ -1,28 +1,29 @@
 package org.yescola.gestion.service.mapper;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.yescola.gestion.GestionEcoleApp;
-import org.yescola.gestion.domain.User;
-import org.yescola.gestion.service.dto.UserDTO;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.yescola.gestion.GestionEcoleApp;
+import org.yescola.gestion.domain.Authority;
+import org.yescola.gestion.domain.User;
+import org.yescola.gestion.security.AuthoritiesConstants;
+import org.yescola.gestion.service.dto.AdminUserDTO;
+import org.yescola.gestion.service.dto.UserDTO;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
- * Test class for the UserMapper.
- *
- * @see UserMapper
+ * Unit tests for {@link UserMapper}.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GestionEcoleApp.class)
@@ -53,7 +54,7 @@ public class UserMapperTest {
         userDto = new UserDTO(user);
     }
 
-    @Test
+    @org.junit.Test
     public void usersToUserDTOsShouldMapOnlyNonNullUsers(){
         List<User> users = new ArrayList<>();
         users.add(user);
@@ -65,7 +66,7 @@ public class UserMapperTest {
         assertThat(userDTOS).size().isEqualTo(1);
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOsToUsersShouldMapOnlyNonNullUsers(){
         List<UserDTO> usersDto = new ArrayList<>();
         usersDto.add(userDto);
@@ -77,7 +78,7 @@ public class UserMapperTest {
         assertThat(users).size().isEqualTo(1);
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOsToUsersWithAuthoritiesStringShouldMapToUsersWithAuthoritiesDomain(){
         Set<String> authoritiesAsString = new HashSet<>();
         authoritiesAsString.add("ADMIN");
@@ -95,7 +96,7 @@ public class UserMapperTest {
         assertThat(users.get(0).getAuthorities().iterator().next().getName()).isEqualTo("ADMIN");
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOsToUsersMapWithNullAuthoritiesStringShouldReturnUserWithEmptyAuthorities(){
         userDto.setAuthorities(null);
 
@@ -110,7 +111,7 @@ public class UserMapperTest {
         assertThat(users.get(0).getAuthorities()).isEmpty();
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOToUserMapWithAuthoritiesStringShouldReturnUserWithAuthorities(){
         Set<String> authoritiesAsString = new HashSet<>();
         authoritiesAsString.add("ADMIN");
@@ -126,7 +127,7 @@ public class UserMapperTest {
         assertThat(user.getAuthorities().iterator().next().getName()).isEqualTo("ADMIN");
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOToUserMapWithNullAuthoritiesStringShouldReturnUserWithEmptyAuthorities(){
         userDto.setAuthorities(null);
 
@@ -137,7 +138,7 @@ public class UserMapperTest {
         assertThat(user.getAuthorities()).isEmpty();
     }
 
-    @Test
+    @org.junit.Test
     public void userDTOToUserMapWithNullUserShouldReturnNull(){
         assertThat(userMapper.userDTOToUser(null)).isNull();
     }

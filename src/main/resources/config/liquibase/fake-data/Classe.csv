@@ -1,0 +1,4 @@
+id,description,etat,code,libelle,filiere_id,niveau_id
+1,description_1,false,code_1,libelle_1,1,1
+2,description_2,true,code_2,libelle_2,2,2
+3,description_3,false,code_3,libelle_3,3,3

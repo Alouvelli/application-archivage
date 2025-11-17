@@ -1,55 +1,61 @@
 {
-    "name": "Rubrique",
-    "fields": [
-        {
-            "fieldName": "libelleRubrique",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "rangRubrique",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "iconeRubrique",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etatRubrique",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "rang",
-            "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "menu",
-            "otherEntityRelationshipName": "rubrique",
-            "relationshipName": "menu"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "rubriqueProfil",
-            "otherEntityRelationshipName": "rubrique",
-            "relationshipName": "rubriqueProfil"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "module",
-            "otherEntityRelationshipName": "rubrique",
-            "relationshipName": "module",
-            "otherEntityField": "id"
-        }
-    ],
-    "changelogDate": "20190603220327",
-    "entityTableName": "rubrique",
-    "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+  "annotations": {
+    "changelogDate": "20190603220327"
+  },
+  "applications": "*",
+  "changelogDate": "20190603220327",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "rubrique",
+  "fields": [
+    {
+      "fieldName": "libelleRubrique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rangRubrique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iconeRubrique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatRubrique",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rang",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Rubrique",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "menu",
+      "otherEntityRelationshipName": "rubrique",
+      "relationshipName": "menu",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "rubriqueProfil",
+      "otherEntityRelationshipName": "rubrique",
+      "relationshipName": "rubriqueProfil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "rubrique",
+      "relationshipName": "module",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
 }

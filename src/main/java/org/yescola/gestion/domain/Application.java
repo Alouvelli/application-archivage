@@ -2,10 +2,9 @@ package org.yescola.gestion.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ import java.util.Objects;
 public class Application implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

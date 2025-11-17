@@ -1,0 +1,4 @@
+id,libelle,description,etat
+1,libelle_1,description_1,false
+2,libelle_2,description_2,true
+3,libelle_3,description_3,false

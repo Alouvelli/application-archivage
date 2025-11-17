@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="fake-data-anneescolaire" author="codex">
+        <loadData file="config/liquibase/fake-data/Anneescolaire.csv" tableName="anneescolaire" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-application" author="codex">
+        <loadData file="config/liquibase/fake-data/Application.csv" tableName="application" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-classe" author="codex">
+        <loadData file="config/liquibase/fake-data/Classe.csv" tableName="classe" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-departement" author="codex">
+        <loadData file="config/liquibase/fake-data/Departement.csv" tableName="departement" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-document" author="codex">
+        <loadData file="config/liquibase/fake-data/Document.csv" tableName="document" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-documentclasse" author="codex">
+        <loadData file="config/liquibase/fake-data/Documentclasse.csv" tableName="documentclasse" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-documentexcel" author="codex">
+        <loadData file="config/liquibase/fake-data/Documentexcel.csv" tableName="documentexcel" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-ecole" author="codex">
+        <loadData file="config/liquibase/fake-data/Ecole.csv" tableName="ecole" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-employe" author="codex">
+        <loadData file="config/liquibase/fake-data/Employe.csv" tableName="employe" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-etudiant" author="codex">
+        <loadData file="config/liquibase/fake-data/Etudiant.csv" tableName="etudiant" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-filiere" author="codex">
+        <loadData file="config/liquibase/fake-data/Filiere.csv" tableName="filiere" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-inscription" author="codex">
+        <loadData file="config/liquibase/fake-data/Inscription.csv" tableName="inscription" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-menu" author="codex">
+        <loadData file="config/liquibase/fake-data/Menu.csv" tableName="menu" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-module" author="codex">
+        <loadData file="config/liquibase/fake-data/Module.csv" tableName="module" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-niveau" author="codex">
+        <loadData file="config/liquibase/fake-data/Niveau.csv" tableName="niveau" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-niveaudocument" author="codex">
+        <loadData file="config/liquibase/fake-data/Niveaudocument.csv" tableName="niveaudocument" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-profil" author="codex">
+        <loadData file="config/liquibase/fake-data/Profil.csv" tableName="profil" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-profil_menu" author="codex">
+        <loadData file="config/liquibase/fake-data/ProfilMenu.csv" tableName="profil_menu" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-profil_module" author="codex">
+        <loadData file="config/liquibase/fake-data/ProfilModule.csv" tableName="profil_module" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-rubrique" author="codex">
+        <loadData file="config/liquibase/fake-data/Rubrique.csv" tableName="rubrique" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-rubrique_profil" author="codex">
+        <loadData file="config/liquibase/fake-data/RubriqueProfil.csv" tableName="rubrique_profil" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-semestre" author="codex">
+        <loadData file="config/liquibase/fake-data/Semestre.csv" tableName="semestre" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-site" author="codex">
+        <loadData file="config/liquibase/fake-data/Site.csv" tableName="site" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-site_profil" author="codex">
+        <loadData file="config/liquibase/fake-data/SiteProfil.csv" tableName="site_profil" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+    <changeSet id="fake-data-typedocument" author="codex">
+        <loadData file="config/liquibase/fake-data/TypeDocument.csv" tableName="typedocument" separator="," encoding="UTF-8"/>
+    </changeSet>
+
+</databaseChangeLog>

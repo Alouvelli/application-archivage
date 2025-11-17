@@ -1,23 +1,27 @@
 {
-    "gestionEcoleApp": {
-        "siteProfil": {
-            "home": {
-                "title": "SiteProfils",
-                "createLabel": "Créer un nouveau Site Profil",
-                "createOrEditLabel": "Créer ou éditer un Site Profil"
-            },
-            "created": "Un nouveau Site Profil a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Site Profil avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Site Profil avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Site Profil {{ id }} ?"
-            },
-            "detail": {
-                "title": "Site Profil"
-            },
-            "encours": "Encours",
-            "site": "Site",
-            "profil": "Profil"
-        }
+  "gestionEcoleApp": {
+    "siteProfil": {
+      "home": {
+        "title": "SiteProfils",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Site Profil",
+        "createOrEditLabel": "Créer ou éditer un Site Profil",
+        "notFound": "Aucun Site Profil trouvé"
+      },
+      "created": "Un nouveau Site Profil a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Site Profil avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Site Profil avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Site Profil {{ id }} ?"
+      },
+      "detail": {
+        "title": "Site Profil"
+      },
+      "id": "ID",
+      "encours": "Encours",
+      "site": "Site",
+      "profil": "Profil",
+      "profilModule": "Profil Module"
     }
+  }
 }

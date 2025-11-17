@@ -1,42 +1,46 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "typeDocument",
-            "otherEntityName": "typeDocument",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "document",
-            "otherEntityRelationshipNameUndefined": false
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "etat",
-            "fieldType": "Boolean"
-        },
-        {
-            "fieldName": "document1",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "image"
-        },
-        {
-            "fieldName": "document2",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text"
-        },
-        {
-            "fieldName": "ref",
-            "fieldType": "Integer"
-        }
-    ],
-    "changelogDate": "20190624161433",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "document",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190624161433"
+  },
+  "changelogDate": "20190624161433",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "document",
+  "fields": [
+    {
+      "fieldName": "etat",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "document1",
+      "fieldType": "ImageBlob"
+    },
+    {
+      "fieldName": "document2",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "ref",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Document",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "typeDocument",
+      "otherEntityRelationshipName": "document",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "typeDocument",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
 }

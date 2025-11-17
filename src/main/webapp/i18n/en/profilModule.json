@@ -1,24 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "profilModule": {
-            "home": {
-                "title": "Profil Modules",
-                "createLabel": "Create a new Profil Module",
-                "createOrEditLabel": "Create or edit a Profil Module"
-            },
-            "created": "A new Profil Module is created with identifier {{ param }}",
-            "updated": "A Profil Module is updated with identifier {{ param }}",
-            "deleted": "A Profil Module is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Profil Module {{ id }}?"
-            },
-            "detail": {
-                "title": "Profil Module"
-            },
-            "encours": "Encours",
-            "profil": "Profil",
-            "module": "Module",
-            "siteProfil": "Site Profil"
-        }
+  "gestionEcoleApp": {
+    "profilModule": {
+      "home": {
+        "title": "Profil Modules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Profil Module",
+        "createOrEditLabel": "Create or edit a Profil Module",
+        "notFound": "No Profil Modules found"
+      },
+      "created": "A new Profil Module is created with identifier {{ param }}",
+      "updated": "A Profil Module is updated with identifier {{ param }}",
+      "deleted": "A Profil Module is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Profil Module {{ id }}?"
+      },
+      "detail": {
+        "title": "Profil Module"
+      },
+      "id": "ID",
+      "encours": "Encours",
+      "profil": "Profil",
+      "module": "Module",
+      "siteProfil": "Site Profil",
+      "rubriqueProfil": "Rubrique Profil"
     }
+  }
 }

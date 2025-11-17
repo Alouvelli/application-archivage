@@ -1,5 +1,15 @@
 package org.yescola.gestion.web.rest;
 
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import org.yescola.gestion.config.Constants;
 import org.yescola.gestion.domain.*;
 import org.yescola.gestion.repository.UserRepository;
@@ -12,27 +22,17 @@ import org.yescola.gestion.web.rest.errors.EmailAlreadyUsedException;
 import org.yescola.gestion.web.rest.errors.LoginAlreadyUsedException;
 import org.yescola.gestion.web.rest.util.HeaderUtil;
 import org.yescola.gestion.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
+import tech.jhipster.web.util.ResponseUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing users.
  * <p>
- * This class accesses the User entity, and needs to fetch its collection of authorities.
+ * This class accesses the {@link User} entity, and needs to fetch its collection of authorities.
  * <p>
  * For a normal use-case, it would be better to have an eager relationship between User and Authority,
  * and send everything to the client side: there would be no View Model and DTO, a lot less code, and an outer-join
@@ -54,7 +54,7 @@ import java.util.*;
  * Another option would be to have a specific JPA entity graph to handle this case.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class UserResource {
 
     private final Logger log = LoggerFactory.getLogger(UserResource.class);
@@ -117,19 +117,27 @@ public class UserResource {
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
-        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
-        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
-            throw new EmailAlreadyUsedException();
-        }
-        existingUser = userRepository.findOneByLogin(userDTO.getLogin().toLowerCase());
-        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
-            throw new LoginAlreadyUsedException();
-        }
+
+        userRepository.findOneByEmailIgnoreCase(userDTO.getEmail())
+            .filter(user -> !user.getId().equals(userDTO.getId()))
+            .ifPresent(user -> {
+                throw new EmailAlreadyUsedException();
+            });
+
+        userRepository.findOneByLogin(userDTO.getLogin().toLowerCase())
+            .filter(user -> !user.getId().equals(userDTO.getId()))
+            .ifPresent(user -> {
+                throw new LoginAlreadyUsedException();
+            });
+
         Optional<UserDTO> updatedUser = userService.updateUser(userDTO);
 
-        return ResponseUtil.wrapOrNotFound(updatedUser,
-            HeaderUtil.createAlert("userManagement.updated", userDTO.getLogin()));
+        return ResponseUtil.wrapOrNotFound(
+            updatedUser,
+            HeaderUtil.createAlert("userManagement.updated", userDTO.getLogin())
+        );
     }
+
 
     /**
      * GET /users : get all users.
@@ -178,8 +186,9 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
-    }
+        return ResponseEntity.noContent()
+            .headers(HeaderUtil.createAlert("userManagement.deleted", login))
+            .build();    }
     @GetMapping("/maxIdUser")
     public List<User> maxId() {
         return userRepository.findmaxID();
@@ -216,6 +225,5 @@ public class UserResource {
     public List<ProfilMenu> getProfilMenuX(@PathVariable Long id) {
         return userRepository.getProfilMenuX(id);
     }
-
 
 }

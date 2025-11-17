@@ -1,24 +1,22 @@
+// src/main/java/org/yescola/gestion/domain/User.java
 package org.yescola.gestion.domain;
 
-import org.yescola.gestion.config.Constants;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import javax.validation.constraints.Email;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
-import java.time.Instant;
 
 /**
  * A user.
@@ -26,6 +24,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "jhi_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@EntityListeners(AuditingEntityListener.class) // Ajoutez cette annotation pour activer l'auditing
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,15 +34,15 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = Constants.LOGIN_REGEX)
+    @Pattern(regexp = "^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)|(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+)$")
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
     private String login;
 
     @JsonIgnore
     @NotNull
-    @Size(min = 60, max = 60)
-    @Column(name = "password_hash", length = 60, nullable = false)
+    @Size(min = 60, max = 100)
+    @Column(name = "password_hash", length = 100, nullable = false)
     private String password;
 
     @Size(max = 50)
@@ -61,10 +60,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private boolean activated = false;
+    private Boolean activated = false;
 
-    @Size(min = 2, max = 6)
-    @Column(name = "lang_key", length = 6)
+    @Size(min = 2, max = 10)
+    @Column(name = "lang_key", length = 10)
     private String langKey;
 
     @Size(max = 256)
@@ -94,6 +93,30 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    // Champs d'auditing - Assurez-vous qu'ils sont présents et correctement annotés
+    // Ces champs sont généralement dans une classe parente comme AbstractAuditingEntity
+    // Si vous n'utilisez pas AbstractAuditingEntity, assurez-vous qu'ils sont ici:
+    // @CreatedBy
+    // @Column(name = "created_by", nullable = false, length = 50, updatable = false)
+    // @JsonIgnore
+    // private String createdBy;
+
+    // @CreatedDate
+    // @Column(name = "created_date", nullable = false, updatable = false)
+    // @JsonIgnore
+    // private Instant createdDate = Instant.now();
+
+    // @LastModifiedBy
+    // @Column(name = "last_modified_by", length = 50)
+    // @JsonIgnore
+    // private String lastModifiedBy;
+
+    // @LastModifiedDate
+    // @Column(name = "last_modified_date")
+    // @JsonIgnore
+    // private Instant lastModifiedDate = Instant.now();
+
+
     public Long getId() {
         return id;
     }
@@ -108,7 +131,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     // Lowercase the login before saving it in database
     public void setLogin(String login) {
-        this.login = StringUtils.lowerCase(login, Locale.ENGLISH);
+        this.login = login.toLowerCase(Locale.ENGLISH);
     }
 
     public String getPassword() {
@@ -143,19 +166,11 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.email = email;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean getActivated() {
+    public Boolean getActivated() {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 
@@ -191,6 +206,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.langKey = langKey;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -204,19 +227,19 @@ public class User extends AbstractAuditingEntity implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof User)) {
             return false;
         }
-
-        User user = (User) o;
-        return !(user.getId() == null || getId() == null) && Objects.equals(getId(), user.getId());
+        return id != null && id.equals(((User) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        // see [https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
+        return getClass().hashCode();
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "User{" +
@@ -228,6 +251,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", resetKey='" + resetKey + '\'' +
+            ", resetDate='" + resetDate + '\'' +
             "}";
     }
 }

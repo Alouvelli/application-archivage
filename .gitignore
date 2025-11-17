@@ -1,11 +1,4 @@
 ######################
-# Project Specific
-######################
-/src/main/webapp/content/css/main.css
-/target/www/**
-/src/test/javascript/coverage/
-
-######################
 # Node
 ######################
 /node/
@@ -37,7 +30,6 @@ local.properties
 .settings/
 .loadpath
 .factorypath
-/src/main/resources/rebel.xml
 
 # External tool builders
 .externalToolBuilders/**
@@ -51,8 +43,11 @@ local.properties
 # PDT-specific
 .buildpath
 
+# STS-specific
+/.sts4-cache/*
+
 ######################
-# Intellij
+# IntelliJ
 ######################
 .idea/
 *.iml
@@ -66,7 +61,12 @@ out/
 ######################
 # Visual Studio Code
 ######################
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
 
 ######################
 # Maven
@@ -79,6 +79,8 @@ out/
 ######################
 .gradle/
 /build/
+/buildSrc/.gradle/
+/buildSrc/build/
 
 ######################
 # Package Files
@@ -143,3 +145,9 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+######################
+# Code coverage
+######################
+coverage/
+.nyc_output/

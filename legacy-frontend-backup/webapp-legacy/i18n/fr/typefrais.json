@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "typefrais": {
+            "home": {
+                "title": "Typefrais",
+                "createLabel": "Créer un nouveau Typefrais",
+                "createOrEditLabel": "Créer ou éditer un Typefrais"
+            },
+            "created": "Un nouveau Typefrais a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Typefrais avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Typefrais avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Typefrais {{ id }} ?"
+            },
+            "detail": {
+                "title": "Typefrais"
+            },
+            "libelle": "Libelle",
+            "description": "Description",
+            "etat": "Etat"
+        }
+    }
+}

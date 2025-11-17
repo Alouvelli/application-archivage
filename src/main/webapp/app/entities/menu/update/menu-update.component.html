@@ -1,0 +1,86 @@
+<div class="entity-form">
+  <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <header>
+      <p class="eyebrow" jhiTranslate="gestionEcoleApp.menu.home.title">Menu</p>
+      <h1 id="jhi-menu-heading" data-cy="MenuCreateUpdateHeading" jhiTranslate="gestionEcoleApp.menu.home.createOrEditLabel">
+        Créer ou éditer
+      </h1>
+      <p class="subtitle">Définissez l'entrée de navigation.</p>
+    </header>
+
+    <jhi-alert-error />
+
+    <div class="form-grid">
+      @if (editForm.controls.id.value !== null) {
+        <label class="form-field" for="field_id">
+          <span jhiTranslate="gestionEcoleApp.menu.id">ID</span>
+          <input type="number" id="field_id" data-cy="id" formControlName="id" readonly />
+        </label>
+      }
+
+      <label class="form-field" for="field_codeMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.codeMenu">Code</span>
+        <input type="text" id="field_codeMenu" data-cy="codeMenu" formControlName="codeMenu" />
+      </label>
+
+      <label class="form-field" for="field_libelleMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.libelleMenu">Libellé</span>
+        <input type="text" id="field_libelleMenu" data-cy="libelleMenu" formControlName="libelleMenu" />
+      </label>
+
+      <label class="form-field" for="field_rangMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.rangMenu">Rang</span>
+        <input type="text" id="field_rangMenu" data-cy="rangMenu" formControlName="rangMenu" />
+      </label>
+
+      <label class="form-field full" for="field_urlMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.urlMenu">URL</span>
+        <input type="text" id="field_urlMenu" data-cy="urlMenu" formControlName="urlMenu" />
+      </label>
+
+      <label class="form-field" for="field_iconeMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.iconeMenu">Icône</span>
+        <input type="text" id="field_iconeMenu" data-cy="iconeMenu" formControlName="iconeMenu" />
+      </label>
+
+      <label class="form-field" for="field_etatMenu">
+        <span jhiTranslate="gestionEcoleApp.menu.etatMenu">Etat</span>
+        <input type="number" id="field_etatMenu" data-cy="etatMenu" formControlName="etatMenu" />
+      </label>
+
+      <label class="form-field" for="field_rubrique">
+        <span jhiTranslate="gestionEcoleApp.menu.rubrique">Rubrique</span>
+        <select
+          id="field_rubrique"
+          data-cy="rubrique"
+          name="rubrique"
+          formControlName="rubrique"
+          [compareWith]="compareRubrique"
+        >
+          <option [ngValue]="null"></option>
+          @for (rubriqueOption of rubriquesSharedCollection; track $index) {
+            <option [ngValue]="rubriqueOption">{{ rubriqueOption.id }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-ghost" (click)="previousState()">
+        <fa-icon icon="ban"></fa-icon>
+        <span jhiTranslate="entity.action.cancel">Annuler</span>
+      </button>
+
+      <button
+        type="submit"
+        id="save-entity"
+        data-cy="entityCreateSaveButton"
+        [disabled]="editForm.invalid || isSaving"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="save"></fa-icon>
+        <span jhiTranslate="entity.action.save">Sauvegarder</span>
+      </button>
+    </div>
+  </form>
+</div>

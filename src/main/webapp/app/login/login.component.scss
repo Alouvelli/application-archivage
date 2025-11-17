@@ -1,0 +1,101 @@
+.auth-shell {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: #f4f6fb;
+}
+
+.auth-card {
+  width: min(420px, 100%);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 25px 60px rgba(7, 27, 68, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: #7a839f;
+}
+
+.auth-card h1 {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #04143a;
+}
+
+.subtitle {
+  margin: -0.6rem 0 0;
+  color: #4a5677;
+  font-size: 0.95rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  text-align: left;
+}
+
+.form-control {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(4, 20, 58, 0.1);
+  padding: 0.85rem 1rem;
+}
+
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #4a5677;
+  margin-bottom: 0.4rem;
+}
+
+button[type='submit'] {
+  border-radius: 0.9rem;
+  padding: 0.85rem;
+  font-weight: 600;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #0a3081;
+}
+
+.auth-links a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.8rem;
+  background: #ffe9e9;
+  color: #a50000;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-links {
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: center;
+  }
+}

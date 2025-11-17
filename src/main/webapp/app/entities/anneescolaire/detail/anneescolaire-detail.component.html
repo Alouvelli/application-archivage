@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (anneescolaire(); as anneescolaireRef) {
+      <div>
+        <h2 data-cy="anneescolaireDetailsHeading"><span jhiTranslate="gestionEcoleApp.anneescolaire.detail.title">Anneescolaire</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ anneescolaireRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.libelle">Libelle</span></dt>
+          <dd>
+            <span>{{ anneescolaireRef.libelle }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.encours">Encours</span></dt>
+          <dd>
+            <span>{{ anneescolaireRef.encours }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.anneescolaire.etat">Etat</span></dt>
+          <dd>
+            <span>{{ anneescolaireRef.etat }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/anneescolaire', anneescolaireRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

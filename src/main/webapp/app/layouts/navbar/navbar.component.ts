@@ -1,79 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService } from 'ng-jhipster';
-import { SessionStorageService } from 'ngx-webstorage';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import { VERSION } from 'app/app.constants';
-import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
+import { StateStorageService } from 'app/core/auth/state-storage.service';
+import SharedModule from 'app/shared/shared.module';
+import HasAnyAuthorityDirective from 'app/shared/auth/has-any-authority.directive';
+import { LANGUAGES } from 'app/config/language.constants';
+import { AccountService } from 'app/core/auth/account.service';
+import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
+import { environment } from 'environments/environment';
+import NavbarItem from './navbar-item.model';
 
 @Component({
-    selector: 'jhi-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['navbar.scss']
+  selector: 'jhi-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss',
+  imports: [RouterModule, SharedModule, HasAnyAuthorityDirective],
 })
-export class NavbarComponent implements OnInit {
-    inProduction: boolean;
-    isNavbarCollapsed: boolean;
-    languages: any[];
-    swaggerEnabled: boolean;
-    modalRef: NgbModalRef;
-    version: string;
+export default class NavbarComponent implements OnInit {
+  inProduction?: boolean;
+  isNavbarCollapsed = signal(true);
+  entitiesPanelOpen = signal(false);
+  languages = LANGUAGES;
+  openAPIEnabled?: boolean;
+  version = '';
+  account = inject(AccountService).trackCurrentAccount();
+  entitiesNavbarItems: NavbarItem[] = [];
 
-    constructor(
-        private loginService: LoginService,
-        private languageService: JhiLanguageService,
-        private languageHelper: JhiLanguageHelper,
-        private sessionStorage: SessionStorageService,
-        private accountService: AccountService,
-        private loginModalService: LoginModalService,
-        private profileService: ProfileService,
-        private router: Router
-    ) {
-        this.version = VERSION ? 'v' + VERSION : '';
-        this.isNavbarCollapsed = true;
+  private readonly loginService = inject(LoginService);
+  private readonly translateService = inject(TranslateService);
+  private readonly stateStorageService = inject(StateStorageService);
+  private readonly profileService = inject(ProfileService);
+  private readonly router = inject(Router);
+
+  constructor() {
+    const { VERSION } = environment;
+    if (VERSION) {
+      this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
     }
+  }
 
-    ngOnInit() {
-        this.languageHelper.getAll().then(languages => {
-            this.languages = languages;
-        });
+  ngOnInit(): void {
+    this.entitiesNavbarItems = EntityNavbarItems;
+    this.profileService.getProfileInfo().subscribe(profileInfo => {
+      this.inProduction = profileInfo.inProduction;
+      this.openAPIEnabled = profileInfo.openAPIEnabled;
+    });
+  }
 
-        this.profileService.getProfileInfo().then(profileInfo => {
-            this.inProduction = profileInfo.inProduction;
-            this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });
+  changeLanguage(languageKey: string): void {
+    this.stateStorageService.storeLocale(languageKey);
+    this.translateService.use(languageKey);
+  }
+
+  collapseNavbar(): void {
+    this.isNavbarCollapsed.set(true);
+    this.entitiesPanelOpen.set(false);
+  }
+
+  login(): void {
+    this.router.navigate(['/login']);
+  }
+
+  logout(): void {
+    this.collapseNavbar();
+    this.loginService.logout();
+    this.router.navigate(['/']);
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarCollapsed.update(isNavbarCollapsed => !isNavbarCollapsed);
+  }
+
+  toggleEntitiesPanel(): void {
+    if (!this.account()) {
+      return;
     }
+    this.entitiesPanelOpen.update(open => !open);
+  }
 
-    changeLanguage(languageKey: string) {
-        this.sessionStorage.store('locale', languageKey);
-        this.languageService.changeLanguage(languageKey);
+  openEntitiesPanelFromDrawer(): void {
+    if (!this.account()) {
+      return;
     }
+    this.isNavbarCollapsed.set(true);
+    this.entitiesPanelOpen.set(true);
+  }
 
-    collapseNavbar() {
-        this.isNavbarCollapsed = true;
-    }
-
-    isAuthenticated() {
-        return this.accountService.isAuthenticated();
-    }
-
-    login() {
-        this.modalRef = this.loginModalService.open();
-    }
-
-    logout() {
-        this.collapseNavbar();
-        this.loginService.logout();
-        this.router.navigate(['']);
-    }
-
-    toggleNavbar() {
-        this.isNavbarCollapsed = !this.isNavbarCollapsed;
-    }
-
-    getImageUrl() {
-        return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
-    }
+  trackNavbarItem(_: number, item: NavbarItem): string {
+    return item.route;
+  }
 }

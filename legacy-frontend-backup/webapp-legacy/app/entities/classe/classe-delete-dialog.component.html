@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'entity.delete.title' | translate }}</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+</div>
+<div class="modal-body">
+  <p id="jhi-delete-classe-heading">
+    {{ 'gestionEcoleApp.classe.delete.question' | translate: { id: classe?.id } }}
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
+    <fa-icon [icon]="faBan"></fa-icon>
+    <span class="ms-2">{{ 'entity.action.cancel' | translate }}</span>
+  </button>
+  <button id="jhi-confirm-delete-classe" type="button" class="btn btn-danger" (click)="confirmDelete(classe?.id)">
+    <fa-icon [icon]="faTrash"></fa-icon>
+    <span class="ms-2">{{ 'entity.action.delete' | translate }}</span>
+  </button>
+</div>

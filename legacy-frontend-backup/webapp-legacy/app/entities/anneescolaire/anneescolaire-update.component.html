@@ -1,0 +1,48 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <form [formGroup]="editForm" novalidate (ngSubmit)="save()">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+        <h2 id="jhi-anneescolaire-heading" class="h4 mb-0">
+          {{ 'gestionEcoleApp.anneescolaire.home.createOrEditLabel' | translate }}
+        </h2>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="save-entity" [disabled]="editForm.invalid || isSaving">
+            <fa-icon [icon]="faSave"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.save' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      @if (editForm.get('id')?.value !== null) {
+        <div class="mb-3">
+          <label for="field_id" class="form-label text-uppercase small text-muted">{{ 'global.field.id' | translate }}</label>
+          <input class="form-control" id="field_id" formControlName="id" readonly />
+        </div>
+      }
+
+      <div class="mb-3">
+        <label for="field_libelle" class="form-label">{{ 'gestionEcoleApp.anneescolaire.libelle' | translate }}</label>
+        <input id="field_libelle" type="text" class="form-control" formControlName="libelle" required maxlength="128" />
+        @if (editForm.get('libelle')?.invalid && (editForm.get('libelle')?.dirty || editForm.get('libelle')?.touched)) {
+          <div class="invalid-feedback d-block">
+            {{ 'entity.validation.required' | translate }}
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="field_encours" class="form-label">{{ 'gestionEcoleApp.anneescolaire.encours' | translate }}</label>
+        <input id="field_encours" type="text" class="form-control" formControlName="encours" />
+      </div>
+
+      <div class="mb-3">
+        <label for="field_etat" class="form-label">{{ 'gestionEcoleApp.anneescolaire.etat' | translate }}</label>
+        <input id="field_etat" type="text" class="form-control" formControlName="etat" />
+      </div>
+    </form>
+  </div>
+</section>

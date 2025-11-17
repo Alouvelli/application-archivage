@@ -1,13 +1,13 @@
-name: newarchiveapp
+name: archivageecole
 services:
   app:
-    image: newarchiveapp
+    image: archivageecole
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,api-docs
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/newArchiveApp
-      - SPRING_LIQUIBASE_URL=jdbc:mysql://mysql:3306/newArchiveApp
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/archivageEcole
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://mysql:3306/archivageEcole
       - SERVER_PORT=8082
     ports:
       - 127.0.0.1:8082:8082

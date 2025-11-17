@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (site(); as siteRef) {
+      <div>
+        <h2 data-cy="siteDetailsHeading"><span jhiTranslate="gestionEcoleApp.site.detail.title">Site</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ siteRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.codeSite">Code Site</span></dt>
+          <dd>
+            <span>{{ siteRef.codeSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.logoSite">Logo Site</span></dt>
+          <dd>
+            <span>{{ siteRef.logoSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.enteteSite">Entete Site</span></dt>
+          <dd>
+            <span>{{ siteRef.enteteSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.basPageSite">Bas Page Site</span></dt>
+          <dd>
+            <span>{{ siteRef.basPageSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.nineaSite">Ninea Site</span></dt>
+          <dd>
+            <span>{{ siteRef.nineaSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.adresseSite">Adresse Site</span></dt>
+          <dd>
+            <span>{{ siteRef.adresseSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ siteRef.telephone }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.emailSite">Email Site</span></dt>
+          <dd>
+            <span>{{ siteRef.emailSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.sigleSite">Sigle Site</span></dt>
+          <dd>
+            <span>{{ siteRef.sigleSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.faxEcole">Fax Ecole</span></dt>
+          <dd>
+            <span>{{ siteRef.faxEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.etatSite">Etat Site</span></dt>
+          <dd>
+            <span>{{ siteRef.etatSite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.encours">Encours</span></dt>
+          <dd>
+            <span>{{ siteRef.encours }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.rang">Rang</span></dt>
+          <dd>
+            <span>{{ siteRef.rang }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.ecole">Ecole</span></dt>
+          <dd>
+            @if (site()!.ecole) {
+              <div>
+                <a [routerLink]="['/ecole', site()!.ecole?.id, 'view']">{{ siteRef.ecole?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.site.module">Module</span></dt>
+          <dd>
+            @for (module of siteRef.modules; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/module', module.id, 'view']">{{ module?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/site', siteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

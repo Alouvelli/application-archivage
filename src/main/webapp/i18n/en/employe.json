@@ -1,24 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "employe": {
-            "home": {
-                "title": "Employes",
-                "createLabel": "Create a new Employe",
-                "createOrEditLabel": "Create or edit a Employe"
-            },
-            "created": "A new Employe is created with identifier {{ param }}",
-            "updated": "A Employe is updated with identifier {{ param }}",
-            "deleted": "A Employe is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Employe {{ id }}?"
-            },
-            "detail": {
-                "title": "Employe"
-            },
-            "telUtilisateur": "Tel Utilisateur",
-            "etatUtilisateur": "Etat Utilisateur",
-            "user": "User",
-            "profil": "Profil"
-        }
+  "gestionEcoleApp": {
+    "employe": {
+      "home": {
+        "title": "Employes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Employe",
+        "createOrEditLabel": "Create or edit a Employe",
+        "notFound": "No Employes found"
+      },
+      "created": "A new Employe is created with identifier {{ param }}",
+      "updated": "A Employe is updated with identifier {{ param }}",
+      "deleted": "A Employe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Employe {{ id }}?"
+      },
+      "detail": {
+        "title": "Employe"
+      },
+      "id": "ID",
+      "telUtilisateur": "Tel Utilisateur",
+      "etatUtilisateur": "Etat Utilisateur",
+      "user": "User",
+      "profil": "Profil",
+      "contrat": "Contrat"
     }
+  }
 }

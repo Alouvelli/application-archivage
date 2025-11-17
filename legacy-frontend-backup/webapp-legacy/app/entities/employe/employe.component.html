@@ -1,0 +1,106 @@
+<section>
+  <header class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <h2 id="employe-heading" class="h4 mb-0" data-cy="EmployeHeading">
+      {{ 'gestionEcoleApp.employe.home.title' | translate }}
+    </h2>
+    <div class="d-flex flex-wrap gap-2">
+      <button type="button" class="btn btn-outline-primary" (click)="load()" [disabled]="isLoading">
+        <fa-icon [icon]="faRedo" [spin]="isLoading"></fa-icon>
+        <span class="ms-2">{{ 'gestionEcoleApp.employe.home.refreshListLabel' | translate }}</span>
+      </button>
+      <a class="btn btn-primary" id="jh-create-entity" data-cy="entityCreateButton" [routerLink]="['/employe/new']">
+        <fa-icon [icon]="faPlus"></fa-icon>
+        <span class="ms-2">{{ 'gestionEcoleApp.employe.home.createLabel' | translate }}</span>
+      </a>
+    </div>
+  </header>
+
+  @if (employes?.length) {
+    <div class="table-responsive mt-3">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToPage()">
+            <th scope="col" jhiSortBy="telUtilisateur">
+              <div class="d-flex align-items-center">
+                <span>{{ 'gestionEcoleApp.employe.telUtilisateur' | translate }}</span>
+                <fa-icon class="ms-1" [icon]="faSort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatUtilisateur">
+              <div class="d-flex align-items-center">
+                <span>{{ 'gestionEcoleApp.employe.etatUtilisateur' | translate }}</span>
+                <fa-icon class="ms-1" [icon]="faSort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="user.id">
+              <div class="d-flex align-items-center">
+                <span>{{ 'gestionEcoleApp.employe.user' | translate }}</span>
+                <fa-icon class="ms-1" [icon]="faSort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="profil.id">
+              <div class="d-flex align-items-center">
+                <span>{{ 'gestionEcoleApp.employe.profil' | translate }}</span>
+                <fa-icon class="ms-1" [icon]="faSort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" class="text-end">{{ ('entity.action.actions' | translate) || 'Actions' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (employe of employes; track trackId($index, employe)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/employe', employe.id, 'view']">{{ employe.telUtilisateur }}</a>
+              </td>
+              <td>{{ employe.etatUtilisateur }}</td>
+              <td>{{ employe.user?.login ?? employe.user?.id }}</td>
+              <td>
+                @if (employe.profil) {
+                  <a [routerLink]="['/profil', employe.profil!.id, 'view']">{{ employe.profil!.libelle ?? employe.profil!.id }}</a>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group btn-group-sm" role="group">
+                  <a class="btn btn-outline-secondary" [routerLink]="['/employe', employe.id, 'view']" data-cy="entityDetailsButton">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                    <span class="d-none d-md-inline ms-1">{{ 'entity.action.view' | translate }}</span>
+                  </a>
+                  <a class="btn btn-outline-primary" [routerLink]="['/employe', employe.id, 'edit']" data-cy="entityEditButton">
+                    <fa-icon [icon]="faPen"></fa-icon>
+                    <span class="d-none d-md-inline ms-1">{{ 'entity.action.edit' | translate }}</span>
+                  </a>
+                  <button type="button" class="btn btn-outline-danger" (click)="delete(employe)" data-cy="entityDeleteButton">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                    <span class="d-none d-md-inline ms-1">{{ 'entity.action.delete' | translate }}</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-3">
+      <div class="d-flex justify-content-center mb-2">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)">
+        </ngb-pagination>
+      </div>
+    </div>
+  } @else {
+    <div class="alert alert-info mt-4" role="alert">
+      {{ ('gestionEcoleApp.employe.home.notFound' | translate) || 'Aucun employé trouvé.' }}
+    </div>
+  }
+</section>

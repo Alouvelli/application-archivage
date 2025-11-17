@@ -1,10 +1,9 @@
 package org.yescola.gestion.config.audit;
 
-import org.yescola.gestion.domain.PersistentAuditEvent;
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
+import org.yescola.gestion.domain.PersistentAuditEvent;
 
 import java.util.*;
 

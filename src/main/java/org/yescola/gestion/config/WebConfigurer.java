@@ -1,14 +1,16 @@
 package org.yescola.gestion.config;
 
-import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.config.JHipsterProperties;
-import io.github.jhipster.web.filter.CachingHttpHeadersFilter;
 import io.undertow.UndertowOptions;
+import jakarta.servlet.DispatcherType;
+import jakarta.servlet.FilterRegistration;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
-import org.springframework.boot.web.server.*;
+import org.springframework.boot.web.server.MimeMappings;
+import org.springframework.boot.web.server.WebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -18,15 +20,15 @@ import org.springframework.http.MediaType;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import tech.jhipster.config.JHipsterConstants;
+import tech.jhipster.config.JHipsterProperties;
+import tech.jhipster.web.filter.CachingHttpHeadersFilter;
 
-import javax.servlet.*;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
-import java.util.*;
-
-import static java.net.URLDecoder.decode;
+import java.nio.file.Path;
+import java.util.EnumSet;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -39,11 +41,13 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     private final Environment env;
 
     private final JHipsterProperties jHipsterProperties;
+    private final ApplicationProperties applicationProperties;
 
-    public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
+    public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties, ApplicationProperties applicationProperties) {
 
         this.env = env;
         this.jHipsterProperties = jHipsterProperties;
+        this.applicationProperties = applicationProperties;
     }
 
     @Override
@@ -73,8 +77,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
          * See the JHipsterProperties class and your application-*.yml configuration files
          * for more information.
          */
-        if (jHipsterProperties.getHttp().getVersion().equals(JHipsterProperties.Http.Version.V_2_0) &&
-            server instanceof UndertowServletWebServerFactory) {
+        if (applicationProperties.getHttp().getVersion() == ApplicationProperties.Http.Version.V_2_0) {
 
             ((UndertowServletWebServerFactory) server)
                 .addBuilderCustomizers(builder ->
@@ -95,11 +98,11 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     }
 
     private void setLocationForStaticAssets(WebServerFactory server) {
-        if (server instanceof ConfigurableServletWebServerFactory) {
-            ConfigurableServletWebServerFactory servletWebServer = (ConfigurableServletWebServerFactory) server;
-            File root;
+        if (server instanceof ConfigurableServletWebServerFactory servletWebServer) {
             String prefixPath = resolvePathPrefix();
-            root = new File(prefixPath + "target/www/");
+            Path wwwPath = Path.of(prefixPath, "target", "www");
+
+            File root = wwwPath.toFile();
             if (root.exists() && root.isDirectory()) {
                 servletWebServer.setDocumentRoot(root);
             }
@@ -112,17 +115,23 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     private String resolvePathPrefix() {
         String fullExecutablePath;
         try {
-            fullExecutablePath = decode(this.getClass().getResource("").getPath(), StandardCharsets.UTF_8.name());
-        } catch (UnsupportedEncodingException e) {
-            /* try without decoding if this ever happens */
-            fullExecutablePath = this.getClass().getResource("").getPath();
+            fullExecutablePath = URLDecoder.decode(
+                getClass().getResource("").getPath(),
+                StandardCharsets.UTF_8
+            );
+        } catch (Exception e) {
+            // fallback: no decoding
+            fullExecutablePath = getClass().getResource("").getPath();
         }
-        String rootPath = Paths.get(".").toUri().normalize().getPath();
+
+        String rootPath = Path.of(".").toUri().normalize().getPath();
         String extractedPath = fullExecutablePath.replace(rootPath, "");
+
         int extractionEndIndex = extractedPath.indexOf("target/");
         if (extractionEndIndex <= 0) {
             return "";
         }
+
         return extractedPath.substring(0, extractionEndIndex);
     }
 

@@ -1,0 +1,130 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-inscription-heading"
+        data-cy="InscriptionCreateUpdateHeading"
+        jhiTranslate="gestionEcoleApp.inscription.home.createOrEditLabel"
+      >
+        Créer ou éditer un Inscription
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.inscription.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="gestionEcoleApp.inscription.date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_manquant" jhiTranslate="gestionEcoleApp.inscription.manquant">Manquant</label>
+          <input type="checkbox" class="form-check" name="manquant" id="field_manquant" data-cy="manquant" formControlName="manquant" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etudiant" jhiTranslate="gestionEcoleApp.inscription.etudiant">Etudiant</label>
+          <select
+            class="form-control"
+            id="field_etudiant"
+            data-cy="etudiant"
+            name="etudiant"
+            formControlName="etudiant"
+            [compareWith]="compareEtudiant"
+          >
+            <option [ngValue]="null"></option>
+            @for (etudiantOption of etudiantsSharedCollection; track $index) {
+              <option [ngValue]="etudiantOption">{{ etudiantOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_classe" jhiTranslate="gestionEcoleApp.inscription.classe">Classe</label>
+          <select
+            class="form-control"
+            id="field_classe"
+            data-cy="classe"
+            name="classe"
+            formControlName="classe"
+            [compareWith]="compareClasse"
+          >
+            <option [ngValue]="null"></option>
+            @for (classeOption of classesSharedCollection; track $index) {
+              <option [ngValue]="classeOption">{{ classeOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_anneescolaire" jhiTranslate="gestionEcoleApp.inscription.anneescolaire">Anneescolaire</label>
+          <select
+            class="form-control"
+            id="field_anneescolaire"
+            data-cy="anneescolaire"
+            name="anneescolaire"
+            formControlName="anneescolaire"
+            [compareWith]="compareAnneescolaire"
+          >
+            <option [ngValue]="null"></option>
+            @for (anneescolaireOption of anneescolairesSharedCollection; track $index) {
+              <option [ngValue]="anneescolaireOption">{{ anneescolaireOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_documents" jhiTranslate="gestionEcoleApp.inscription.document">Document</label>
+          <select
+            class="form-control"
+            id="field_documents"
+            data-cy="document"
+            multiple
+            name="documents"
+            formControlName="documents"
+            [compareWith]="compareDocument"
+          >
+            @for (documentOption of documentsSharedCollection; track $index) {
+              <option [ngValue]="documentOption">{{ documentOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

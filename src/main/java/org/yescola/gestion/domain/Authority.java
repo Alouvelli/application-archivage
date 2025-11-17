@@ -1,13 +1,14 @@
 package org.yescola.gestion.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 
 /**
@@ -25,6 +26,19 @@ public class Authority implements Serializable {
     @Id
     @Column(length = 50)
     private String name;
+
+    // ************************************************
+    // NOUVEAU CONSTRUCTEUR AJOUTÉ ICI POUR CORRIGER L'ERREUR
+    // ************************************************
+    public Authority() {
+        // Constructeur par défaut (sans arguments)
+        // Il est souvent utile de le garder si vous en avez un usage (ex: pour les frameworks JPA)
+    }
+
+    public Authority(String name) {
+        this.name = name;
+    }
+    // ************************************************
 
     public String getName() {
         return name;

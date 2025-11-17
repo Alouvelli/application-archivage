@@ -1,88 +1,94 @@
 {
-    "name": "Ecole",
-    "fields": [
-        {
-            "fieldName": "codeEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "logoEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "enteteEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "basPageEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "nineaEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "adresseEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "telephoneEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "emailEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "sigleEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "faxEcole",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etatEcole",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "encours",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "rang",
-            "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "application",
-            "otherEntityRelationshipName": "ecole",
-            "relationshipName": "application",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "site",
-            "otherEntityRelationshipName": "ecole",
-            "relationshipName": "site"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "profil",
-            "otherEntityRelationshipName": "ecole",
-            "relationshipName": "profil"
-        }
-    ],
-    "changelogDate": "20190603220332",
-    "entityTableName": "ecole",
-    "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+  "annotations": {
+    "changelogDate": "20190603220332"
+  },
+  "applications": "*",
+  "changelogDate": "20190603220332",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "ecole",
+  "fields": [
+    {
+      "fieldName": "codeEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logoEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enteteEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "basPageEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nineaEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresseEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephoneEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sigleEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "faxEcole",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatEcole",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "encours",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rang",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ecole",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "application",
+      "otherEntityRelationshipName": "ecole",
+      "ownerSide": true,
+      "relationshipName": "application",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "site",
+      "otherEntityRelationshipName": "ecole",
+      "relationshipName": "site",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "ecole",
+      "relationshipName": "profil",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
 }

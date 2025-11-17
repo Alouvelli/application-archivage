@@ -1,15 +1,12 @@
 package org.yescola.gestion.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.yescola.gestion.domain.Menu;
 import org.yescola.gestion.domain.Module;
 import org.yescola.gestion.domain.Profil;
-import org.yescola.gestion.domain.Module_site;
-import org.yescola.gestion.domain.ProfilModule;
-import org.yescola.gestion.domain.ProfilMenu;
-import org.yescola.gestion.domain.RubriqueProfil;
-import org.springframework.data.jpa.repository.*;
-import org.springframework.stereotype.Repository;
 import org.yescola.gestion.domain.Rubrique;
 
 import java.util.List;

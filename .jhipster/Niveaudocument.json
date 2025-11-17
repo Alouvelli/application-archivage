@@ -1,32 +1,38 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "niveau",
-            "otherEntityName": "niveau",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "document",
-            "otherEntityName": "document",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "etat",
-            "fieldType": "Boolean"
-        }
-    ],
-    "changelogDate": "20190624163228",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "niveaudocument",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190624163228"
+  },
+  "changelogDate": "20190624163228",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "niveaudocument",
+  "fields": [
+    {
+      "fieldName": "etat",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Niveaudocument",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "niveau",
+      "relationshipName": "niveau",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "document",
+      "relationshipName": "document",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
 }

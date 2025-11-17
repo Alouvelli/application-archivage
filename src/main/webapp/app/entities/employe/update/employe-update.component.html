@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-employe-heading" data-cy="EmployeCreateUpdateHeading" jhiTranslate="gestionEcoleApp.employe.home.createOrEditLabel">
+        Créer ou éditer un Employe
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.employe.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telUtilisateur" jhiTranslate="gestionEcoleApp.employe.telUtilisateur">Tel Utilisateur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="telUtilisateur"
+            id="field_telUtilisateur"
+            data-cy="telUtilisateur"
+            formControlName="telUtilisateur"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etatUtilisateur" jhiTranslate="gestionEcoleApp.employe.etatUtilisateur"
+            >Etat Utilisateur</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="etatUtilisateur"
+            id="field_etatUtilisateur"
+            data-cy="etatUtilisateur"
+            formControlName="etatUtilisateur"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_user" jhiTranslate="gestionEcoleApp.employe.user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection; track $index) {
+              <option [ngValue]="userOption">{{ userOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_profil" jhiTranslate="gestionEcoleApp.employe.profil">Profil</label>
+          <select
+            class="form-control"
+            id="field_profil"
+            data-cy="profil"
+            name="profil"
+            formControlName="profil"
+            [compareWith]="compareProfil"
+          >
+            <option [ngValue]="null"></option>
+            @for (profilOption of profilsSharedCollection; track $index) {
+              <option [ngValue]="profilOption">{{ profilOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

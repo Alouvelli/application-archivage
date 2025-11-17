@@ -1,0 +1,4 @@
+id,code_site,logo_site,entete_site,bas_page_site,ninea_site,adresse_site,telephone,email_site,sigle_site,fax_ecole,etat_site,encours,rang,ecole_id
+1,codeSite_1,logoSite_1,enteteSite_1,basPageSite_1,nineaSite_1,adresseSite_1,telephone_1,emailSite_1,sigleSite_1,faxEcole_1,1,1,1,1
+2,codeSite_2,logoSite_2,enteteSite_2,basPageSite_2,nineaSite_2,adresseSite_2,telephone_2,emailSite_2,sigleSite_2,faxEcole_2,2,2,2,2
+3,codeSite_3,logoSite_3,enteteSite_3,basPageSite_3,nineaSite_3,adresseSite_3,telephone_3,emailSite_3,sigleSite_3,faxEcole_3,3,3,3,3

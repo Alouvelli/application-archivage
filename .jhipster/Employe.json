@@ -1,39 +1,44 @@
 {
-    "name": "Employe",
-    "fields": [
-        {
-            "fieldName": "telUtilisateur",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etatUtilisateur",
-            "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "user",
-            "otherEntityRelationshipName": "employe",
-            "relationshipName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "profil",
-            "otherEntityRelationshipName": "employe",
-            "relationshipName": "profil",
-            "otherEntityField": "id"
-        }
-    ],
-    "changelogDate": "20190603220325",
-    "entityTableName": "employe",
-    "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+  "annotations": {
+    "changelogDate": "20190603220325"
+  },
+  "applications": "*",
+  "changelogDate": "20190603220325",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "employe",
+  "fields": [
+    {
+      "fieldName": "telUtilisateur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatUtilisateur",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Employe",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "employe",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "profil",
+      "otherEntityRelationshipName": "employe",
+      "relationshipName": "profil",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
 }

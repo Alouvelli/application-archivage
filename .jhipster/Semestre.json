@@ -1,23 +1,27 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [],
-    "fields": [
-        {
-            "fieldName": "libelle",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "etat",
-            "fieldType": "Integer"
-        }
-    ],
-    "changelogDate": "20190917221556",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "semestre",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190917221556"
+  },
+  "changelogDate": "20190917221556",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "semestre",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Semestre",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": false,
+  "service": "no"
 }

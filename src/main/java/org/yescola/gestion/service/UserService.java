@@ -1,16 +1,5 @@
 package org.yescola.gestion.service;
 
-import org.yescola.gestion.config.Constants;
-import org.yescola.gestion.domain.Authority;
-import org.yescola.gestion.domain.User;
-import org.yescola.gestion.repository.AuthorityRepository;
-import org.yescola.gestion.repository.UserRepository;
-import org.yescola.gestion.security.AuthoritiesConstants;
-import org.yescola.gestion.security.SecurityUtils;
-import org.yescola.gestion.service.dto.UserDTO;
-import org.yescola.gestion.service.util.RandomUtil;
-import org.yescola.gestion.web.rest.errors.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -20,6 +9,18 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yescola.gestion.config.Constants;
+import org.yescola.gestion.domain.Authority;
+import org.yescola.gestion.domain.User;
+import org.yescola.gestion.repository.AuthorityRepository;
+import org.yescola.gestion.repository.UserRepository;
+import org.yescola.gestion.security.AuthoritiesConstants;
+import org.yescola.gestion.security.SecurityUtils;
+import org.yescola.gestion.service.dto.UserDTO;
+import org.yescola.gestion.web.rest.errors.EmailAlreadyUsedException;
+import org.yescola.gestion.web.rest.errors.InvalidPasswordException;
+import org.yescola.gestion.web.rest.errors.LoginAlreadyUsedException;
+import tech.jhipster.security.RandomUtil;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -125,7 +126,7 @@ public class UserService {
 
     private boolean removeNonActivatedUser(User existingUser){
         if (existingUser.getActivated()) {
-             return false;
+            return false;
         }
         userRepository.delete(existingUser);
         userRepository.flush();
@@ -159,9 +160,12 @@ public class UserService {
             user.setAuthorities(authorities);
         }
         userRepository.save(user);
+        userRepository.flush();
         this.clearUserCaches(user);
-        log.debug("Created Information for User: {}", user);
-        return user;
+        User persisted = userRepository.findOneByLogin(user.getLogin())
+            .orElse(user);
+        log.debug("Created Information for User: {}", persisted);
+        return persisted;
     }
 
     /**
@@ -195,7 +199,7 @@ public class UserService {
      */
     public Optional<UserDTO> updateUser(UserDTO userDTO) {
         return Optional.of(userRepository
-            .findById(userDTO.getId()))
+                .findById(userDTO.getId()))
             .filter(Optional::isPresent)
             .map(Optional::get)
             .map(user -> {

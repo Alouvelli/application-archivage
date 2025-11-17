@@ -1,25 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "documentclasse": {
-            "home": {
-                "title": "Documentclasses",
-                "createLabel": "Create a new Documentclasse",
-                "createOrEditLabel": "Create or edit a Documentclasse"
-            },
-            "created": "A new Documentclasse is created with identifier {{ param }}",
-            "updated": "A Documentclasse is updated with identifier {{ param }}",
-            "deleted": "A Documentclasse is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Documentclasse {{ id }}?"
-            },
-            "detail": {
-                "title": "Documentclasse"
-            },
-            "document1": "Document 1",
-            "ref": "Ref",
-            "nomdocument": "Nomdocument",
-            "classe": "Classe",
-            "semestre": "Semestre"
-        }
+  "gestionEcoleApp": {
+    "documentclasse": {
+      "home": {
+        "title": "Documentclasses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Documentclasse",
+        "createOrEditLabel": "Create or edit a Documentclasse",
+        "notFound": "No Documentclasses found"
+      },
+      "created": "A new Documentclasse is created with identifier {{ param }}",
+      "updated": "A Documentclasse is updated with identifier {{ param }}",
+      "deleted": "A Documentclasse is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Documentclasse {{ id }}?"
+      },
+      "detail": {
+        "title": "Documentclasse"
+      },
+      "id": "ID",
+      "document1": "Document 1",
+      "ref": "Ref",
+      "nomdocument": "Nomdocument",
+      "classe": "Classe",
+      "semestre": "Semestre"
     }
+  }
 }

@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-profil-menu-heading"
+        data-cy="ProfilMenuCreateUpdateHeading"
+        jhiTranslate="gestionEcoleApp.profilMenu.home.createOrEditLabel"
+      >
+        Créer ou éditer un Profil Menu
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.profilMenu.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_voir" jhiTranslate="gestionEcoleApp.profilMenu.voir">Voir</label>
+          <input type="number" class="form-control" name="voir" id="field_voir" data-cy="voir" formControlName="voir" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ajouter" jhiTranslate="gestionEcoleApp.profilMenu.ajouter">Ajouter</label>
+          <input type="number" class="form-control" name="ajouter" id="field_ajouter" data-cy="ajouter" formControlName="ajouter" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_supprimer" jhiTranslate="gestionEcoleApp.profilMenu.supprimer">Supprimer</label>
+          <input type="number" class="form-control" name="supprimer" id="field_supprimer" data-cy="supprimer" formControlName="supprimer" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_modifier" jhiTranslate="gestionEcoleApp.profilMenu.modifier">Modifier</label>
+          <input type="number" class="form-control" name="modifier" id="field_modifier" data-cy="modifier" formControlName="modifier" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_imprimer" jhiTranslate="gestionEcoleApp.profilMenu.imprimer">Imprimer</label>
+          <input type="number" class="form-control" name="imprimer" id="field_imprimer" data-cy="imprimer" formControlName="imprimer" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_profil" jhiTranslate="gestionEcoleApp.profilMenu.profil">Profil</label>
+          <select
+            class="form-control"
+            id="field_profil"
+            data-cy="profil"
+            name="profil"
+            formControlName="profil"
+            [compareWith]="compareProfil"
+          >
+            <option [ngValue]="null"></option>
+            @for (profilOption of profilsSharedCollection; track $index) {
+              <option [ngValue]="profilOption">{{ profilOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_menu" jhiTranslate="gestionEcoleApp.profilMenu.menu">Menu</label>
+          <select class="form-control" id="field_menu" data-cy="menu" name="menu" formControlName="menu" [compareWith]="compareMenu">
+            <option [ngValue]="null"></option>
+            @for (menuOption of menusSharedCollection; track $index) {
+              <option [ngValue]="menuOption">{{ menuOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rubriqueProfil" jhiTranslate="gestionEcoleApp.profilMenu.rubriqueProfil"
+            >Rubrique Profil</label
+          >
+          <select
+            class="form-control"
+            id="field_rubriqueProfil"
+            data-cy="rubriqueProfil"
+            name="rubriqueProfil"
+            formControlName="rubriqueProfil"
+            [compareWith]="compareRubriqueProfil"
+          >
+            <option [ngValue]="null"></option>
+            @for (rubriqueProfilOption of rubriqueProfilsSharedCollection; track $index) {
+              <option [ngValue]="rubriqueProfilOption">{{ rubriqueProfilOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,11 +1,7 @@
 package org.yescola.gestion.web.rest;
 
-import org.yescola.gestion.security.jwt.JWTFilter;
-import org.yescola.gestion.security.jwt.TokenProvider;
-import org.yescola.gestion.web.rest.vm.LoginVM;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +9,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.yescola.gestion.security.jwt.JWTFilter;
+import org.yescola.gestion.security.jwt.TokenProvider;
+import org.yescola.gestion.web.rest.vm.LoginVM;
 
 /**
  * Controller to authenticate users.
@@ -25,6 +25,7 @@ import javax.validation.Valid;
 public class UserJWTController {
 
     private final TokenProvider tokenProvider;
+
 
     private final AuthenticationManager authenticationManager;
 
@@ -41,7 +42,7 @@ public class UserJWTController {
 
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
+        boolean rememberMe = loginVM.isRememberMe() != null && loginVM.isRememberMe();
         String jwt = tokenProvider.createToken(authentication, rememberMe);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
@@ -51,20 +52,24 @@ public class UserJWTController {
     /**
      * Object to return as body in JWT Authentication.
      */
-    static class JWTToken {
+    public static class JWTToken {
 
+        @JsonProperty("id_token")
         private String idToken;
 
-        JWTToken(String idToken) {
+        public JWTToken() {
+            // Jackson needs a default constructor
+        }
+
+        public JWTToken(String idToken) {
             this.idToken = idToken;
         }
 
-        @JsonProperty("id_token")
-        String getIdToken() {
+        public String getIdToken() {
             return idToken;
         }
 
-        void setIdToken(String idToken) {
+        public void setIdToken(String idToken) {
             this.idToken = idToken;
         }
     }

@@ -1,23 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "paiementtypefrais": {
-            "home": {
-                "title": "Paiementtypefrais",
-                "createLabel": "Créer un nouveau Paiementtypefrais",
-                "createOrEditLabel": "Créer ou éditer un Paiementtypefrais"
-            },
-            "created": "Un nouveau Paiementtypefrais a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Paiementtypefrais avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Paiementtypefrais avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Paiementtypefrais {{ id }} ?"
-            },
-            "detail": {
-                "title": "Paiementtypefrais"
-            },
-            "montant": "Montant",
-            "typefrais": "Typefrais",
-            "paiement": "Paiement"
-        }
+  "gestionEcoleApp": {
+    "paiementtypefrais": {
+      "home": {
+        "title": "Paiementtypefrais",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Paiementtypefrais",
+        "createOrEditLabel": "Créer ou éditer un Paiementtypefrais",
+        "notFound": "Aucun Paiementtypefrais trouvé"
+      },
+      "created": "Un nouveau Paiementtypefrais a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Paiementtypefrais avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Paiementtypefrais avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Paiementtypefrais {{ id }} ?"
+      },
+      "detail": {
+        "title": "Paiementtypefrais"
+      },
+      "id": "ID",
+      "montant": "Montant",
+      "typefrais": "Typefrais",
+      "paiement": "Paiement"
     }
+  }
 }

@@ -1,56 +1,46 @@
 <div>
-    <h2>
-        <span id="metrics-page-heading" jhiTranslate="metrics.title">Application Metrics</span>
-        <button class="btn btn-primary float-right" (click)="refresh()">
-            <fa-icon [icon]="'sync'"></fa-icon> <span jhiTranslate="metrics.refresh.button">Refresh</span>
-        </button>
-    </h2>
+  <h2>
+    <span id="metrics-page-heading" data-cy="metricsPageHeading" jhiTranslate="metrics.title">Métriques de l&apos;application</span>
 
-    <h3 jhiTranslate="metrics.jvm.title">JVM Metrics</h3>
-    <div class="row" *ngIf="!updatingMetrics">
-        <jhi-jvm-memory
-            class="col-md-4"
-            [updating]="updatingMetrics"
-            [jvmMemoryMetrics]="metrics.jvm">
-        </jhi-jvm-memory>
-        <jhi-jvm-threads class="col-md-4" [threadData]="threadData"></jhi-jvm-threads>
-        <jhi-metrics-system
-            class="col-md-4"
-            [updating]="updatingMetrics"
-            [systemMetrics]="metrics.processMetrics">
-        </jhi-metrics-system>
+    <button class="btn btn-primary float-end" (click)="refresh()">
+      <fa-icon icon="sync"></fa-icon> <span jhiTranslate="metrics.refresh.button">Rafraîchir</span>
+    </button>
+  </h2>
+
+  <h3 jhiTranslate="metrics.jvm.title">Métriques de la JVM</h3>
+
+  @let metricsRef = metrics();
+  @if (metricsRef && !updatingMetrics()) {
+    <div class="row">
+      <jhi-jvm-memory class="col-md-4" [updating]="updatingMetrics()" [jvmMemoryMetrics]="metricsRef.jvm" />
+
+      <jhi-jvm-threads class="col-md-4" [threads]="threads()" />
+
+      <jhi-metrics-system class="col-md-4" [updating]="updatingMetrics()" [systemMetrics]="metricsRef.processMetrics" />
     </div>
+  }
 
-    <div *ngIf="isObjectExisting(metrics, 'garbageCollector')">
-        <h3 jhiTranslate="metrics.jvm.gc.title">Garbage collector statistics</h3>
-        <jhi-metrics-garbagecollector [updating]="updatingMetrics" [garbageCollectorMetrics]="metrics.garbageCollector"></jhi-metrics-garbagecollector>
-    </div>
+  @if (metricsRef?.garbageCollector; as metricsRefGarbageCollector) {
+    <jhi-metrics-garbagecollector [updating]="updatingMetrics()" [garbageCollectorMetrics]="metricsRefGarbageCollector" />
+  }
 
-    <div class="well well-lg" *ngIf="updatingMetrics" jhiTranslate="metrics.updating">Updating...</div>
+  @if (updatingMetrics()) {
+    <div class="well well-lg" jhiTranslate="metrics.updating">Mise à jour...</div>
+  }
 
-    <jhi-metrics-request
-        *ngIf="isObjectExisting(metrics, 'http.server.requests')"
-        [updating]="updatingMetrics"
-        [requestMetrics]="metrics['http.server.requests']">
-    </jhi-metrics-request>
+  @if (metricsRef?.['http.server.requests']; as metricsRefHttpServerRequests) {
+    <jhi-metrics-request [updating]="updatingMetrics()" [requestMetrics]="metricsRefHttpServerRequests" />
+  }
 
-    <div >
-        <jhi-metrics-endpoints-requests
-            *ngIf="isObjectExisting(metrics, 'services')"
-            [updating]="updatingMetrics"
-            [endpointsRequestsMetrics]="metrics.services">
-        </jhi-metrics-endpoints-requests>
+  @if (metricsRef?.services; as metricsRefServices) {
+    <jhi-metrics-endpoints-requests [updating]="updatingMetrics()" [endpointsRequestsMetrics]="metricsRefServices" />
+  }
 
-    <jhi-metrics-cache
-        *ngIf="isObjectExisting(metrics, 'cache')"
-        [updating]="updatingMetrics"
-        [cacheMetrics]="metrics.cache">
-    </jhi-metrics-cache>
+  @if (metricsRef?.cache; as metricsRefCache) {
+    <jhi-metrics-cache [updating]="updatingMetrics()" [cacheMetrics]="metricsRefCache" />
+  }
 
-    <jhi-metrics-datasource
-        *ngIf="isObjectExistingAndNotEmpty(metrics, 'databases')"
-        [updating]="updatingMetrics"
-        [datasourceMetrics]="metrics.databases">
-    </jhi-metrics-datasource>
-
+  @if (metricsRef && metricsKeyExistsAndObjectNotEmpty('databases')) {
+    <jhi-metrics-datasource [updating]="updatingMetrics()" [datasourceMetrics]="metricsRef.databases" />
+  }
 </div>

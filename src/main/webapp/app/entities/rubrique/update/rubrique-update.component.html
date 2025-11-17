@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-rubrique-heading" data-cy="RubriqueCreateUpdateHeading" jhiTranslate="gestionEcoleApp.rubrique.home.createOrEditLabel">
+        Créer ou éditer un Rubrique
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionEcoleApp.rubrique.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_libelleRubrique" jhiTranslate="gestionEcoleApp.rubrique.libelleRubrique"
+            >Libelle Rubrique</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="libelleRubrique"
+            id="field_libelleRubrique"
+            data-cy="libelleRubrique"
+            formControlName="libelleRubrique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rangRubrique" jhiTranslate="gestionEcoleApp.rubrique.rangRubrique">Rang Rubrique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="rangRubrique"
+            id="field_rangRubrique"
+            data-cy="rangRubrique"
+            formControlName="rangRubrique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_iconeRubrique" jhiTranslate="gestionEcoleApp.rubrique.iconeRubrique">Icone Rubrique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="iconeRubrique"
+            id="field_iconeRubrique"
+            data-cy="iconeRubrique"
+            formControlName="iconeRubrique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_etatRubrique" jhiTranslate="gestionEcoleApp.rubrique.etatRubrique">Etat Rubrique</label>
+          <input
+            type="number"
+            class="form-control"
+            name="etatRubrique"
+            id="field_etatRubrique"
+            data-cy="etatRubrique"
+            formControlName="etatRubrique"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_rang" jhiTranslate="gestionEcoleApp.rubrique.rang">Rang</label>
+          <input type="number" class="form-control" name="rang" id="field_rang" data-cy="rang" formControlName="rang" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_module" jhiTranslate="gestionEcoleApp.rubrique.module">Module</label>
+          <select
+            class="form-control"
+            id="field_module"
+            data-cy="module"
+            name="module"
+            formControlName="module"
+            [compareWith]="compareModule"
+          >
+            <option [ngValue]="null"></option>
+            @for (moduleOption of modulesSharedCollection; track $index) {
+              <option [ngValue]="moduleOption">{{ moduleOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

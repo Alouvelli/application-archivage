@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (ecole(); as ecoleRef) {
+      <div>
+        <h2 data-cy="ecoleDetailsHeading"><span jhiTranslate="gestionEcoleApp.ecole.detail.title">Ecole</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ ecoleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.codeEcole">Code Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.codeEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.logoEcole">Logo Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.logoEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.enteteEcole">Entete Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.enteteEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.basPageEcole">Bas Page Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.basPageEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.nineaEcole">Ninea Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.nineaEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.adresseEcole">Adresse Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.adresseEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.telephoneEcole">Telephone Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.telephoneEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.emailEcole">Email Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.emailEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.sigleEcole">Sigle Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.sigleEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.faxEcole">Fax Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.faxEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.etatEcole">Etat Ecole</span></dt>
+          <dd>
+            <span>{{ ecoleRef.etatEcole }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.encours">Encours</span></dt>
+          <dd>
+            <span>{{ ecoleRef.encours }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.rang">Rang</span></dt>
+          <dd>
+            <span>{{ ecoleRef.rang }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.ecole.application">Application</span></dt>
+          <dd>
+            @if (ecole()!.application) {
+              <div>
+                <a [routerLink]="['/application', ecole()!.application?.id, 'view']">{{ ecoleRef.application?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/ecole', ecoleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="dashboard-shell">
+  <header class="dashboard-header">
+    <div>
+      <p class="eyebrow">Bienvenue</p>
+      <h1>Tableau de bord</h1>
+      <p class="subtitle">Vision en temps réel des flux d'archivage Groupe ISI.</p>
+    </div>
+    <div class="header-actions" *ngIf="account() as accountRef; else guestActions">
+      <span class="chip">{{ accountRef.firstName || accountRef.login }}</span>
+      <a class="btn btn-light" routerLink="/menu" data-cy="dashboardMenuShortcut">Gérer les menus</a>
+      <a class="btn btn-primary" routerLink="/document/new">Archivage express</a>
+    </div>
+    <ng-template #guestActions>
+      <a class="btn btn-primary" routerLink="/login">S'authentifier</a>
+    </ng-template>
+  </header>
+
+  <section class="metric-grid">
+    @for (card of metricCards(); track card.label) {
+      <article class="metric-card" [class]="'metric-card ' + card.accent">
+        <p>{{ card.label }}</p>
+        <div class="metric-value">
+          <span>{{ card.value | number:'1.0-0' }}</span>
+          <small [class.positive]="card.trend >= 0" [class.negative]="card.trend < 0">
+            <fa-icon [icon]="card.trend >= 0 ? 'arrow-up' : 'arrow-down'"></fa-icon>
+            {{ card.trend | number:'1.0-0' }} %
+          </small>
+        </div>
+        <p class="metric-hint">{{ card.hint }}</p>
+      </article>
+    }
+  </section>
+
+  <section class="charts-row">
+    <article class="chart-card">
+      <div class="chart-card__header">
+        <div>
+          <h2>Volume mensuel</h2>
+          <p>Archivages validés</p>
+        </div>
+        <button class="btn btn-ghost" routerLink="/document">
+          Voir les dossiers
+          <fa-icon icon="arrow-right"></fa-icon>
+        </button>
+      </div>
+      <div class="bar-chart">
+        @for (point of volumeSeries(); track point.month) {
+          <div class="bar" [style.height.%]="point.value">
+            <span>{{ point.value }}</span>
+            <small>{{ point.month }}</small>
+          </div>
+        }
+      </div>
+    </article>
+
+    <article class="chart-card">
+      <div class="chart-card__header">
+        <div>
+          <h2>Statut des demandes</h2>
+          <p>Répartition globale</p>
+        </div>
+      </div>
+      <div class="donut-wrapper">
+        <div class="donut" [style.background]="donutBackground()"></div>
+        <div class="donut-center">
+          <span>{{ totalRequests() }}</span>
+          <small>demandes</small>
+        </div>
+      </div>
+      <ul class="legend">
+        @for (slice of statusSlices(); track slice.label) {
+          <li>
+            <span class="dot" [style.background]="slice.color"></span>
+            <span>{{ slice.label }}</span>
+            <strong>{{ slice.value }} %</strong>
+          </li>
+        }
+      </ul>
+    </article>
+  </section>
+
+  <section class="layout-split">
+    <article class="timeline-card">
+      <div class="card-header">
+        <div>
+          <h2>Activité</h2>
+          <p>{{ timeline().length }} événements aujourd'hui</p>
+        </div>
+        <span class="chip">{{ totalAlerts() }} alertes</span>
+      </div>
+      <ul>
+        @for (item of timeline(); track item.title) {
+          <li [class]="item.status">
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.detail }}</p>
+            </div>
+            <span>{{ item.time }}</span>
+          </li>
+        }
+      </ul>
+    </article>
+
+    <article class="tasks-card">
+      <div class="card-header">
+        <div>
+          <h2>Raccourcis</h2>
+          <p>Actions fréquentes</p>
+        </div>
+      </div>
+      <div class="quick-grid">
+        @for (link of quickLinks; track link.route) {
+          <a [routerLink]="link.route">
+            <span>{{ link.label }}</span>
+            <fa-icon icon="arrow-right"></fa-icon>
+          </a>
+        }
+      </div>
+    </article>
+  </section>
+</div>

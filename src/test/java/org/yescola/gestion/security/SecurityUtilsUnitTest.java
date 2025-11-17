@@ -1,5 +1,12 @@
 package org.yescola.gestion.security;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,20 +14,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
- * Test class for the SecurityUtils utility class.
- *
- * @see SecurityUtils
+ * Test class for the {@link SecurityUtils} utility class.
  */
 public class SecurityUtilsUnitTest {
 
-    @Test
+    @org.junit.Test
     public void testgetCurrentUserLogin() {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "admin"));
@@ -29,7 +28,7 @@ public class SecurityUtilsUnitTest {
         assertThat(login).contains("admin");
     }
 
-    @Test
+    @org.junit.Test
     public void testgetCurrentUserJWT() {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "token"));
@@ -38,7 +37,7 @@ public class SecurityUtilsUnitTest {
         assertThat(jwt).contains("token");
     }
 
-    @Test
+    @org.junit.Test
     public void testIsAuthenticated() {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "admin"));
@@ -47,7 +46,7 @@ public class SecurityUtilsUnitTest {
         assertThat(isAuthenticated).isTrue();
     }
 
-    @Test
+    @org.junit.Test
     public void testAnonymousIsNotAuthenticated() {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -69,5 +68,4 @@ public class SecurityUtilsUnitTest {
         assertThat(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.USER)).isTrue();
         assertThat(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)).isFalse();
     }
-
 }

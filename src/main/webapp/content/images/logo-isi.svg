@@ -1,0 +1,16 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="isiTitle isiDesc">
+  <title id="isiTitle">Groupe ISI monogramme</title>
+  <desc id="isiDesc">Logo stylisé reprenant les initiales ISI avec les couleurs bleu profond et orange du Groupe ISI.</desc>
+  <defs>
+    <linearGradient id="isiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b3c83" />
+      <stop offset="100%" stop-color="#04143a" />
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="140" fill="url(#isiGradient)" />
+  <path
+    d="M110 80h25v140h-25zm80 0c33 0 55 16 55 42 0 20-12 34-32 39v0.6c23 4.8 37 19.4 37 42.4 0 22.8-13.8 46-60.6 46H140v-38h39.4c18 0 30-7.6 30-20.6 0-14-12.8-21.2-33-21.2H140V80z"
+    fill="#ffb600"
+  />
+  <circle cx="95" cy="110" r="18" fill="#ffb600" />
+</svg>

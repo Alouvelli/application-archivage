@@ -1,23 +1,27 @@
 {
-    "gestionEcoleApp": {
-        "anneescolaire": {
-            "home": {
-                "title": "Anneescolaires",
-                "createLabel": "Créer un nouveau Anneescolaire",
-                "createOrEditLabel": "Créer ou éditer un Anneescolaire"
-            },
-            "created": "Un nouveau Anneescolaire a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Anneescolaire avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Anneescolaire avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Anneescolaire {{ id }} ?"
-            },
-            "detail": {
-                "title": "Anneescolaire"
-            },
-            "libelle": "Libelle",
-            "encours": "Encours",
-            "etat": "Etat"
-        }
+  "gestionEcoleApp": {
+    "anneescolaire": {
+      "home": {
+        "title": "Anneescolaires",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Anneescolaire",
+        "createOrEditLabel": "Créer ou éditer un Anneescolaire",
+        "notFound": "Aucun Anneescolaire trouvé"
+      },
+      "created": "Un nouveau Anneescolaire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Anneescolaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Anneescolaire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Anneescolaire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Anneescolaire"
+      },
+      "id": "ID",
+      "libelle": "Libelle",
+      "encours": "Encours",
+      "etat": "Etat",
+      "inscription": "Inscription"
     }
+  }
 }

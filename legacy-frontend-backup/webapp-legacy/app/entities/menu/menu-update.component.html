@@ -1,0 +1,86 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <form [formGroup]="editForm" novalidate (ngSubmit)="save()">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+        <h2 id="jhi-menu-heading" class="h4 mb-0">
+          {{ 'gestionEcoleApp.menu.home.createOrEditLabel' | translate }}
+        </h2>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+          </button>
+          <button type="submit" class="btn btn-primary" id="save-entity" [disabled]="editForm.invalid || isSaving">
+            <fa-icon [icon]="faSave"></fa-icon>
+            <span class="ms-2">{{ 'entity.action.save' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      @if (editForm.get('id')?.value !== null) {
+        <div class="mb-3">
+          <label for="field_id" class="form-label text-uppercase small text-muted">{{ 'global.field.id' | translate }}</label>
+          <input class="form-control" id="field_id" formControlName="id" readonly />
+        </div>
+      }
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="field_codeMenu" class="form-label">{{ 'gestionEcoleApp.menu.codeMenu' | translate }}</label>
+          <input id="field_codeMenu" type="text" class="form-control" formControlName="codeMenu" />
+          @if (editForm.get('codeMenu')?.invalid && (editForm.get('codeMenu')?.dirty || editForm.get('codeMenu')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+        <div class="col-md-6">
+          <label for="field_libelleMenu" class="form-label">{{ 'gestionEcoleApp.menu.libelleMenu' | translate }}</label>
+          <input id="field_libelleMenu" type="text" class="form-control" formControlName="libelleMenu" />
+          @if (editForm.get('libelleMenu')?.invalid && (editForm.get('libelleMenu')?.dirty || editForm.get('libelleMenu')?.touched)) {
+            <div class="invalid-feedback d-block">
+              {{ 'entity.validation.required' | translate }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="row g-3 mt-0">
+        <div class="col-md-6">
+          <label for="field_rangMenu" class="form-label">{{ 'gestionEcoleApp.menu.rangMenu' | translate }}</label>
+          <input id="field_rangMenu" type="text" class="form-control" formControlName="rangMenu" />
+        </div>
+        <div class="col-md-6">
+          <label for="field_urlMenu" class="form-label">{{ 'gestionEcoleApp.menu.urlMenu' | translate }}</label>
+          <input id="field_urlMenu" type="text" class="form-control" formControlName="urlMenu" />
+        </div>
+      </div>
+
+      <div class="row g-3 mt-0">
+        <div class="col-md-6">
+          <label for="field_iconeMenu" class="form-label">{{ 'gestionEcoleApp.menu.iconeMenu' | translate }}</label>
+          <input id="field_iconeMenu" type="text" class="form-control" formControlName="iconeMenu" />
+        </div>
+        <div class="col-md-6">
+          <label for="field_etatMenu" class="form-label">{{ 'gestionEcoleApp.menu.etatMenu' | translate }}</label>
+          <input id="field_etatMenu" type="number" class="form-control" formControlName="etatMenu" />
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="field_rubrique" class="form-label">{{ 'gestionEcoleApp.menu.rubrique' | translate }}</label>
+        <select id="field_rubrique" class="form-select" formControlName="rubriqueId">
+          <option [ngValue]="null">-- {{ ('entity.action.select' | translate) || 'Select' }} --</option>
+          @for (rubrique of rubriques; track rubrique.id) {
+            <option [ngValue]="rubrique.id">{{ rubrique.libelle ?? rubrique.id }}</option>
+          }
+        </select>
+        @if (editForm.get('rubriqueId')?.invalid && (editForm.get('rubriqueId')?.dirty || editForm.get('rubriqueId')?.touched)) {
+          <div class="invalid-feedback d-block">
+            {{ 'entity.validation.required' | translate }}
+          </div>
+        }
+      </div>
+    </form>
+  </div>
+</section>

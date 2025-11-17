@@ -1,0 +1,4 @@
+id,code_ecole,logo_ecole,entete_ecole,bas_page_ecole,ninea_ecole,adresse_ecole,telephone_ecole,email_ecole,sigle_ecole,fax_ecole,etat_ecole,encours,rang
+1,codeEcole_1,logoEcole_1,enteteEcole_1,basPageEcole_1,nineaEcole_1,adresseEcole_1,telephoneEcole_1,emailEcole_1,sigleEcole_1,faxEcole_1,1,1,1
+2,codeEcole_2,logoEcole_2,enteteEcole_2,basPageEcole_2,nineaEcole_2,adresseEcole_2,telephoneEcole_2,emailEcole_2,sigleEcole_2,faxEcole_2,2,2,2
+3,codeEcole_3,logoEcole_3,enteteEcole_3,basPageEcole_3,nineaEcole_3,adresseEcole_3,telephoneEcole_3,emailEcole_3,sigleEcole_3,faxEcole_3,3,3,3

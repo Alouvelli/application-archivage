@@ -1,0 +1,4 @@
+id,etat,document1,document2,ref,type_document_id
+1,false,document1_1,document2_1,1,1
+2,true,document1_2,document2_2,2,2
+3,false,document1_3,document2_3,3,3

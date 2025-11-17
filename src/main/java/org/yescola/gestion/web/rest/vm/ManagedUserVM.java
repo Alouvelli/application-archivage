@@ -1,10 +1,10 @@
 package org.yescola.gestion.web.rest.vm;
 
+import jakarta.validation.constraints.Size;
 import org.yescola.gestion.service.dto.UserDTO;
-import javax.validation.constraints.Size;
 
 /**
- * View Model extending the UserDTO, which is meant to be used in the user management UI.
+ * View Model extending the AdminUserDTO, which is meant to be used in the user management UI.
  */
 public class ManagedUserVM extends UserDTO {
 
@@ -27,9 +27,9 @@ public class ManagedUserVM extends UserDTO {
         this.password = password;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
-        return "ManagedUserVM{" +
-            "} " + super.toString();
+        return "ManagedUserVM{" + super.toString() + "} ";
     }
 }

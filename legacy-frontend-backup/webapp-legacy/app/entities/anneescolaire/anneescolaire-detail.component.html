@@ -1,0 +1,31 @@
+@if (anneescolaire) {
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="h5 mb-0">
+        {{ 'gestionEcoleApp.anneescolaire.detail.title' | translate }} #{{ anneescolaire.id }}
+      </h2>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="previousState()">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.back' | translate }}</span>
+        </button>
+        <a class="btn btn-primary btn-sm" [routerLink]="['/anneescolaire', anneescolaire.id, 'edit']">
+          <fa-icon [icon]="faPencil"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.edit' | translate }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <dl class="row gy-3">
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.anneescolaire.libelle' | translate }}</dt>
+        <dd class="col-sm-8">{{ anneescolaire.libelle }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.anneescolaire.encours' | translate }}</dt>
+        <dd class="col-sm-8">{{ anneescolaire.encours }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.anneescolaire.etat' | translate }}</dt>
+        <dd class="col-sm-8">{{ anneescolaire.etat }}</dd>
+      </dl>
+    </div>
+  </div>
+}

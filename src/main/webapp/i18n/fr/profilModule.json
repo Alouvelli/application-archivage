@@ -1,24 +1,28 @@
 {
-    "gestionEcoleApp": {
-        "profilModule": {
-            "home": {
-                "title": "ProfilModules",
-                "createLabel": "Créer un nouveau Profil Module",
-                "createOrEditLabel": "Créer ou éditer un Profil Module"
-            },
-            "created": "Un nouveau Profil Module a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Profil Module avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Profil Module avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Profil Module {{ id }} ?"
-            },
-            "detail": {
-                "title": "Profil Module"
-            },
-            "encours": "Encours",
-            "profil": "Profil",
-            "module": "Module",
-            "siteProfil": "Site Profil"
-        }
+  "gestionEcoleApp": {
+    "profilModule": {
+      "home": {
+        "title": "ProfilModules",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Profil Module",
+        "createOrEditLabel": "Créer ou éditer un Profil Module",
+        "notFound": "Aucun Profil Module trouvé"
+      },
+      "created": "Un nouveau Profil Module a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Profil Module avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Profil Module avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Profil Module {{ id }} ?"
+      },
+      "detail": {
+        "title": "Profil Module"
+      },
+      "id": "ID",
+      "encours": "Encours",
+      "profil": "Profil",
+      "module": "Module",
+      "siteProfil": "Site Profil",
+      "rubriqueProfil": "Rubrique Profil"
     }
+  }
 }

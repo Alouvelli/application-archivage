@@ -1,25 +1,31 @@
 {
-    "gestionEcoleApp": {
-        "profil": {
-            "home": {
-                "title": "Profils",
-                "createLabel": "Créer un nouveau Profil",
-                "createOrEditLabel": "Créer ou éditer un Profil"
-            },
-            "created": "Un nouveau Profil a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Profil avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Profil avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Profil {{ id }} ?"
-            },
-            "detail": {
-                "title": "Profil"
-            },
-            "etatProfil": "Etat Profil",
-            "libelleProfil": "Libelle Profil",
-            "ecole": "Ecole",
-            "site": "Site",
-            "employe": "Employe"
-        }
+  "gestionEcoleApp": {
+    "profil": {
+      "home": {
+        "title": "Profils",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Profil",
+        "createOrEditLabel": "Créer ou éditer un Profil",
+        "notFound": "Aucun Profil trouvé"
+      },
+      "created": "Un nouveau Profil a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Profil avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Profil avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Profil {{ id }} ?"
+      },
+      "detail": {
+        "title": "Profil"
+      },
+      "id": "ID",
+      "etatProfil": "Etat Profil",
+      "libelleProfil": "Libelle Profil",
+      "ecole": "Ecole",
+      "site": "Site",
+      "employe": "Employe",
+      "profilMenu": "Profil Menu",
+      "rubriqueProfil": "Rubrique Profil",
+      "profilModule": "Profil Module"
     }
+  }
 }

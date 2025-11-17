@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (typeDocument(); as typeDocumentRef) {
+      <div>
+        <h2 data-cy="typeDocumentDetailsHeading"><span jhiTranslate="gestionEcoleApp.typeDocument.detail.title">Type Document</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ typeDocumentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.typeDocument.libelle">Libelle</span></dt>
+          <dd>
+            <span>{{ typeDocumentRef.libelle }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.typeDocument.description">Description</span></dt>
+          <dd>
+            <span>{{ typeDocumentRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.typeDocument.etat">Etat</span></dt>
+          <dd>
+            <span>{{ typeDocumentRef.etat }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/type-document', typeDocumentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

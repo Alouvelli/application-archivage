@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "specialitecycle": {
+            "home": {
+                "title": "Specialitecycles",
+                "createLabel": "Créer un nouveau Specialitecycle",
+                "createOrEditLabel": "Créer ou éditer un Specialitecycle"
+            },
+            "created": "Un nouveau Specialitecycle a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Specialitecycle avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Specialitecycle avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Specialitecycle {{ id }} ?"
+            },
+            "detail": {
+                "title": "Specialitecycle"
+            },
+            "nombreprof": "Nombreprof",
+            "specialite": "Specialite",
+            "cycle": "Cycle"
+        }
+    }
+}

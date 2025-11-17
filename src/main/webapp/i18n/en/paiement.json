@@ -1,22 +1,25 @@
 {
-    "gestionEcoleApp": {
-        "paiement": {
-            "home": {
-                "title": "Paiements",
-                "createLabel": "Create a new Paiement",
-                "createOrEditLabel": "Create or edit a Paiement"
-            },
-            "created": "A new Paiement is created with identifier {{ param }}",
-            "updated": "A Paiement is updated with identifier {{ param }}",
-            "deleted": "A Paiement is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Paiement {{ id }}?"
-            },
-            "detail": {
-                "title": "Paiement"
-            },
-            "description": "Description",
-            "etat": "Etat"
-        }
+  "gestionEcoleApp": {
+    "paiement": {
+      "home": {
+        "title": "Paiements",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Paiement",
+        "createOrEditLabel": "Create or edit a Paiement",
+        "notFound": "No Paiements found"
+      },
+      "created": "A new Paiement is created with identifier {{ param }}",
+      "updated": "A Paiement is updated with identifier {{ param }}",
+      "deleted": "A Paiement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paiement {{ id }}?"
+      },
+      "detail": {
+        "title": "Paiement"
+      },
+      "id": "ID",
+      "description": "Description",
+      "etat": "Etat"
     }
+  }
 }

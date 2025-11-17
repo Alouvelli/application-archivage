@@ -15,52 +15,52 @@
 
 
 spring:
-    application:
-        name: gestionEcole
-    cache:
-        type: simple
-    datasource:
-        type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:gestionEcole;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-        name:
-        username:
-        password:
-        hikari:
-            auto-commit: false
-    jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
-        open-in-view: false
-        show-sql: false
-        hibernate:
-            ddl-auto: none
-            naming:
-                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-        properties:
-            hibernate.id.new_generator_mappings: true
-            hibernate.connection.provider_disables_autocommit: true
-            hibernate.cache.use_second_level_cache: false
-            hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: false
-            hibernate.hbm2ddl.auto: validate
-            hibernate.jdbc.time_zone: UTC
-    liquibase:
-        contexts: test
-    mail:
-        host: localhost
-    messages:
-        basename: i18n/messages
-    mvc:
-        favicon:
-            enabled: false
-    thymeleaf:
-        mode: HTML
-
-
-server:
-    port: 10344
-    address: localhost
+  application:
+    name: newArchiveApp
+  cache:
+    type: simple # Utilise un cache simple en mémoire pour les tests
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:newArchiveApp;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE # Base de données H2 en mémoire
+    name:
+    username: sa
+    password:
+    hikari:
+      auto-commit: false
+  jpa:
+#    database-platform: tech.jhipster.domain.util.FixedH2Dialect # Dialecte spécifique pour H2
+    database: H2
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop # Ne pas créer/mettre à jour automatiquement le schéma en test, Liquibase le fera
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      # Ces propriétés sont souvent liées à des problèmes de cache de second niveau ou de statistiques
+      # Si vous ne les utilisez pas explicitement, il est préférable de les désactiver pour les tests.
+      # hibernate.cache.use_second_level_cache: false # Pas de cache de second niveau pour les tests
+      # hibernate.cache.use_query_cache: false
+      # hibernate.generate_statistics: false # Pas de statistiques pour les tests
+  liquibase:
+    change-log: classpath:config/liquibase/master.xml
+    contexts: test # Contexte Liquibase pour les tests
+    drop-first: false
+  mail:
+    host: localhost
+    port: 587
+    username: abdalahtims@gmail.com
+    password: otsduwzjlhflebio
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+  messages:
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  thymeleaf:
+    cache: false # Désactive le cache Thymeleaf pour les tests
 
 # ===================================================================
 # JHipster specific properties
@@ -69,39 +69,38 @@ server:
 # ===================================================================
 
 jhipster:
-    async:
-        core-pool-size: 1
-        max-pool-size: 50
-        queue-capacity: 10000
-    # To test logstash appender
-    logging:
-        logstash:
-            enabled: true
-            host: localhost
-            port: 5000
-            queue-size: 512
-    mail:
-        from: test@localhost
-        base-url: http://127.0.0.1:8080
-    security:
-        authentication:
-            jwt:
-                # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-                base64-secret: N2JmOWZjYzFmYWE2ZGY5NDYzYTExNTBlYWQ4ZTBkNmJkZTc1NDBmYzFjOTcxMDAxZjBjNGQxZjBkM2NjODdiZTdhOGQxOTZkYmVkNmEwNjY5ZGZiOGEzNzQ0MDFlYTkzYmI2YTAyMmU1OWI3ZjRlN2M1ZjY1ZjQ1ZWU3NDY1MWY=
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
-    metrics:
-        logs: # Reports metrics in the logs
-            enabled: true
-            report-frequency: 60 # in seconds
-
-# ===================================================================
-# Application specific properties
-# Add your own application properties here, see the ApplicationProperties class
-# to have type-safe configuration, like in the JHipsterProperties above
-#
-# More documentation is available at:
-# https://www.jhipster.tech/common-application-properties/
-# ===================================================================
-
-# application:
+  async:
+    core-pool-size: 1
+    max-pool-size: 50
+    queue-capacity: 10000
+  # To test logstash appender
+  logging:
+    logstash:
+      enabled: true
+      host: localhost
+      port: 5000
+      # La propriété 'queue-size' peut ne plus être directement mappée dans les versions récentes de JHipster.
+      # Si elle cause des erreurs de liaison, il est préférable de la commenter ou de la supprimer.
+      # queue-size: 512 # Commenté car elle peut causer des erreurs de liaison
+  mail:
+    from: test@localhost
+    base-url: http://127.0.0.1:8080
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: N2JmOWZjYzFmYWE2ZGY5NDYzYTExNTBlYWQ4ZTBkNmJkZTc1NDBmYzFjOTcxMDAxZjBjNGQxZjBkM2
+        # token-validity-in-seconds: 86400
+        # token-validity-in-seconds-for-remember-me: 2592000
+  # Les propriétés de métriques pour les logs peuvent avoir changé de structure.
+  # Si elles ne sont pas reconnues, il est préférable de les commenter.
+  # metrics: # Commenté car elle peut causer des erreurs de liaison
+  #   logs:
+  #     enabled: true
+  #     report-frequency: 60
+  # clientApp:
+  #   name: 'newArchiveApp' # Cette propriété est souvent définie dans application-dev.yml ou application-prod.yml
+    # Désactiver l'audit persistant si ce n'est pas nécessaire pour les tests afin d'éviter l'erreur SQL
+    # Si vous avez besoin de l'audit, il faudra trouver comment échapper le mot-clé 'value'
+#  audit-events:
+#    enabled: false # Ajouté pour désactiver l'audit persistant

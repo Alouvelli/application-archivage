@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (inscription(); as inscriptionRef) {
+      <div>
+        <h2 data-cy="inscriptionDetailsHeading"><span jhiTranslate="gestionEcoleApp.inscription.detail.title">Inscription</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ inscriptionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.date">Date</span></dt>
+          <dd>
+            <span>{{ inscriptionRef.date | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.manquant">Manquant</span></dt>
+          <dd>
+            <span>{{ inscriptionRef.manquant }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.etudiant">Etudiant</span></dt>
+          <dd>
+            @if (inscription()!.etudiant) {
+              <div>
+                <a [routerLink]="['/etudiant', inscription()!.etudiant?.id, 'view']">{{ inscriptionRef.etudiant?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.classe">Classe</span></dt>
+          <dd>
+            @if (inscription()!.classe) {
+              <div>
+                <a [routerLink]="['/classe', inscription()!.classe?.id, 'view']">{{ inscriptionRef.classe?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.anneescolaire">Anneescolaire</span></dt>
+          <dd>
+            @if (inscription()!.anneescolaire) {
+              <div>
+                <a [routerLink]="['/anneescolaire', inscription()!.anneescolaire?.id, 'view']">{{ inscriptionRef.anneescolaire?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.inscription.document">Document</span></dt>
+          <dd>
+            @for (document of inscriptionRef.documents; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/document', document.id, 'view']">{{ document?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/inscription', inscriptionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

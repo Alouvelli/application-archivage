@@ -1,10 +1,11 @@
 package org.yescola.gestion.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.yescola.gestion.domain.Rubrique;
-import org.yescola.gestion.domain.Menu;
-import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+import org.yescola.gestion.domain.Menu;
+import org.yescola.gestion.domain.Rubrique;
 
 import java.util.List;
 

@@ -1,0 +1,4 @@
+id,nom_application,version_application,logo_application,cout_application,date_vente,maintenance,contrat_maintenance,date_debut,date_fin,etat_application
+1,nomApplication_1,versionApplication_1,logoApplication_1,coutApplication_1,2024-01-01,1,contratMaintenance_1,2024-01-01,2024-01-01,1
+2,nomApplication_2,versionApplication_2,logoApplication_2,coutApplication_2,2024-02-01,2,contratMaintenance_2,2024-02-01,2024-02-01,2
+3,nomApplication_3,versionApplication_3,logoApplication_3,coutApplication_3,2024-03-01,3,contratMaintenance_3,2024-03-01,2024-03-01,3

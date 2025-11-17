@@ -1,47 +1,54 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "ecole",
-            "otherEntityRelationshipName": "profil",
-            "relationshipName": "ecole",
-            "otherEntityField": "id",
-            "otherEntityRelationshipNameUndefined": false
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "site",
-            "otherEntityRelationshipName": "profil",
-            "relationshipName": "site",
-            "otherEntityField": "id",
-            "otherEntityRelationshipNameUndefined": false
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "employe",
-            "otherEntityRelationshipName": "profil",
-            "relationshipName": "employe",
-            "otherEntityRelationshipNameUndefined": false
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "etatProfil",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "libelleProfil",
-            "fieldType": "String"
-        }
-    ],
-    "changelogDate": "20190603220326",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "profil",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190603220326"
+  },
+  "changelogDate": "20190603220326",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "profil",
+  "fields": [
+    {
+      "fieldName": "etatProfil",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "libelleProfil",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Profil",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "ecole",
+      "otherEntityRelationshipName": "profil",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "ecole",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "site",
+      "otherEntityRelationshipName": "profil",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "site",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "profil",
+      "otherEntityRelationshipNameUndefined": false,
+      "relationshipName": "employe",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
 }

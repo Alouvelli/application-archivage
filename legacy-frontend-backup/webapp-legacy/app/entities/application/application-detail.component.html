@@ -1,0 +1,52 @@
+@if (application) {
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2 class="h5 mb-0">
+        {{ 'gestionEcoleApp.application.detail.title' | translate }} #{{ application.id }}
+      </h2>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="previousState()">
+          <fa-icon [icon]="faArrowLeft"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.back' | translate }}</span>
+        </button>
+        <a class="btn btn-primary btn-sm" [routerLink]="['/application', application.id, 'edit']">
+          <fa-icon [icon]="faPen"></fa-icon>
+          <span class="ms-1">{{ 'entity.action.edit' | translate }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <dl class="row gy-3">
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.nomApplication' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.nomApplication }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.versionApplication' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.versionApplication }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.logoApplication' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.logoApplication }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.coutApplication' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.coutApplication }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.dateVente' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.dateVente?.format?.('DD/MM/YYYY') || application.dateVente | date: 'mediumDate' }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.maintenance' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.maintenance ? 'Oui' : 'Non' }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.contratMaintenance' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.contratMaintenance }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.dateDebut' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.dateDebut?.format?.('DD/MM/YYYY') || application.dateDebut | date: 'mediumDate' }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.dateFin' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.dateFin?.format?.('DD/MM/YYYY') || application.dateFin | date: 'mediumDate' }}</dd>
+
+        <dt class="col-sm-4 text-muted">{{ 'gestionEcoleApp.application.etatApplication' | translate }}</dt>
+        <dd class="col-sm-8">{{ application.etatApplication }}</dd>
+      </dl>
+    </div>
+  </div>
+}

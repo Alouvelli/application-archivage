@@ -1,29 +1,33 @@
 {
-    "gestionEcoleApp": {
-        "modelecontrat": {
-            "home": {
-                "title": "Modelecontrats",
-                "createLabel": "Créer un nouveau Modelecontrat",
-                "createOrEditLabel": "Créer ou éditer un Modelecontrat"
-            },
-            "created": "Un nouveau Modelecontrat a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Modelecontrat avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Modelecontrat avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Modelecontrat {{ id }} ?"
-            },
-            "detail": {
-                "title": "Modelecontrat"
-            },
-            "datedeb": "Datedeb",
-            "datefin": "Datefin",
-            "duree": "Duree",
-            "annescolairedeb": "Annescolairedeb",
-            "anneescolairefin": "Anneescolairefin",
-            "code": "Code",
-            "etat": "Etat",
-            "type": "Type",
-            "cycle": "Cycle"
-        }
+  "gestionEcoleApp": {
+    "modelecontrat": {
+      "home": {
+        "title": "Modelecontrats",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Modelecontrat",
+        "createOrEditLabel": "Créer ou éditer un Modelecontrat",
+        "notFound": "Aucun Modelecontrat trouvé"
+      },
+      "created": "Un nouveau Modelecontrat a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Modelecontrat avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Modelecontrat avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Modelecontrat {{ id }} ?"
+      },
+      "detail": {
+        "title": "Modelecontrat"
+      },
+      "id": "ID",
+      "datedeb": "Datedeb",
+      "datefin": "Datefin",
+      "duree": "Duree",
+      "annescolairedeb": "Annescolairedeb",
+      "anneescolairefin": "Anneescolairefin",
+      "code": "Code",
+      "etat": "Etat",
+      "type": "Type",
+      "cycle": "Cycle",
+      "contrat": "Contrat"
     }
+  }
 }

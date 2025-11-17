@@ -1,23 +1,26 @@
 {
-    "gestionEcoleApp": {
-        "specialitecycle": {
-            "home": {
-                "title": "Specialitecycles",
-                "createLabel": "Créer un nouveau Specialitecycle",
-                "createOrEditLabel": "Créer ou éditer un Specialitecycle"
-            },
-            "created": "Un nouveau Specialitecycle a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Specialitecycle avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Specialitecycle avec l'identifiant {{ param }} a été supprimé",
-            "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Specialitecycle {{ id }} ?"
-            },
-            "detail": {
-                "title": "Specialitecycle"
-            },
-            "nombreprof": "Nombreprof",
-            "specialite": "Specialite",
-            "cycle": "Cycle"
-        }
+  "gestionEcoleApp": {
+    "specialitecycle": {
+      "home": {
+        "title": "Specialitecycles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Specialitecycle",
+        "createOrEditLabel": "Créer ou éditer un Specialitecycle",
+        "notFound": "Aucun Specialitecycle trouvé"
+      },
+      "created": "Un nouveau Specialitecycle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Specialitecycle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Specialitecycle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Specialitecycle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Specialitecycle"
+      },
+      "id": "ID",
+      "nombreprof": "Nombreprof",
+      "specialite": "Specialite",
+      "cycle": "Cycle"
     }
+  }
 }

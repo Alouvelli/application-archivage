@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (application(); as applicationRef) {
+      <div>
+        <h2 data-cy="applicationDetailsHeading"><span jhiTranslate="gestionEcoleApp.application.detail.title">Application</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ applicationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.nomApplication">Nom Application</span></dt>
+          <dd>
+            <span>{{ applicationRef.nomApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.versionApplication">Version Application</span></dt>
+          <dd>
+            <span>{{ applicationRef.versionApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.logoApplication">Logo Application</span></dt>
+          <dd>
+            <span>{{ applicationRef.logoApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.coutApplication">Cout Application</span></dt>
+          <dd>
+            <span>{{ applicationRef.coutApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.dateVente">Date Vente</span></dt>
+          <dd>
+            <span>{{ applicationRef.dateVente | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.maintenance">Maintenance</span></dt>
+          <dd>
+            <span>{{ applicationRef.maintenance }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.contratMaintenance">Contrat Maintenance</span></dt>
+          <dd>
+            <span>{{ applicationRef.contratMaintenance }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.dateDebut">Date Debut</span></dt>
+          <dd>
+            <span>{{ applicationRef.dateDebut | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.dateFin">Date Fin</span></dt>
+          <dd>
+            <span>{{ applicationRef.dateFin | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionEcoleApp.application.etatApplication">Etat Application</span></dt>
+          <dd>
+            <span>{{ applicationRef.etatApplication }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/application', applicationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,32 +1,38 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "site",
-            "otherEntityName": "site",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "profil",
-            "otherEntityName": "profil",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        }
-    ],
-    "fields": [
-        {
-            "fieldName": "encours",
-            "fieldType": "Boolean"
-        }
-    ],
-    "changelogDate": "20190610011523",
-    "dto": "no",
-    "searchEngine": false,
-    "service": "no",
-    "entityTableName": "site_profil",
-    "databaseType": "sql",
-    "jpaMetamodelFiltering": false,
-    "pagination": "pagination"
+  "annotations": {
+    "changelogDate": "20190610011523"
+  },
+  "changelogDate": "20190610011523",
+  "clientRootFolder": "",
+  "databaseType": "sql",
+  "dto": "no",
+  "entityTableName": "site_profil",
+  "fields": [
+    {
+      "fieldName": "encours",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SiteProfil",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "site",
+      "relationshipName": "site",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "profil",
+      "relationshipName": "profil",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
 }

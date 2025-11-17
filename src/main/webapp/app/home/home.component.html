@@ -1,2 +1,67 @@
-<!--<input type="file" (change)="onFileChange($event)" />-->
-<img width="1350px" height="640px" src="2453791f4c76731c905ff703c59c8ac4-1024x576.jpg">
+<div class="home-shell">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Groupe ISI</p>
+      <h1>Gestion Ecole</h1>
+      <p class="tagline">Archivage instantané, partout.</p>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-light" (click)="login()">Se connecter</button>
+        <a class="btn btn-outline-light" routerLink="/account/register">Créer un accès</a>
+      </div>
+      <div class="status-chip">
+        @if (account(); as accountRef) {
+          <span>Connecté : <strong>{{ accountRef.login }}</strong></span>
+        } @else {
+          <span>Mode visiteur</span>
+        }
+      </div>
+    </div>
+    <div class="hero-stats">
+      <img src="content/images/logo-isi.svg" alt="Groupe ISI" />
+    </div>
+  </section>
+
+<!--  <section class="mini-dashboard">-->
+<!--    <article>-->
+<!--      <p class="slot-label">Demandes en cours</p>-->
+<!--      <p class="slot-value">12</p>-->
+<!--      <button type="button" class="btn btn-link" routerLink="/entities">Voir les entités</button>-->
+<!--    </article>-->
+<!--    <article>-->
+<!--      <p class="slot-label">Archivages du jour</p>-->
+<!--      <p class="slot-value">38</p>-->
+<!--      <button type="button" class="btn btn-link" routerLink="/entities/site">Sites</button>-->
+<!--    </article>-->
+<!--    <article>-->
+<!--      <p class="slot-label">Alertes</p>-->
+<!--      <p class="slot-value">0</p>-->
+<!--      <button type="button" class="btn btn-link" routerLink="/entities/menu">Menus</button>-->
+<!--    </article>-->
+<!--  </section>-->
+
+  <section class="cards">
+    @if (account() === null) {
+      <article>
+        <h3>Connexion requise</h3>
+        <p>Identifiez-vous pour accéder aux dossiers et workflows.</p>
+        <button class="btn btn-link" type="button" (click)="login()">Accéder</button>
+      </article>
+      <article>
+        <h3>Nouveau compte</h3>
+        <p>Demandez un accès en quelques clics.</p>
+        <a class="btn btn-link" routerLink="/account/register">Créer</a>
+      </article>
+    } @else {
+      <article>
+        <h3>Bonjour</h3>
+        <p>Vos entités et tableaux de bord sont prêts.</p>
+        <a class="btn btn-link" routerLink="/entities">Ouvrir les entités</a>
+      </article>
+    }
+    <article>
+      <h3>Support</h3>
+<!--      <p>support@groupeisi.com</p>-->
+      <a class="btn btn-link" href="https://www.groupeisi.com/" target="_blank" rel="noopener noreferrer">groupeisi.com</a>
+    </article>
+  </section>
+</div>

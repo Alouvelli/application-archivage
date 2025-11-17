@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentHeading">
+    <span jhiTranslate="gestionEcoleApp.document.home.title">Documents</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.document.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-document"
+        [routerLink]="['/document/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.document.home.createLabel">Créer un nouveau Document</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (documents().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionEcoleApp.document.home.notFound">Aucun Document trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etat">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.document.etat">Etat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="document1">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.document.document1">Document 1</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="document2">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.document.document2">Document 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ref">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.document.ref">Ref</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeDocument.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionEcoleApp.document.typeDocument">Type Document</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (document of documents(); track trackId(document)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/document', document.id, 'view']">{{ document.id }}</a>
+              </td>
+              <td>{{ document.etat }}</td>
+              <td>
+                @if (document.document1) {
+                  <a (click)="openFile(document.document1, document.document1ContentType)">
+                    <img
+                      [src]="'data:' + document.document1ContentType + ';base64,' + document.document1"
+                      style="max-height: 30px"
+                      alt="document"
+                    />
+                  </a>
+                  <span>{{ document.document1ContentType }}, {{ byteSize(document.document1) }}</span>
+                }
+              </td>
+              <td>{{ document.document2 }}</td>
+              <td>{{ document.ref }}</td>
+              <td>
+                @if (document.typeDocument) {
+                  <div>
+                    <a [routerLink]="['/type-document', document.typeDocument.id, 'view']">{{ document.typeDocument.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/document', document.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/document', document.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(document)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (documents().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,151 @@
+<div class="entity-shell">
+  <header class="entity-header" id="page-heading" data-cy="MenuHeading">
+    <div>
+      <p class="eyebrow">Navigation</p>
+      <h1 jhiTranslate="gestionEcoleApp.menu.home.title">Menus</h1>
+      <p class="subtitle">Liste des entrées utilisées dans l'application.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" type="button" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.menu.home.refreshListLabel">Actualiser</span>
+      </button>
+      <a
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary"
+        [routerLink]="['/menu/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionEcoleApp.menu.home.createLabel">Nouveau</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="alert-stack">
+    <jhi-alert-error />
+    <jhi-alert />
+  </div>
+
+  @if (menus().length > 0) {
+    <section class="entity-metrics">
+      <article>
+        <p>Total</p>
+        <h3>{{ totalItems }}</h3>
+      </article>
+      <article>
+        <p>Page</p>
+        <h3>{{ page }}</h3>
+      </article>
+      <article>
+        <p>Par page</p>
+        <h3>{{ itemsPerPage }}</h3>
+      </article>
+    </section>
+  }
+
+  @if (menus().length === 0) {
+    <div class="empty-state" id="no-result">
+      <h3 jhiTranslate="gestionEcoleApp.menu.home.notFound">Aucun Menu trouvé</h3>
+      <p>Créez une entrée pour commencer.</p>
+      <a class="btn btn-primary" [routerLink]="['/menu/new']">Ajouter</a>
+    </div>
+  } @else {
+    <section class="entity-table" id="entities">
+      <div class="table-responsive">
+        <table aria-describedby="page-heading">
+          <thead>
+            <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+              <th scope="col" jhiSortBy="id">
+                <div>
+                  <span jhiTranslate="global.field.id">ID</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="codeMenu">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.codeMenu">Code</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="libelleMenu">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.libelleMenu">Libellé</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="urlMenu">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.urlMenu">URL</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="iconeMenu">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.iconeMenu">Icône</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="etatMenu">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.etatMenu">Etat</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col" jhiSortBy="rubrique.id">
+                <div>
+                  <span jhiTranslate="gestionEcoleApp.menu.rubrique">Rubrique</span>
+                  <fa-icon icon="sort"></fa-icon>
+                </div>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (menu of menus(); track trackId(menu)) {
+              <tr data-cy="entityTable">
+                <td><a [routerLink]="['/menu', menu.id, 'view']">{{ menu.id }}</a></td>
+                <td>{{ menu.codeMenu }}</td>
+                <td>{{ menu.libelleMenu }}</td>
+                <td class="truncate">{{ menu.urlMenu }}</td>
+                <td>{{ menu.iconeMenu }}</td>
+                <td>{{ menu.etatMenu }}</td>
+                <td>
+                  @if (menu.rubrique) {
+                    <a [routerLink]="['/rubrique', menu.rubrique.id, 'view']">{{ menu.rubrique.id }}</a>
+                  }
+                </td>
+                <td class="entity-actions">
+                  <a [routerLink]="['/menu', menu.id, 'view']" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                  </a>
+                  <a [routerLink]="['/menu', menu.id, 'edit']" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                  </a>
+                  <button type="button" (click)="delete(menu)" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+
+  @if (menus().length > 0) {
+    <footer class="entity-pagination">
+      <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </footer>
+  }
+</div>

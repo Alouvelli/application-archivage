@@ -1,0 +1,77 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    @if (site) {
+      <div class="card shadow-sm">
+        <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <h2 class="h4 mb-0">
+            {{ 'gestionEcoleApp.site.detail.title' | translate }} #{{ site.id }}
+          </h2>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary" (click)="previousState()">
+              <fa-icon [icon]="faArrowLeft"></fa-icon>
+              <span class="ms-2">{{ 'entity.action.back' | translate }}</span>
+            </button>
+            <a class="btn btn-primary" [routerLink]="['/site', site.id, 'edit']">
+              <fa-icon [icon]="faPen"></fa-icon>
+              <span class="ms-2">{{ 'entity.action.edit' | translate }}</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <dl class="row gy-3">
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.codeSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.codeSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.sigleSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.sigleSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.nineaSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.nineaSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.adresseSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.adresseSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.telephone' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.telephone || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.emailSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.emailSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.faxEcole' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.faxSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.etatSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.etatSite === 1 ? 'Actif' : 'Inactif' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.encours' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.encours === 1 ? 'Oui' : 'Non' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.rang' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.rang ?? '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.logoSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.logoSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.enteteSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.enteteSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.basPageSite' | translate }}</dt>
+            <dd class="col-sm-8">{{ site.basPageSite || '—' }}</dd>
+
+            <dt class="col-sm-4">{{ 'gestionEcoleApp.site.ecole' | translate }}</dt>
+            <dd class="col-sm-8">
+              @if (site.ecole) {
+                <a [routerLink]="['/ecole', site.ecole!.id, 'view']">
+                  {{ site.ecole!.sigleEcole ?? site.ecole!.codeEcole ?? site.ecole!.id }}
+                </a>
+              } @else {
+                —
+              }
+            </dd>
+          </dl>
+        </div>
+      </div>
+    }
+  </div>
+</section>

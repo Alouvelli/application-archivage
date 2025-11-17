@@ -1,0 +1,185 @@
+package org.yescola.gestion.service;
+import org.yescola.gestion.config.Constants;
+
+import org.yescola.gestion.GestionEcoleApp;
+import org.yescola.gestion.domain.User;
+import tech.jhipster.config.JHipsterProperties;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Mock; // Change from @Spy to @Mock
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.MessageSource;
+import org.springframework.mail.MailSendException;
+import org.springframework.mail.javamail.JavaMailSender; // Use JavaMailSender interface
+import org.springframework.test.context.junit4.SpringRunner;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+
+import jakarta.mail.Multipart;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import java.io.ByteArrayOutputStream;
+import java.util.Locale;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = GestionEcoleApp.class)
+public class MailServiceIT {
+
+    @Autowired
+    private JHipsterProperties jHipsterProperties;
+
+    @Autowired
+    private MessageSource messageSource;
+
+    @Autowired
+    private SpringTemplateEngine templateEngine;
+
+    @Mock // Change from @Spy to @Mock
+    private JavaMailSender javaMailSender; // Use JavaMailSender interface
+
+    @Captor
+    private ArgumentCaptor<MimeMessage> messageCaptor;
+
+    private MailService mailService;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        // Avec @Mock, vous n'avez pas besoin de doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        // car un mock ne fait rien par défaut pour les appels de méthode.
+        // Si vous voulez vérifier les interactions, vous pouvez toujours utiliser verify().
+        mailService = new MailService(jHipsterProperties, javaMailSender, messageSource, templateEngine);
+    }
+
+    @Test
+    public void testSendEmail() throws Exception {
+        // Pour que Mockito puisse capturer le MimeMessage, nous devons stubber la méthode send()
+        // pour qu'elle ne lève pas d'exception et permette la capture.
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+
+        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", false, false);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        assertThat(message.getSubject()).isEqualTo("testSubject");
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo("john.doe@example.com");
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent()).isInstanceOf(String.class);
+        assertThat(message.getContent().toString()).isEqualTo("testContent");
+        assertThat(message.getDataHandler().getContentType()).isEqualTo("text/plain; charset=UTF-8");
+    }
+
+    @Test
+    public void testSendHtmlEmail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", false, true);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        assertThat(message.getSubject()).isEqualTo("testSubject");
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo("john.doe@example.com");
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent()).isInstanceOf(String.class);
+        assertThat(message.getContent().toString()).isEqualTo("testContent");
+        assertThat(message.getDataHandler().getContentType()).isEqualTo("text/html;charset=UTF-8");
+    }
+
+    @Test
+    public void testSendMultipartEmail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", true, false);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        MimeMultipart mp = (MimeMultipart) message.getContent();
+        MimeBodyPart part = (MimeBodyPart) ((MimeMultipart) mp.getBodyPart(0).getContent()).getBodyPart(0);
+        ByteArrayOutputStream aos = new ByteArrayOutputStream();
+        part.writeTo(aos);
+        assertThat(message.getSubject()).isEqualTo("testSubject");
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo("john.doe@example.com");
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent()).isInstanceOf(Multipart.class);
+        assertThat(aos.toString()).isEqualTo("\r\ntestContent");
+        assertThat(part.getDataHandler().getContentType()).isEqualTo("text/plain; charset=UTF-8");
+    }
+
+    @Test
+    public void testSendMultipartHtmlEmail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", true, true);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        MimeMultipart mp = (MimeMultipart) message.getContent();
+        MimeBodyPart part = (MimeBodyPart) ((MimeMultipart) mp.getBodyPart(0).getContent()).getBodyPart(0);
+        ByteArrayOutputStream aos = new ByteArrayOutputStream();
+        part.writeTo(aos);
+        assertThat(message.getSubject()).isEqualTo("testSubject");
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo("john.doe@example.com");
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent()).isInstanceOf(Multipart.class);
+        assertThat(aos.toString()).isEqualTo("\r\ntestContent");
+        assertThat(part.getDataHandler().getContentType()).isEqualTo("text/html;charset=UTF-8");
+    }
+
+    @Test
+    public void testSendActivationEmail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        User user = new User();
+        user.setLangKey(Constants.DEFAULT_LANGUAGE);
+        user.setLogin("john");
+        user.setEmail("john.doe@example.com");
+        mailService.sendActivationEmail(user);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo(user.getEmail());
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent().toString()).isNotEmpty();
+        assertThat(message.getDataHandler().getContentType()).isEqualTo("text/html;charset=UTF-8");
+    }
+
+    @Test
+    public void testCreationEmail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        User user = new User();
+        user.setLangKey(Constants.DEFAULT_LANGUAGE);
+        user.setLogin("john");
+        user.setEmail("john.doe@example.com");
+        mailService.sendCreationEmail(user);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo(user.getEmail());
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent().toString()).isNotEmpty();
+        assertThat(message.getDataHandler().getContentType()).isEqualTo("text/html;charset=UTF-8");
+        assertThat(message.getSubject()).isEqualTo(messageSource.getMessage("email.creation.title", null, Locale.forLanguageTag(user.getLangKey())));
+    }
+
+    @Test
+    public void testSendPasswordResetMail() throws Exception {
+        doNothing().when(javaMailSender).send(any(MimeMessage.class));
+        User user = new User();
+        user.setLangKey(Constants.DEFAULT_LANGUAGE);
+        user.setLogin("john");
+        user.setEmail("john.doe@example.com");
+        mailService.sendPasswordResetMail(user);
+        verify(javaMailSender).send(messageCaptor.capture());
+        MimeMessage message = messageCaptor.getValue();
+        assertThat(message.getAllRecipients()[0].toString()).isEqualTo(user.getEmail());
+        assertThat(message.getFrom()[0].toString()).isEqualTo("test@localhost");
+        assertThat(message.getContent().toString()).isNotEmpty();
+        assertThat(message.getDataHandler().getContentType()).isEqualTo("text/html;charset=UTF-8");
+    }
+
+    @Test
+    public void testSendEmailWithException() throws Exception {
+        doThrow(MailSendException.class).when(javaMailSender).send(any(MimeMessage.class));
+        mailService.sendEmail("john.doe@example.com", "testSubject", "testContent", false, false);
+    }
+
+}

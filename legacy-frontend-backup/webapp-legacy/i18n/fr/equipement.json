@@ -1,0 +1,22 @@
+{
+    "gestionEcoleApp": {
+        "equipement": {
+            "home": {
+                "title": "Equipements",
+                "createLabel": "Créer un nouveau Equipement",
+                "createOrEditLabel": "Créer ou éditer un Equipement"
+            },
+            "created": "Un nouveau Equipement a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Equipement avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Equipement avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Equipement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Equipement"
+            },
+            "libelle": "Libelle",
+            "etat": "Etat"
+        }
+    }
+}

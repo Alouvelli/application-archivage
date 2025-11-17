@@ -1,0 +1,23 @@
+{
+    "gestionEcoleApp": {
+        "niveaudocument": {
+            "home": {
+                "title": "Niveaudocuments",
+                "createLabel": "Créer un nouveau Niveaudocument",
+                "createOrEditLabel": "Créer ou éditer un Niveaudocument"
+            },
+            "created": "Un nouveau Niveaudocument a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Niveaudocument avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Niveaudocument avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Niveaudocument {{ id }} ?"
+            },
+            "detail": {
+                "title": "Niveaudocument"
+            },
+            "etat": "Etat",
+            "niveau": "Niveau",
+            "document": "Document"
+        }
+    }
+}
